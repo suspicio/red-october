@@ -1,0 +1,71 @@
+.modal__wrapper {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background: rgba(43, 2, 12, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 80;
+
+  .modal__content {
+    min-width: 434px;
+    padding: 48px 24px;
+    background-color: #B8140D;
+    border-radius: 20px;
+    position: relative;
+
+    h1 {
+      color: white;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 130%;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    form {
+      .form__buttons {
+        max-width: 386px;
+        display: flex;
+        justify-content: left;
+        align-items: flex-start;
+        width: 100%;
+        margin: 22px 0;
+        position: relative;
+
+        .TheButton {
+          margin-right: 24.5px;
+        }
+
+        a {
+          font-family: 'Zen Kaku Gothic New', sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 18px;
+          line-height: 110%;
+          color: #FFFFFF;
+          text-decoration: underline dashed;
+          cursor: pointer;
+        }
+      }
+
+      .confidential__policy {
+        font-family: 'Zen Kaku Gothic New', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 130%;
+        color: rgba(255, 255, 255, 0.5);
+
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+}

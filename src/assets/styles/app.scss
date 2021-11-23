@@ -1,0 +1,36 @@
+.g-container {
+  max-width: 1500px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.g-profile__picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 68px;
+  width: 68px;
+  border-radius: 100%;
+  background: #F8E577;
+  overflow: hidden;
+
+  img {
+    transform: translateY(10%);
+  }
+}
+
+.w-100 {
+  width: 100vw;
+}
+
+@font-face {
+  font-family: "MyriadPro";
+  src: local("MyriadPro"),
+  url(../fonts/MYRIADPRO-REGULAR.OTF) format("truetype");
+}
+
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  src: local("Zen Kaku Gothic New"),
+  url(../fonts/ZenKakuGothicNew-Regular.ttf) format("truetype");
+}

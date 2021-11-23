@@ -1,0 +1,30 @@
+[
+  {
+    "checkId": "7584789538",
+    "date": "01.02.2021",
+    "registeredDate": "03.02.2021",
+    "actionDate": "15.02.2021",
+    "status": "waiting"
+  },
+  {
+    "checkId": "7584789537",
+    "date": "01.02.2021",
+    "registeredDate": "03.02.2021",
+    "actionDate": "15.02.2021",
+    "status": "win"
+  },
+  {
+    "checkId": "7584789536",
+    "date": "01.02.2021",
+    "registeredDate": "03.02.2021",
+    "actionDate": "15.02.2021",
+    "status": "lose"
+  },
+  {
+    "checkId": "7584789535",
+    "date": "01.02.2021",
+    "registeredDate": "03.02.2021",
+    "actionDate": "15.02.2021",
+    "status": "win"
+  }
+]

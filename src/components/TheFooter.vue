@@ -1,0 +1,68 @@
+<template>
+  <div class="the__footer">
+    <img class="left__image" src="../assets/footer_left_side.png">
+    <img class="right__image" src="../assets/footer_right_side.png">
+    <img class="red__october" src="../assets/red_october.png">
+    <div class="text__block">
+      <p>Политика конфиденциальности</p>
+      <p>Правила акции</p>
+      <p>©</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'TheFooter'
+}
+</script>
+
+<style lang="scss" scoped>
+.the__footer {
+  position: relative;
+  min-height: 309px;
+  background-color: #D02E26;
+
+  .left__image {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .right__image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .red__october {
+    position: absolute;
+    top: 45px;
+    left: calc(50% - 71px);
+  }
+
+  .text__block {
+    position: absolute;
+    top: 162px;
+    width: 240px;
+    left: calc(50% - 120px);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14.4px;
+    line-height: 21px;
+    text-align: center;
+    color: white;
+
+    p {
+      margin-bottom: 18px;
+    }
+
+    &:nth-child(3) {
+      font-family: Montserrat;
+    }
+  }
+}
+</style>
