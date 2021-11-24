@@ -1,28 +1,34 @@
 <template>
   <div class="modal__wrapper">
     <div class="modal__content">
-      <div class="close" @click="disable">
-      </div>
-      <div>
+      <div class="close" @click="disable" />
+      <div class="modal__part">
         <div class="input__form">
           <h1>ВВОД ЧЕКА ВРУЧНУЮ</h1>
           <form @submit.prevent>
             <div class="in-line">
               <TheInput
                 :text="'Дата покупки'"
+                v-model="purchaseDate"
+                type="date"
               ><div class="number__input number__input-f">1</div></TheInput>
               <TheInput
                 :text="'Время покупки'"
+                v-model="purchaseTime"
+                type="time"
               ><div class="number__input">2</div></TheInput>
             </div>
             <TheInput
               :text="'ФП'"
+              v-model="fp"
             ><div class="number__input">3</div></TheInput>
             <TheInput
               :text="'ФН'"
+              v-model="fn"
             ><div class="number__input">4</div></TheInput>
             <TheInput
               :text="'ФД'"
+              v-model="fd"
             ><div class="number__input">5</div></TheInput>
             <div class="form__buttons left__buttons">
               <TheButton
@@ -38,6 +44,9 @@
 
         </div>
       </div>
+      <div class="modal__part">
+
+      </div>
     </div>
   </div>
 </template>
@@ -45,16 +54,47 @@
 <script>
 import TheInput from '@/components/TheInput'
 import TheButton from '@/components/TheButton'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'ManualCheckEnter',
+
   components: {
     TheInput,
     TheButton
   },
+
+  data () {
+    return {
+      purchaseDate: '',
+      purchaseTime: '',
+      fp: '',
+      fn: '',
+      fd: '',
+      sum: '0'
+    }
+  },
+
   methods: {
+    ...mapActions(['uploadReceiptManual']),
+
     disable () {
       this.$emit('activate')
+    },
+
+    onSubmit () {
+      this.uploadReceiptManual({
+        t: `${this.purchaseDate}T${this.purchaseTime}Z`,
+        fn: this.fn,
+        fp: this.fp,
+        i: this.fd,
+        s: this.sum
+      })
+        .then(res => {
+          if (res === true) {
+            this.disable()
+          }
+        })
     }
   }
 }
@@ -67,7 +107,7 @@ export default {
 
 .in-line {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 410px;
 }

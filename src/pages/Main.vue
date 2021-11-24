@@ -46,6 +46,7 @@ import CheckRegistrationOptions from '@/views/CheckRegister/CheckRegistrationOpt
 import ManualCheckEnter from '@/views/CheckRegister/ManualCheckEnter'
 import CheckLoader from '@/views/CheckRegister/CheckLoader'
 import CheckStatus from '@/views/CheckRegister/CheckStatus'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Main',
@@ -77,6 +78,13 @@ export default {
       isLoading: false
     }
   },
+
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
+
   methods: {
     registrationVisible () {
       this.isRegistrationActive = !this.isRegistrationActive
@@ -91,7 +99,7 @@ export default {
     },
 
     activateCheckRegOpt () {
-      this.isActiveCheckRegOpt = !this.isActiveCheckRegOpt
+      if (this.user) { this.isActiveCheckRegOpt = !this.isActiveCheckRegOpt } else { this.isRegistrationActive = true }
     },
 
     activateManualCheck () {

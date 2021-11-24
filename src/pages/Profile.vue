@@ -1,5 +1,5 @@
 <template>
-  <div class="profile__page">
+  <div class="profile__page" v-if="user">
     <TheHeader
       :is-bg-red="true"
     ></TheHeader>
@@ -12,9 +12,9 @@
                 <img src="@/assets/big_photo_profile.png">
               </div>
               <div class="text__block">
-                <p>Константин Константинопольский</p>
-                <p>konstantinopolsky@hotmail.com</p>
-                <p>+7 906 700 205 63</p>
+                <p>{{ user.firstName }} {{ user.lastName }}</p>
+                <p v-if="user.email">{{ user.email }}</p>
+                <p v-if="user.phone">+7 {{ russianNoPrefix(user.phone) }}</p>
               </div>
             </div>
             <div class="edit__button" @click="switchEdit">
@@ -32,13 +32,13 @@
               </div>
               <div class="text__block">
                 <div class="the__input">
-                  <input :placeholder="'Константин Константинопольский'">
+                  <input v-model="name" placeholder="ФИО">
                 </div>
                 <div class="the__input">
-                  <input :placeholder="'konstantinopolsky@hotmail.com'">
+                  <input v-model="email" placeholder="">
                 </div>
                 <div class="the__input">
-                  <input :placeholder="'+7 906 700 205 63'">
+                  <input v-model="phone" :placeholder="'+7 906 700 205 63'">
                 </div>
                 <div class="save__cancel">
                   <TheButton
@@ -69,6 +69,8 @@ import TheHeader from '@/components/TheHeader'
 import TheCard from '@/components/TheCard'
 import TheButton from '@/components/TheButton'
 import CustomTable from '@/views/profile/CustomTable'
+import { mapState } from 'vuex'
+import { russianNoPrefix } from '@/utils/formattedPhoneNumbers'
 
 export default {
   name: 'Profile',
@@ -78,12 +80,33 @@ export default {
     TheCard,
     TheHeader
   },
+
   data () {
     return {
-      editMode: false
+      editMode: false,
+
+      name: `${this.user?.firstName || ''} ${this.user?.lastName || ''}`.trim(),
+      email: this.user?.email || '',
+      phone: this.user?.phone || ''
     }
   },
+
+  mounted () {
+    if (!this.user) {
+      // eslint-disable-next-line no-unused-expressions
+      this.$router.push('/')?.catch()
+    }
+  },
+
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
+
   methods: {
+    russianNoPrefix,
+
     switchEdit () {
       this.editMode = !this.editMode
     }
@@ -176,17 +199,14 @@ export default {
     border-radius: 10px;
     background: rgba(255, 0, 0, 0.1);
     border: 0;
-
-    &::placeholder {
-      color: black;
-      opacity: 1;
-      padding-left: 16px;
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 130%;
-    }
+    color: black;
+    opacity: 1;
+    padding-left: 16px;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 130%;
   }
 }
 
@@ -207,7 +227,7 @@ export default {
     font-size: 18px !important;
     line-height: 130%;
     color: #B8140D !important;
-    text-decoration: underline dashed;
+    text-decoration: underline dashed 1px;
     margin: 0 24px;
     cursor: pointer;
   }

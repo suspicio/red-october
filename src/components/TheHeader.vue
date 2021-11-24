@@ -18,12 +18,12 @@
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
-        <a href="#">Личный кабинет</a>
+        <router-link to="/profile">Личный кабинет</router-link>
         <a href="#">Победители</a>
         <a href="#">FAQ</a>
       </div>
       <TheButton
-        v-if="!!!$store.user"
+        v-if="!user"
         :bg-color="'#F8E577'"
         :event="disable"
         :is-rounded="true"
@@ -43,21 +43,20 @@
 
 <script>
 import TheButton from '@/components/TheButton'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Header',
+
   components: { TheButton },
+
   props: {
     isBgRed: {
       type: Boolean,
       default: false
     }
   },
-  mounted () {
-    window.addEventListener('resize', this.onResize, true)
-    this.small = window.innerWidth <= 768
-    this.tiny = window.innerWidth <= 500
-  },
+
   data () {
     return {
       small: false,
@@ -65,6 +64,19 @@ export default {
       visible: false
     }
   },
+
+  mounted () {
+    window.addEventListener('resize', this.onResize, true)
+    this.small = window.innerWidth <= 768
+    this.tiny = window.innerWidth <= 500
+  },
+
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
+
   methods: {
     disable () {
       this.$emit('activate')
@@ -95,6 +107,7 @@ export default {
 
   nav {
     display: flex;
+    align-items: center;
 
     .burger {
       display: none;

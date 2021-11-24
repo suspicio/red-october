@@ -1,6 +1,6 @@
 <template>
   <div class="the__input">
-    <input :placeholder="text" :value="value" @input="onInput">
+    <input :placeholder="text" :value="value" :type="type" @input="onInput">
     <slot></slot>
   </div>
 </template>
@@ -15,6 +15,10 @@ export default {
     },
     value: {
       type: String
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   },
 
@@ -39,16 +43,17 @@ export default {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     border: 0;
+    padding-left: 16px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 130%;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    outline: none;
 
     &::placeholder {
-      color: #FFFFFF;
-      opacity: 0.5;
-      padding-left: 16px;
-      font-family: 'Zen Kaku Gothic New', sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 130%;
+      color: rgba(255,255,255,.5);
     }
   }
 }
@@ -58,10 +63,7 @@ export default {
     input {
       height: 40px;
       margin: 4px 0;
-
-      &::placeholder {
-        font-size: 14px;
-      }
+      font-size: 14px;
     }
   }
 }

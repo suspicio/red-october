@@ -1,18 +1,20 @@
 <template>
   <div class="modal__wrapper">
     <div class="modal__content">
-      <div class="close" @click="disable">
-      </div>
+      <div class="close" @click="disable" />
+      <input type="file" v-show="false" accept="image/jpeg, image/png, image/webp, image/tiff" ref="dropImage" @change="onChange">
       <TheButton
         :is-long="true"
         :is-rounded="true"
         :text="'ЗАГРУЗИТЬ ИЗ ГАЛЕРЕИ'"
         class="mgb"
+        :event="onUploadFile"
       ></TheButton>
       <TheButton
         :event="manual"
         :is-long="true"
         :is-rounded="true"
+        color="#fff"
         :text="'ВВЕСТИ ВРУЧНУЮ'"
         class="special__button"
       ></TheButton>
@@ -22,7 +24,7 @@
         <div class="line"></div>
       </div>
       <div class="centralized">
-        <img src="@/assets/whatsup.png">
+        <img src="@/assets/whatsup.png" alt="Whatsapp">
         <a class="dashed" href="#">WhatsApp-бот</a>
       </div>
       <div class="centralized normal">
@@ -34,13 +36,18 @@
 
 <script>
 import TheButton from '@/components/TheButton'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'CheckRegistrationOptions',
+
   components: {
     TheButton
   },
+
   methods: {
+    ...mapActions(['uploadReceiptFile']),
+
     disable () {
       this.$emit('activate')
     },
@@ -48,6 +55,27 @@ export default {
     manual () {
       this.$emit('activate')
       this.$emit('manual')
+    },
+
+    onUploadFile () {
+      this.$refs.dropImage.click()
+    },
+
+    onChange (e) {
+      const file = e.target.files[0]
+      if (file) {
+        if (file.size / 1024 / 1024 > 50) {
+          e.target.files = null
+          this.$toasted.error('Максимальный размер файла 50MB')
+        } else {
+          this.uploadReceiptFile(file)
+            .then(res => {
+              if (res === true) {
+                this.disable()
+              }
+            })
+        }
+      }
     }
   }
 }
@@ -112,7 +140,7 @@ export default {
       font-size: 18px;
       line-height: 130%;
       color: #F8E577;
-      text-decoration: underline dashed;
+      text-decoration: underline dashed 1px;
     }
 
     .normal {

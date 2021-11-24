@@ -35,7 +35,7 @@
 <script>
 import TheInput from '@/components/TheInput'
 import TheButton from '@/components/TheButton'
-import { mapActions, mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'LogIn',
@@ -60,7 +60,6 @@ export default {
   },
   methods: {
     ...mapActions(['signin']),
-    ...mapState(['user']),
 
     disable () {
       this.$emit('activateLogIn')
@@ -80,8 +79,11 @@ export default {
         phone: this.phone,
         password: this.password
       })
-
-      console.log(this.user)
+        .then(res => {
+          if (res === true) {
+            this.disable()
+          }
+        })
     }
   }
 }

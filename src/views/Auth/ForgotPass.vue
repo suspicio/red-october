@@ -4,9 +4,10 @@
       <div class="close" @click="disable">
       </div>
       <h1>ЗАБЫЛИ КОД?</h1>
-      <form @submit.prevent>
+      <form @submit.prevent="onSubmit">
         <TheInput
           :text="'Телефон (при регистрации)'"
+          v-model="phone"
         ></TheInput>
         <div class="form__buttons left__buttons">
           <TheButton
@@ -24,16 +25,36 @@
 <script>
 import TheInput from '@/components/TheInput'
 import TheButton from '@/components/TheButton'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'ForgotPass',
+
   components: {
     TheButton,
     TheInput
   },
+
+  data () {
+    return {
+      phone: ''
+    }
+  },
+
   methods: {
+    ...mapActions(['askForSMSCode']),
+
     disable () {
       this.$emit('activateForgot')
+    },
+
+    onSubmit () {
+      this.askForSMSCode(this.phone)
+        .then(res => {
+          if (res === true) {
+            this.disable()
+          }
+        })
     }
   }
 }
