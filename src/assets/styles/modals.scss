@@ -71,6 +71,10 @@
 }
 
 @media (max-width: 768px) {
+  .modal__wrapper {
+    padding-top: 140px;
+  }
+
   .modal__content {
     min-width: 0 !important;
     width: 290px !important;

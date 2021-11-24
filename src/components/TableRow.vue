@@ -87,19 +87,19 @@ tr {
       font-size: 15px;
 
       &:nth-child(1) {
-        min-width: 0px;
+        min-width: 0 !important;
       }
 
       &:nth-child(2) {
-        min-width: 0px;
+        min-width: 0 !important;
       }
 
       &:nth-child(3) {
-        min-width: 0px;
+        min-width: 0 !important;
       }
 
       &:nth-child(4) {
-        min-width: 0px;
+        min-width: 0 !important;
       }
     }
   }

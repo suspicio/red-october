@@ -1,35 +1,45 @@
 <template>
   <div class="modal__wrapper">
     <div class="modal__content">
-      <div class="close" @click="disable" />
+      <div class="close" @click="disable"/>
       <div class="modal__part">
         <div class="input__form">
           <h1>ВВОД ЧЕКА ВРУЧНУЮ</h1>
           <form @submit.prevent="onSubmit">
             <div class="in-line">
               <TheInput
-                :text="'Дата покупки'"
                 v-model="purchaseDate"
+                :text="'Дата покупки'"
                 type="date"
-              ><div class="number__input number__input-f">1</div></TheInput>
+              >
+                <div class="number__input number__input-f">1</div>
+              </TheInput>
               <TheInput
-                :text="'Время покупки'"
                 v-model="purchaseTime"
+                :text="'Время покупки'"
                 type="time"
-              ><div class="number__input">2</div></TheInput>
+              >
+                <div class="number__input">2</div>
+              </TheInput>
             </div>
             <TheInput
-              :text="'ФП'"
               v-model="fp"
-            ><div class="number__input">3</div></TheInput>
+              :text="'ФП'"
+            >
+              <div class="number__input">3</div>
+            </TheInput>
             <TheInput
-              :text="'ФН'"
               v-model="fn"
-            ><div class="number__input">4</div></TheInput>
+              :text="'ФН'"
+            >
+              <div class="number__input">4</div>
+            </TheInput>
             <TheInput
-              :text="'ФД'"
               v-model="fd"
-            ><div class="number__input">5</div></TheInput>
+              :text="'ФД'"
+            >
+              <div class="number__input">5</div>
+            </TheInput>
             <div class="form__buttons left__buttons">
               <TheButton
                 :bg-color="'#F8E577'"
@@ -45,7 +55,7 @@
         </div>
       </div>
       <div class="modal__part">
-        <img class="modal__image" src="/images/check.png" alt="Чек">
+        <img alt="Чек" class="modal__image" src="/images/check.png">
       </div>
     </div>
   </div>
@@ -135,6 +145,34 @@ export default {
 
   &-f {
     margin-right: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .input__form {
+    width: 270px;
+  }
+
+  .in-line {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 270px;
+  }
+
+  .modal__content {
+    flex-direction: column;
+  }
+
+  .modal__content {
+    margin-top: 300px;
+    position: relative;
+  }
+
+  .modal__wrapper {
+    overflow-y: auto;
+    padding-bottom: 30px;
+    height: 100%;
   }
 }
 </style>

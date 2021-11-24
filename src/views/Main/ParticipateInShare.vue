@@ -60,6 +60,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-bottom: 50px;
 }
 
 .red__line {
@@ -75,7 +76,6 @@ export default {
   .centralized {
     flex-direction: column;
     align-items: center;
-    padding-bottom: 50px;
   }
 
   .red__line {

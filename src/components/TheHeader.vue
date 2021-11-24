@@ -263,6 +263,7 @@ export default {
     width: fit-content;
     height: fit-content;
     background-color: #D12E27;
+    top: 10px;
     margin-top: 60px;
     border-radius: 8px;
 
