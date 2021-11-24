@@ -5,6 +5,7 @@
 }
 
 .g-profile__picture {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,12 +21,26 @@
 }
 
 html {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-family: Zen Kaku Gothic New, sans-serif;
 }
 
 .w-100 {
   width: 100vw;
 }
+
+@media (max-width: 768px) {
+  .g-profile__picture {
+    height: 45px;
+    width: 45px;
+    border-radius: 100%;
+    margin-left: 20px;
+
+    img {
+      transform: translateY(10%);
+    }
+  }
+}
+
 
 @font-face {
   font-family: "MyriadPro";

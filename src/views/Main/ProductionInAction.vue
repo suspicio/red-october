@@ -45,19 +45,28 @@ export default {
   data () {
     return {
       swiperOption: {
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 27,
+        breakpoints: {
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 40
+          }
+        },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
       },
       slides: require('@/content/ProductionInAction.json')
-    }
-  },
-  created () {
-    if (window.innerWidth < 768) {
-      this.swiperOption.slidesPerView = 2
     }
   }
 }

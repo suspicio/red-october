@@ -72,6 +72,30 @@ export default new Vuex.Store({
       return isAuth
     },
 
+    async logOut ({ commit }) {
+      let isAuth = false
+      const sid = localStorage.getItem('sid')
+
+      if (sid) {
+        localStorage.removeItem('sid')
+        await axios.post(`/signout?sid=${sid}`)
+          .then(res => {
+            if (res.data.success) {
+              commit('setUser', null)
+              isAuth = false
+            } else {
+              console.error(res.data.error)
+              Vue.prototype.$toasted.error(res.data.error)
+            }
+          })
+          .catch(e => {
+            console.error(e)
+          })
+      }
+
+      return isAuth
+    },
+
     async askForSMSCode (_, phone) {
       return new Promise(resolve => {
         axios.post('/send-password', { phone })

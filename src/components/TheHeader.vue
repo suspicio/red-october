@@ -11,7 +11,7 @@
         <a href="#">Победители</a>
         <a href="#">FAQ</a>
       </div>
-      <router-link class="red_october"  to="/">
+      <router-link class="red_october" to="/">
         <img v-if="!tiny" src="../assets/logo.png">
         <img v-else src="../assets/small_red_october.png">
       </router-link>
@@ -26,16 +26,24 @@
         v-if="!user"
         :bg-color="'#F8E577'"
         :event="disable"
+        :is-big="!tiny"
         :is-rounded="true"
         :text="'ВОЙТИ'"
-        :is-big="!tiny"
       >
       </TheButton>
-      <div
-        v-else
-        class="g-profile__picture"
-      >
-        <img src="../assets/man_profile_mock.png">
+      <div class="profile__picture-wrapper" v-else>
+        <div class="arrow" @click="toggle" :style="{transform: !toggled ? 'rotate(180deg)' : 'rotate(0deg)'}">
+          <img src="@/assets/arrow.png">
+        </div>
+        <div v-if="toggled" class="menu__profile">
+          <router-link to="/profile">Чеки</router-link>
+          <a class="exit" @click="logout">Выйти</a>
+        </div>
+        <div
+          class="g-profile__picture"
+        >
+          <img src="../assets/man_profile_mock.png">
+        </div>
       </div>
     </nav>
   </div>
@@ -43,7 +51,8 @@
 
 <script>
 import TheButton from '@/components/TheButton'
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
+import router from '@/router'
 
 export default {
   name: 'Header',
@@ -61,7 +70,8 @@ export default {
     return {
       small: false,
       tiny: false,
-      visible: false
+      visible: false,
+      toggled: false
     }
   },
 
@@ -78,6 +88,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['logOut']),
+
     disable () {
       this.$emit('activate')
     },
@@ -89,12 +101,64 @@ export default {
 
     showMenu () {
       this.visible = !this.visible
+    },
+
+    logout () {
+      this.logOut()
+      router.push('/')
+    },
+
+    toggle () {
+      this.toggled = !this.toggled
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.profile__picture-wrapper {
+  position: relative;
+
+  .arrow {
+    position: absolute;
+    left: -30px;
+    top: 20px;
+  }
+
+  .menu__profile {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    z-index: 100;
+    width: 150px;
+    height: 85px;
+    background-color: #D12E27;
+    border-radius: 0px 0px 20px 20px;
+    top: 67px;
+    left: -40px;
+
+    a {
+      font-family: Zen Kaku Gothic New;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16.2px;
+      line-height: 23px;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .exit {
+      text-decoration: underline 1px;
+      font-weight: bold;
+    }
+  }
+}
+
 .the__header {
   position: absolute;
   z-index: 90;
@@ -151,6 +215,28 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .profile__picture-wrapper {
+    .arrow {
+      position: absolute;
+      left: -3px;
+      top: 10px;
+    }
+
+    .menu__profile {
+      width: 100px;
+      height: 85px;
+      background-color: #D12E27;
+      border-radius: 0px 0px 20px 20px;
+      top: 47px;
+      left: -20px;
+
+      a {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+
   .the__header {
     justify-content: space-around;
   }

@@ -27,6 +27,7 @@
             :is-rounded="true"
             :text="'ОТПРАВИТЬ'"
             class="TheButton"
+            :event="register"
           ></TheButton>
           <a @click="activateLogIn">Есть личный кабинет?</a>
         </div>
