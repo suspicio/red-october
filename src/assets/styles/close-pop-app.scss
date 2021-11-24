@@ -29,3 +29,12 @@
     transform: rotate(-45deg);
   }
 }
+
+@media (max-width: 768px) {
+  .close {
+    right: 0px;
+    top: -68px;
+    width: 32px;
+    height: 32px;
+  }
+}

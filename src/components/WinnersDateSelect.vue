@@ -75,4 +75,20 @@ export default {
     color: #091E16;
   }
 }
+
+@media (max-width: 768px) {
+  .winners__date-select {
+    width: 121px;
+    height: 45px;
+
+    h1 {
+      font-size: 12px;
+      padding-bottom: 0;
+    }
+
+    p {
+      font-size: 10px;
+    }
+  }
+}
 </style>

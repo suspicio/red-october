@@ -24,8 +24,8 @@
     <SpecialProject></SpecialProject>
     <TheParticipants></TheParticipants>
     <ProductionInAction></ProductionInAction>
-    <TheWinners v-if="false"></TheWinners>
-    <TheFooter v-if="false"/>
+    <TheWinners></TheWinners>
+    <TheFooter/>
   </div>
 </template>
 

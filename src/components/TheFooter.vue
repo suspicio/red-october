@@ -1,7 +1,9 @@
 <template>
   <div class="the__footer">
-    <img class="left__image" src="../assets/footer_left_side.png">
-    <img class="right__image" src="../assets/footer_right_side.png">
+    <img v-if="!small" class="left__image" src="../assets/footer_left_side.png">
+    <img v-if="!small" class="right__image" src="../assets/footer_right_side.png">
+    <img v-if="small" class="left__image" src="../assets/small_left_footer.png">
+    <img v-if="small" class="right__image" src="../assets/small_right_footer.png">
     <img class="red__october" src="../assets/red_october.png">
     <div class="text__block">
       <p>Политика конфиденциальности</p>
@@ -13,7 +15,21 @@
 
 <script>
 export default {
-  name: 'TheFooter'
+  name: 'TheFooter',
+  mounted () {
+    window.addEventListener('resize', this.onResize, true)
+    this.small = window.innerWidth <= 1000
+  },
+  data () {
+    return {
+      small: false
+    }
+  },
+  methods: {
+    onResize () {
+      this.small = window.innerWidth <= 1000
+    }
+  }
 }
 </script>
 

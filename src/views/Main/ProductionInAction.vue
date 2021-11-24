@@ -2,6 +2,7 @@
   <div class="production__action">
     <div class="g-container">
       <centralized-heading
+        class="size"
         :text="'Продукция, участвующая в акции'"
       ></centralized-heading>
       <div class="slider__wrapper">
@@ -53,6 +54,11 @@ export default {
       },
       slides: require('@/content/ProductionInAction.json')
     }
+  },
+  created () {
+    if (window.innerWidth < 768) {
+      this.swiperOption.slidesPerView = 2
+    }
   }
 }
 </script>
@@ -78,7 +84,7 @@ export default {
         overflow: hidden;
         margin: 54px auto 0;
         width: 100%;
-        max-width: 906px;
+        max-width: 70vw;
 
         .swiper-slide {
           width: 100%;
@@ -139,6 +145,31 @@ export default {
 
 .swiper-button-prev {
   &:after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .image__wrapper {
+    min-height: 180px !important;
+
+    img {
+      max-width: 130px !important;
+      max-height: 150px !important;
+    }
+  }
+
+  .swiper-slide {
+    p {
+      font-size: 12px !important;
+    }
+  }
+
+  .size {
+    font-size: 22px !important;
+  }
+
+  .red__button {
     display: none;
   }
 }

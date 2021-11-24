@@ -52,4 +52,17 @@ export default {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .the__input {
+    input {
+      height: 40px;
+      margin: 4px 0;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+  }
+}
 </style>

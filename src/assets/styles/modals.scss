@@ -69,3 +69,35 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .modal__content {
+    min-width: 0 !important;
+    width: 290px !important;
+    height: fit-content !important;
+    padding: 24px 8px !important;
+
+    h1 {
+      font-size: 14px !important;
+      text-align: center;
+    }
+  }
+
+  .TheButton {
+    margin-right: 0 !important;
+    font-size: 14px !important;
+    height: 40px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .form__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .confidential__policy {
+    text-align: center;
+  }
+}

@@ -2,6 +2,7 @@
   <div class="the__winners">
     <div class="g-container">
       <CentralizedHeading
+        class="size"
         :text="'Победители'"
         :text-color="'black'"
       ></CentralizedHeading>
@@ -68,6 +69,16 @@ export default {
     display: flex;
     flex-direction: row;
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .size {
+    font-size: 22px;
+  }
+
+  .the__winners {
+    flex-direction: column;
   }
 }
 </style>

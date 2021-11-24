@@ -42,7 +42,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .the__button {
   background-color: #F8E577;
   border: 0px;
