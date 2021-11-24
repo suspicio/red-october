@@ -1,8 +1,8 @@
 <template>
   <div class="table__wrapper">
-    <div v-if="false" class="no__checks">
+    <div v-if="!formattedTableData" class="no__checks">
       <img src="@/assets/no_checks.svg">
-      <h1>Зарегистрированных чеков нет</h1>
+      <h2>Зарегистрированных чеков нет</h2>
       <p>Добавляйте чеки, получайте призы</p>
       <TheButton
         :bg-color="'red'"
@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item, index) in list" :key="index">
+        <tr v-for="(item, index) in formattedTableData" :key="index">
           <td><div>{{item.checkId}}</div></td>
           <td><div>{{item.date}}</div></td>
           <td><div>{{item.registeredDate}}</div></td>
@@ -42,13 +42,51 @@
 <script>
 import TheButton from '@/components/TheButton'
 import StatusButton from '@/components/StatusButton'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'CustomTable',
+
   components: { StatusButton, TheButton },
+
   data () {
     return {
-      list: require('@/content/FakeTable.json')
+      list: null
+    }
+  },
+
+  mounted () {
+    if (this.user) {
+      this.getTableData()
+    }
+  },
+
+  watch: {
+    user () {
+      if (this.user) {
+        this.getTableData()
+      }
+    }
+  },
+
+  computed: {
+    ...mapState({
+      user: state => state.user
+    }),
+
+    formattedTableData () {
+      return this.list
+    }
+  },
+
+  methods: {
+    ...mapActions(['getUserChecks']),
+
+    getTableData () {
+      this.getUserChecks()
+        .then(res => {
+          this.list = res
+        })
     }
   }
 }
@@ -69,7 +107,7 @@ export default {
     align-items: center;
     margin: 64px 227px;
 
-    h1 {
+    h2 {
       width: max-content;
       margin: 24px 0 9px 0;
     }

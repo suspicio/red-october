@@ -5,7 +5,7 @@
       <div class="modal__part">
         <div class="input__form">
           <h1>ВВОД ЧЕКА ВРУЧНУЮ</h1>
-          <form @submit.prevent>
+          <form @submit.prevent="onSubmit">
             <div class="in-line">
               <TheInput
                 :text="'Дата покупки'"
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="modal__part">
-
+        <img class="modal__image" src="/images/check.png" alt="Чек">
       </div>
     </div>
   </div>
@@ -110,6 +110,16 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 410px;
+}
+
+.modal__content {
+  display: flex;
+}
+
+.modal__image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .number__input {

@@ -132,6 +132,24 @@ export default new Vuex.Store({
             resolve(false)
           })
       })
+    },
+
+    async getUserChecks () {
+      const sid = localStorage.getItem('sid')
+
+      return new Promise(resolve => {
+        axios.get(`/user/get-receipts?sid=${sid}`)
+          .then(res => {
+            if (res.data.success) {
+              resolve(res.data.receipts)
+            }
+            resolve(null)
+          })
+          .catch(e => {
+            console.error(e)
+            resolve(null)
+          })
+      })
     }
   }
 })

@@ -35,7 +35,7 @@
                   <input v-model="name" placeholder="ФИО">
                 </div>
                 <div class="the__input">
-                  <input v-model="email" placeholder="">
+                  <input v-model="email" placeholder="Почта">
                 </div>
                 <div class="the__input">
                   <input v-model="phone" :placeholder="'+7 906 700 205 63'">
@@ -91,10 +91,20 @@ export default {
     }
   },
 
-  mounted () {
-    if (!this.user) {
+  created () {
+    if (!localStorage.getItem('sid')) {
       // eslint-disable-next-line no-unused-expressions
       this.$router.push('/')?.catch()
+    } else {
+      this.setUser()
+    }
+  },
+
+  watch: {
+    user () {
+      if (this.user) {
+        this.setUser()
+      }
     }
   },
 
@@ -106,6 +116,12 @@ export default {
 
   methods: {
     russianNoPrefix,
+
+    setUser () {
+      this.name = `${this.user?.firstName || ''} ${this.user?.lastName || ''}`.trim()
+      this.email = this.user?.email || ''
+      this.phone = this.user?.phone || ''
+    },
 
     switchEdit () {
       this.editMode = !this.editMode

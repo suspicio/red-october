@@ -10,6 +10,12 @@ export default {
 
   async created () {
     await this.isAuth()
+      .then(res => {
+        if (!res) {
+          // eslint-disable-next-line no-unused-expressions
+          this.$router.push('/')?.catch(() => {})
+        }
+      })
   },
 
   methods: {
