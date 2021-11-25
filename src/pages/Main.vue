@@ -3,18 +3,18 @@
     <TheHeader @activate="registrationVisible"></TheHeader>
     <Registration v-if="isRegistrationActive" @activate="registrationVisible"
                   @activateLogIn="activateLogIn"></Registration>
-    <LogIn v-if="isActiveLogIn" @activateForgot="activateForgot" @activateLogIn="activateLogIn"></LogIn>
-    <ForgotPass v-if="isActiveForgot" @activateForgot="activateForgot"></ForgotPass>
+    <LogIn v-if="isActiveLogIn" @activateForgot="activateForgot" @activateLogIn="activateLogIn" :number="numberPass" :isNumber="isNumberShown"></LogIn>
+    <ForgotPass v-if="isActiveForgot" @activateForgot="activateForgot" @sendToNumber="sendPass"></ForgotPass>
     <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt"
                               @manual="activateManualCheck"></CheckRegistrationOptions>
     <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck"></ManualCheckEnter>
     <CheckLoader v-if="isLoading" @activate="activateLoading"></CheckLoader>
     <CheckStatus
+      v-if="isLoading"
       :button-text="'ЛИЧНЫЙ КАБИНЕТ'"
       :header-text="'Чек зарегистрирован'"
       :is-ok="true"
       :under-text="'Пожалуйста, сохраните чек до конца акции'"
-      v-if="isLoading"
     ></CheckStatus>
     <CheckRegistration
       @activateOptions="activateCheckRegOpt"
@@ -75,7 +75,9 @@ export default {
       isActiveForgot: false,
       isActiveCheckRegOpt: false,
       isActiveManualCheck: false,
-      isLoading: false
+      isLoading: false,
+      isNumberShown: false,
+      numberPass: ''
     }
   },
 
@@ -87,27 +89,44 @@ export default {
 
   methods: {
     registrationVisible () {
+      this.isNumberShown = false
       this.isRegistrationActive = !this.isRegistrationActive
     },
 
     activateLogIn () {
+      this.isNumberShown = false
       this.isActiveLogIn = !this.isActiveLogIn
     },
 
     activateForgot () {
+      this.isNumberShown = false
       this.isActiveForgot = !this.isActiveForgot
     },
 
     activateCheckRegOpt () {
-      if (this.user) { this.isActiveCheckRegOpt = !this.isActiveCheckRegOpt } else { this.isRegistrationActive = true }
+      this.isNumberShown = false
+      if (this.user) {
+        this.isActiveCheckRegOpt = !this.isActiveCheckRegOpt
+      } else {
+        this.isRegistrationActive = true
+      }
     },
 
     activateManualCheck () {
+      this.isNumberShown = false
       this.isActiveManualCheck = !this.isActiveManualCheck
     },
 
     activateLoading () {
+      this.isNumberShown = false
       this.isLoading = !this.isLoading
+    },
+
+    sendPass (number) {
+      this.isActiveForgot = !this.isActiveForgot
+      this.isActiveLogIn = !this.isActiveLogIn
+      this.isNumberShown = true
+      this.numberPass = number
     }
   }
 }

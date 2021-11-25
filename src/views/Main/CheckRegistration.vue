@@ -15,6 +15,7 @@
         :event="activate"
         :is-rounded="small"
         :is-long="small"
+        :is-big="!small"
         :text="'Зарегистрировать чек'"
         class="register"
       ></TheButton>
@@ -51,7 +52,7 @@ export default {
 
 <style scoped lang="scss">
 .check__registration {
-  height: 100vh;
+  height: 810px;
   background-color: #D12E27;
   position: relative;
 }
@@ -60,7 +61,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 15vh;
+  padding-top: 126px;
   padding-left: 13vw;
 }
 
@@ -135,6 +136,14 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .check__registration {
+    height: 568px;
+  }
+
+  .text__block {
+    padding-top: 126px;
+  }
+
   .inspire {
     font-size: 60px;
   }
@@ -144,7 +153,7 @@ export default {
   }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 768px) {
   .left__image {
     display: none;
   }
@@ -176,7 +185,7 @@ export default {
   }
 
   .register {
-    margin-top: 15%;
+    margin-top: 21px;
     margin-left: 0;
   }
 }

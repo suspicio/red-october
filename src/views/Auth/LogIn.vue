@@ -12,6 +12,7 @@
         <TheInput
           v-model="password"
           :text="'Код из SMS (при регистрации)'"
+          type="password"
         ></TheInput>
         <div class="form__buttons">
           <TheButton
@@ -29,6 +30,7 @@
         </div>
       </form>
     </div>
+    <div v-if="isNumber" class="additional__info">Код был отправлен на {{number}}</div>
   </div>
 </template>
 
@@ -39,6 +41,16 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'LogIn',
+  props: {
+    number: {
+      type: String,
+      default: 'ваш номер'
+    },
+    isNumber: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     TheButton,
     TheInput
@@ -91,4 +103,29 @@ export default {
 
 <style lang="scss" scoped>
 
+.additional__info {
+  position: absolute;
+  width: fit-content;
+  left: calc(50vw - 303px);
+  bottom: 45px;
+  font-family: Zen Kaku Gothic New;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 130%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #F8E577;
+}
+
+@media (max-width: 768px) {
+  .additional__info {
+    font-size: 22px !important;
+    line-height: 110% !important;
+    width: 238px;
+    letter-spacing: 0.02em;
+    left: calc(50vw - 119px) !important;
+    bottom: 18px;
+  }
+}
 </style>

@@ -12,6 +12,12 @@ export default new Vuex.Store({
   mutations: {
     setUser (state, newUser) {
       state.user = newUser
+    },
+
+    updateUser (state, newData) {
+      state.user.lastName = newData.lastName
+      state.user.email = newData.email
+      state.user.firstName = newData.firstName
     }
   },
 
@@ -48,6 +54,27 @@ export default new Vuex.Store({
             console.error(e)
             resolve()
           })
+      })
+    },
+
+    async editProfile ({ commit }, data) {
+      return new Promise((resolve) => {
+        let isAuth = false
+        const sid = localStorage.getItem('sid')
+        if (sid) {
+          axios.post(`/user/update-user?sid=${sid}`, data)
+            .then(res => {
+              if (res.data.success) {
+                isAuth = true
+                commit('updateUser', data)
+                resolve()
+              } else {
+                console.error(res.data.error)
+                Vue.prototype.$toasted.error(res.data.error)
+              }
+            })
+        }
+        resolve(isAuth)
       })
     },
 
@@ -101,8 +128,7 @@ export default new Vuex.Store({
         axios.post('/send-password', { phone })
           .then(res => {
             if (!res.data.success) {
-              console.error(res.data.error)
-              Vue.prototype.$toasted.error(res.data.error)
+              resolve(res.data.error)
             }
             resolve(res.data.success)
           })
@@ -162,7 +188,7 @@ export default new Vuex.Store({
       const sid = localStorage.getItem('sid')
 
       return new Promise(resolve => {
-        axios.get(`/user/get-receipts?sid=${sid}`)
+        axios.post(`/user/get-receipts?sid=${sid}`)
           .then(res => {
             if (res.data.success) {
               resolve(res.data.receipts)

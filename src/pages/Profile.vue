@@ -1,65 +1,71 @@
 <template>
-  <div class="profile__page" v-if="user">
+  <div v-if="user" class="profile__page">
     <TheHeader
       :is-bg-red="true"
     ></TheHeader>
     <div class="g-container w-100">
-      <div class="left__side">
-        <TheCard>
-          <div v-if="!editMode" class="profile__info">
-            <div class="profile__info-wrapper">
-              <div class="g-profile__picture">
-                <img src="@/assets/big_photo_profile.png">
+      <div class="wrapper">
+        <div class="left__side">
+          <TheCard>
+            <div v-if="!editMode" class="profile__info">
+              <div class="profile__info-wrapper">
+                <div class="g-profile__picture">
+                  <img src="@/assets/big_photo_profile.png">
+                </div>
+                <div class="text__block">
+                  <p>{{ user.firstName }} {{ user.lastName }}</p>
+                  <p v-if="user.email">{{ user.email }}</p>
+                  <p v-if="user.phone">+7 {{ russianNoPrefix(user.phone) }}</p>
+                </div>
               </div>
-              <div class="text__block">
-                <p>{{ user.firstName }} {{ user.lastName }}</p>
-                <p v-if="user.email">{{ user.email }}</p>
-                <p v-if="user.phone">+7 {{ russianNoPrefix(user.phone) }}</p>
-              </div>
-            </div>
-            <div class="edit__button" @click="switchEdit">
-              <svg fill="none" height="28" viewBox="0 0 24 28" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M4.552 19.3333L18.0747 5.81062L16.1893 3.92528L2.66667 17.448V19.3333H4.552ZM5.95023 21.7071C5.76269 21.8946 5.50834 22 5.24312 22H1C0.447715 22 0 21.5522 0 21V16.7568C0 16.4916 0.105357 16.2373 0.292893 16.0497L15.2467 1.09595C15.4967 0.845987 15.8358 0.705566 16.1893 0.705566C16.5429 0.705566 16.882 0.845987 17.132 1.09595L20.904 4.86795C21.154 5.11799 21.2944 5.45706 21.2944 5.81062C21.2944 6.16417 21.154 6.50325 20.904 6.75328L5.95023 21.7071ZM0 26C0 25.2636 0.596954 24.6666 1.33333 24.6666H22.6667C23.403 24.6666 24 25.2636 24 26C24 26.7363 23.403 27.3333 22.6667 27.3333H1.33333C0.596954 27.3333 0 26.7363 0 26Z"
-                  fill="#091E16"/>
-              </svg>
-            </div>
-          </div>
-          <div v-else class="profile__edit">
-            <div class="profile__info-wrapper">
-              <div class="g-profile__picture">
-                <img src="@/assets/big_photo_profile.png">
-              </div>
-              <div class="text__block">
-                <div class="the__input">
-                  <input v-model="name" placeholder="ФИО">
-                </div>
-                <div class="the__input">
-                  <input v-model="email" placeholder="Почта">
-                </div>
-                <div class="the__input">
-                  <input v-model="phone" :placeholder="'+7 906 700 205 63'">
-                </div>
-                <div class="save__cancel">
-                  <TheButton
-                    :bg-color="'red'"
-                    :color="'white'"
-                    :is-long="true"
-                    :is-rounded="true"
-                    :text="'СОХРАНИТЬ'"
-                  >
-                  </TheButton>
-                  <p @click="switchEdit">Отмена</p>
-                </div>
+              <div class="edit__button" @click="switchEdit">
+                <svg fill="none" height="28" viewBox="0 0 24 28" width="24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4.552 19.3333L18.0747 5.81062L16.1893 3.92528L2.66667 17.448V19.3333H4.552ZM5.95023 21.7071C5.76269 21.8946 5.50834 22 5.24312 22H1C0.447715 22 0 21.5522 0 21V16.7568C0 16.4916 0.105357 16.2373 0.292893 16.0497L15.2467 1.09595C15.4967 0.845987 15.8358 0.705566 16.1893 0.705566C16.5429 0.705566 16.882 0.845987 17.132 1.09595L20.904 4.86795C21.154 5.11799 21.2944 5.45706 21.2944 5.81062C21.2944 6.16417 21.154 6.50325 20.904 6.75328L5.95023 21.7071ZM0 26C0 25.2636 0.596954 24.6666 1.33333 24.6666H22.6667C23.403 24.6666 24 25.2636 24 26C24 26.7363 23.403 27.3333 22.6667 27.3333H1.33333C0.596954 27.3333 0 26.7363 0 26Z"
+                    fill="#091E16"/>
+                </svg>
               </div>
             </div>
-          </div>
-        </TheCard>
-        <TheCard v-if="false"></TheCard>
+            <div v-else class="profile__edit">
+              <div class="profile__info-wrapper">
+                <div class="g-profile__picture">
+                  <img src="@/assets/big_photo_profile.png">
+                </div>
+                <div class="text__block">
+                  <div class="the__input">
+                    <input v-model="firstName" placeholder="Имя">
+                  </div>
+                  <div class="the__input">
+                    <input v-model="lastName" placeholder="Фамилия">
+                  </div>
+                  <div class="the__input">
+                    <input v-model="email" placeholder="Почта">
+                  </div>
+                  <div class="save__cancel">
+                    <TheButton
+                      :bg-color="'red'"
+                      :color="'white'"
+                      :event="updateUserProfile"
+                      :is-long="true"
+                      :is-rounded="true"
+                      :text="'СОХРАНИТЬ'"
+                    >
+                    </TheButton>
+                    <p @click="switchEdit">Отмена</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TheCard>
+          <TheCard v-if="false"></TheCard>
+        </div>
+        <div class="right__side">
+          <TheCard>
+            <CustomTable></CustomTable>
+          </TheCard>
+        </div>
       </div>
-      <TheCard>
-        <CustomTable></CustomTable>
-      </TheCard>
+
     </div>
   </div>
 </template>
@@ -69,7 +75,7 @@ import TheHeader from '@/components/TheHeader'
 import TheCard from '@/components/TheCard'
 import TheButton from '@/components/TheButton'
 import CustomTable from '@/views/profile/CustomTable'
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { russianNoPrefix } from '@/utils/formattedPhoneNumbers'
 
 export default {
@@ -85,9 +91,9 @@ export default {
     return {
       editMode: false,
 
-      name: `${this.user?.firstName || ''} ${this.user?.lastName || ''}`.trim(),
-      email: this.user?.email || '',
-      phone: this.user?.phone || ''
+      firstName: this.user?.firstName || '',
+      lastName: this.user?.lastName || '',
+      email: this.user?.email || ''
     }
   },
 
@@ -115,12 +121,22 @@ export default {
   },
 
   methods: {
+    ...mapActions(['editProfile']),
+
     russianNoPrefix,
 
+    updateUserProfile () {
+      this.editProfile({
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email
+      })
+    },
+
     setUser () {
-      this.name = `${this.user?.firstName || ''} ${this.user?.lastName || ''}`.trim()
+      this.firstName = this.user?.firstName || ''
+      this.lastName = this.user?.lastName || ''
       this.email = this.user?.email || ''
-      this.phone = this.user?.phone || ''
     },
 
     switchEdit () {
@@ -133,8 +149,9 @@ export default {
 <style lang="scss" scoped>
 .profile__page {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
   background-color: #F3E6DA;
 
   .g-container {
@@ -203,6 +220,10 @@ export default {
   }
 }
 
+.wrapper {
+  display: flex;
+}
+
 .the__input {
   display: flex;
   justify-content: center;
@@ -253,5 +274,20 @@ export default {
   display: flex;
   flex-direction: column;
   margin-right: 21px;
+}
+
+.right__side {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .left__side {
+    margin-bottom: 25px;
+  }
 }
 </style>

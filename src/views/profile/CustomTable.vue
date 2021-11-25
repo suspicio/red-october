@@ -17,21 +17,33 @@
         <thead>
         <tr>
           <th>Номер чека</th>
-          <th>Дата покупки</th>
-          <th>Зарегистрирован</th>
-          <th>Розыгрыш</th>
+          <th v-if="!small">Дата покупки</th>
+          <th v-if="!small">Зарегистрирован</th>
+          <th v-if="!small">Розыгрыш</th>
           <th>Статус</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(item, index) in formattedTableData" :key="index">
-          <td><div>{{item.checkId}}</div></td>
-          <td><div>{{item.date}}</div></td>
-          <td><div>{{item.registeredDate}}</div></td>
-          <td><div>{{item.actionDate}}</div></td>
-          <td><div><StatusButton
-            :type="item.status"
-          ></StatusButton></div></td>
+          <td>
+            <div>{{ item.checkId }}</div>
+          </td>
+          <td v-if="!small">
+            <div>{{ item.date }}</div>
+          </td>
+          <td v-if="!small">
+            <div>{{ item.registeredDate }}</div>
+          </td>
+          <td v-if="!small">
+            <div>{{ item.actionDate }}</div>
+          </td>
+          <td>
+            <div>
+              <StatusButton
+                :type="item.status"
+              ></StatusButton>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -47,15 +59,21 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'CustomTable',
 
-  components: { StatusButton, TheButton },
+  components: {
+    StatusButton,
+    TheButton
+  },
 
   data () {
     return {
-      list: null
+      list: null,
+      small: false
     }
   },
 
   mounted () {
+    window.addEventListener('resize', this.onResize, true)
+    this.small = window.innerWidth <= 1000
     if (this.user) {
       this.getTableData()
     }
@@ -87,6 +105,10 @@ export default {
         .then(res => {
           this.list = res
         })
+    },
+
+    onResize () {
+      this.small = window.innerWidth <= 1000
     }
   }
 }
@@ -120,8 +142,10 @@ export default {
 
 table {
   border-collapse: collapse;
+
   thead {
     border-bottom: 1px solid #091E16;
+
     tr {
       th {
         font-family: Zen Kaku Gothic New;
@@ -143,6 +167,7 @@ table {
       height: 27px;
       width: fit-content;
       padding-bottom: 25px;
+
       td {
         div {
           font-family: Zen Kaku Gothic New;

@@ -6,12 +6,13 @@
       <h1>ЗАБЫЛИ КОД?</h1>
       <form @submit.prevent="onSubmit">
         <TheInput
-          :text="'Телефон (при регистрации)'"
           v-model="phone"
+          :text="'Телефон (при регистрации)'"
         ></TheInput>
         <div class="form__buttons left__buttons">
           <TheButton
             :bg-color="'#F8E577'"
+            :event="sendPass"
             :is-rounded="true"
             :text="'ОТПРАВИТЬ'"
             class="TheButton"
@@ -19,6 +20,7 @@
         </div>
       </form>
     </div>
+    <div v-if="isError" class="additional__info">{{text}}</div>
   </div>
 </template>
 
@@ -37,7 +39,9 @@ export default {
 
   data () {
     return {
-      phone: ''
+      phone: '',
+      text: '',
+      isError: false
     }
   },
 
@@ -45,6 +49,7 @@ export default {
     ...mapActions(['askForSMSCode']),
 
     disable () {
+      this.isError = false
       this.$emit('activateForgot')
     },
 
@@ -55,6 +60,15 @@ export default {
             this.disable()
           }
         })
+    },
+
+    sendPass () {
+      this.askForSMSCode(this.phone).then(value => {
+        if (value === 'Данный номер не зарегистрирован в системе. Вам необходимо пройти регистрацию') {
+          this.text = 'Такой телефон не зарегистрирован'
+          this.isError = true
+        }
+      })
     }
   }
 }
@@ -64,5 +78,31 @@ export default {
 .left__buttons {
   justify-content: left !important;
   align-items: start !important;
+}
+
+.additional__info {
+  position: absolute;
+  width: fit-content;
+  left: calc(50vw - 293px);
+  bottom: 45px;
+  font-family: Zen Kaku Gothic New;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 130%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #F8E577;
+}
+
+@media (max-width: 768px) {
+  .additional__info {
+    font-size: 22px !important;
+    line-height: 110% !important;
+    width: 238px;
+    letter-spacing: 0.02em;
+    left: calc(50vw - 128px) !important;
+    bottom: 18px;
+  }
 }
 </style>

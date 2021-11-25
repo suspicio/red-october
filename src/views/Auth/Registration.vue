@@ -68,7 +68,7 @@ export default {
 
       validated.name = !!this.name
       validated.lastName = !!this.lastName
-      validated.email = (this.email && (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g).test(this.email)) || false
+      validated.email = this.email && ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).test(this.email) || false)
       validated.phone = this.phone?.length === 10 && !isNaN(this.phone)
 
       return validated
