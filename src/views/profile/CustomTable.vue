@@ -13,6 +13,21 @@
       ></TheButton>
     </div>
     <div v-else>
+      <div class="header__table">
+        <h1>
+          ЗАРЕГИСТРИРОВАННЫЕ ЧЕКИ
+        </h1>
+        <TheButton
+          :bg-color="'#B8140D'"
+          :color="'#FFFFFF'"
+          :is-big="false"
+          :is-long="true"
+          :is-rounded="true"
+          :text="'ДОБАВИТЬ ЧЕК'"
+          class="button__add"
+        >
+        </TheButton>
+      </div>
       <table>
         <thead>
         <tr>
@@ -110,11 +125,35 @@ export default {
     onResize () {
       this.small = window.innerWidth <= 1000
     }
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize, true)
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.header__table {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  h1 {
+    font-family: Zen Kaku Gothic New;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 130%;
+    text-transform: uppercase;
+    color: #091E16;
+  }
+
+  .button__add {
+    width: 180px;
+  }
+}
+
 .table__wrapper {
   max-width: 888px;
   max-height: 500px;
@@ -184,6 +223,44 @@ table {
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .header__table {
+    flex-direction: column;
+
+    h1 {
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .button__add {
+      width: 255px;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 530px) {
+  .table__wrapper {
+    max-width: 230px;
+    max-height: 379px;
+  }
+
+  th {
+    font-size: 14px;
+    padding-right: 30px !important;
+  }
+
+  td {
+    div {
+      font-size: 14px;
+    }
+  }
+
+  .button__add {
+    width: 218px !important;
   }
 }
 </style>

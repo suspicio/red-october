@@ -19,7 +19,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   z-index: 1;
 

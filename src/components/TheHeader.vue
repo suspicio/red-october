@@ -7,9 +7,9 @@
         <div></div>
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
-        <a href="#">Личный кабинет</a>
-        <a href="#">Победители</a>
-        <a href="#">FAQ</a>
+        <router-link to="/profile">Личный кабинет</router-link>
+        <a href="#winners">Победители</a>
+        <a href="#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
         <img v-if="!tiny" src="../assets/logo.png">
@@ -19,8 +19,8 @@
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
         <router-link to="/profile">Личный кабинет</router-link>
-        <a href="#">Победители</a>
-        <a href="#">FAQ</a>
+        <a href="#winners">Победители</a>
+        <a href="#faq">FAQ</a>
       </div>
       <TheButton
         v-if="!user"
@@ -111,6 +111,9 @@ export default {
     toggle () {
       this.toggled = !this.toggled
     }
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize, true)
   }
 }
 </script>

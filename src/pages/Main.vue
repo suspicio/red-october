@@ -24,7 +24,8 @@
     <SpecialProject></SpecialProject>
     <TheParticipants></TheParticipants>
     <ProductionInAction></ProductionInAction>
-    <TheWinners></TheWinners>
+    <TheWinners v-if="!!winners" :winners="winners" id="winners"></TheWinners>
+    <FAQ id="faq" />
     <TheFooter/>
   </div>
 </template>
@@ -47,10 +48,12 @@ import ManualCheckEnter from '@/views/CheckRegister/ManualCheckEnter'
 import CheckLoader from '@/views/CheckRegister/CheckLoader'
 import CheckStatus from '@/views/CheckRegister/CheckStatus'
 import { mapState } from 'vuex'
+import FAQ from '@/views/Main/FAQ'
 
 export default {
   name: 'Main',
   components: {
+    FAQ,
     CheckStatus,
     CheckLoader,
     ManualCheckEnter,
@@ -83,7 +86,8 @@ export default {
 
   computed: {
     ...mapState({
-      user: state => state.user
+      user: state => state.user,
+      winners: state => state.winners
     })
   },
 

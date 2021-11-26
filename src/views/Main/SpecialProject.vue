@@ -61,6 +61,9 @@ export default {
     onResize () {
       this.small = window.innerWidth <= 1000
     }
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize, true)
   }
 }
 </script>

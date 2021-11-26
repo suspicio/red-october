@@ -6,14 +6,17 @@
     <div class="g-container w-100">
       <div class="wrapper">
         <div class="left__side">
-          <TheCard>
+          <TheCard class="mb">
             <div v-if="!editMode" class="profile__info">
               <div class="profile__info-wrapper">
-                <div class="g-profile__picture">
-                  <img src="@/assets/big_photo_profile.png">
+                <div class="image__small-wrapper">
+                  <div class="g-profile__picture">
+                    <img src="@/assets/big_photo_profile.png">
+                  </div>
+                  <p v-if="small">{{ user.firstName }}<br/>{{ user.lastName }}</p>
                 </div>
                 <div class="text__block">
-                  <p>{{ user.firstName }} {{ user.lastName }}</p>
+                  <p v-if="!small">{{ user.firstName }} {{ user.lastName }}</p>
                   <p v-if="user.email">{{ user.email }}</p>
                   <p v-if="user.phone">+7 {{ russianNoPrefix(user.phone) }}</p>
                 </div>
@@ -31,7 +34,7 @@
                 <div class="g-profile__picture">
                   <img src="@/assets/big_photo_profile.png">
                 </div>
-                <div class="text__block">
+                <div class="text__block2">
                   <div class="the__input">
                     <input v-model="firstName" placeholder="Имя">
                   </div>
@@ -49,6 +52,7 @@
                       :is-long="true"
                       :is-rounded="true"
                       :text="'СОХРАНИТЬ'"
+                      class="szsm"
                     >
                     </TheButton>
                     <p @click="switchEdit">Отмена</p>
@@ -57,7 +61,9 @@
               </div>
             </div>
           </TheCard>
-          <TheCard v-if="false"></TheCard>
+          <TheCard v-if="true">
+            <PrizeBox></PrizeBox>
+          </TheCard>
         </div>
         <div class="right__side">
           <TheCard>
@@ -77,10 +83,12 @@ import TheButton from '@/components/TheButton'
 import CustomTable from '@/views/profile/CustomTable'
 import { mapActions, mapState } from 'vuex'
 import { russianNoPrefix } from '@/utils/formattedPhoneNumbers'
+import PrizeBox from '@/components/PrizeBox'
 
 export default {
   name: 'Profile',
   components: {
+    PrizeBox,
     CustomTable,
     TheButton,
     TheCard,
@@ -90,7 +98,7 @@ export default {
   data () {
     return {
       editMode: false,
-
+      small: false,
       firstName: this.user?.firstName || '',
       lastName: this.user?.lastName || '',
       email: this.user?.email || ''
@@ -104,6 +112,10 @@ export default {
     } else {
       this.setUser()
     }
+  },
+
+  mounted () {
+    this.small = window.innerWidth <= 768
   },
 
   watch: {
@@ -156,6 +168,7 @@ export default {
 
   .g-container {
     display: flex;
+    justify-content: center;
     padding: 150px 42px 0px;
   }
 }
@@ -165,6 +178,7 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 100%;
 
   .edit__button {
     position: absolute;
@@ -177,7 +191,7 @@ export default {
   &-wrapper {
     display: flex;
     flex-direction: column;
-    width: 355px;
+    width: 375px;
 
     .g-profile__picture {
       width: 96px;
@@ -274,13 +288,22 @@ export default {
   display: flex;
   flex-direction: column;
   margin-right: 21px;
+
+  .mb {
+    margin-bottom: 17px;
+  }
 }
 
 .right__side {
   margin-bottom: 20px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
+  .profile__info {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
   .wrapper {
     display: flex !important;
     flex-direction: column !important;
@@ -288,6 +311,82 @@ export default {
 
   .left__side {
     margin-bottom: 25px;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .text__block2 {
+    .save__cancel {
+      flex-direction: column;
+      margin-top: 21px;
+
+      .szsm {
+        height: 40px;
+        margin-bottom: 5px;
+      }
+
+      p {
+        color: #B8140D !important;
+      }
+    }
+  }
+
+  .g-container {
+    display: flex;
+    padding: 120px 15px 0px !important;
+  }
+
+  .profile__info-wrapper {
+    width: 226px;
+    padding-right: 0;
+  }
+
+  .left__side {
+    margin-right: 0;
+  }
+
+  .g-profile__picture {
+    width: 68px !important;
+    height: 68px !important;
+    margin-left: 0;
+
+    img {
+      width: 68px;
+      height: 68px;
+    }
+  }
+
+  .image__small-wrapper {
+    display: flex;
+    text-align: left;
+    align-items: center;
+
+    p {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 130%;
+      margin-left: 8px;
+      color: #B8140D;
+    }
+  }
+
+  .text__block {
+    margin-top: 6px;
+
+    p {
+      &:nth-child(1) {
+        font-size: 14px !important;
+        color: #091E16 !important;
+      }
+
+      &:nth-child(2) {
+        font-size: 14px !important;
+        color: #091E16 !important;
+      }
+    }
   }
 }
 </style>

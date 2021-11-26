@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: null,
+    winners: null
   },
 
   mutations: {
@@ -18,6 +19,10 @@ export default new Vuex.Store({
       state.user.lastName = newData.lastName
       state.user.email = newData.email
       state.user.firstName = newData.firstName
+    },
+
+    setWinners (state, newWinners) {
+      state.winners = newWinners
     }
   },
 
@@ -67,6 +72,7 @@ export default new Vuex.Store({
               if (res.data.success) {
                 isAuth = true
                 commit('updateUser', data)
+                Vue.prototype.$toasted.success('Изменения сохранены')
                 resolve()
               } else {
                 console.error(res.data.error)
@@ -97,6 +103,20 @@ export default new Vuex.Store({
           })
       }
       return isAuth
+    },
+
+    async getWinner ({ commit }) {
+      axios.post('/get-winners')
+        .then(res => {
+          if (res.data.success) {
+            commit('setWinners', res.data.winners)
+          } else {
+            console.error(res.data.error)
+          }
+        })
+        .catch(e => {
+          console.error(e)
+        })
     },
 
     async logOut ({ commit }) {

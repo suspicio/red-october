@@ -8,7 +8,7 @@
       ></CentralizedHeading>
       <SlidableContent style="margin-top: 47px; margin-bottom: 50px">
         <WinnersDateSelect
-          v-for="(item, index) in list"
+          v-for="(item, index) in winners"
           :key="index"
           :my-key="index"
           :active-key="activeIndex"
@@ -19,7 +19,7 @@
       </SlidableContent>
       <table>
           <TableRow
-            :list="list[activeIndex].winners"
+            :list="winners[activeIndex].winners"
           ></TableRow>
       </table>
     </div>
@@ -40,9 +40,14 @@ export default {
     SlidableContent,
     CentralizedHeading
   },
+  props: {
+    winners: {
+      type: Array,
+      default: () => []
+    }
+  },
   data () {
     return {
-      list: require('@/content/WinnersList.json'),
       activeIndex: 0
     }
   },
