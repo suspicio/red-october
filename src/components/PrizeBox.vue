@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     activate () {
-      console.log('some')
+      this.$emit('activate')
     }
   }
 }

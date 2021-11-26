@@ -204,6 +204,26 @@ export default new Vuex.Store({
       })
     },
 
+    async uploadUserInfo (_, data) {
+      const sid = localStorage.getItem('sid')
+
+      return new Promise(resolve => {
+        axios.post(`/user/add-personals?sid=${sid}`, data)
+          .then(res => {
+            if (res.data.success) {
+              Vue.prototype.$toasted.success('Данные успешно загружены')
+            } else {
+              Vue.prototype.$toasted.error(res.data.error)
+            }
+            resolve(res.data.success)
+          })
+          .catch(e => {
+            console.error(e)
+            resolve(false)
+          })
+      })
+    },
+
     async getUserChecks () {
       const sid = localStorage.getItem('sid')
 

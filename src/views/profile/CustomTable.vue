@@ -7,6 +7,7 @@
       <TheButton
         :bg-color="'red'"
         :color="'white'"
+        :event="activate"
         :is-long="false"
         :is-rounded="true"
         :text="'ДОБАВИТЬ ЧЕК'"
@@ -20,6 +21,7 @@
         <TheButton
           :bg-color="'#B8140D'"
           :color="'#FFFFFF'"
+          :event="activate"
           :is-big="false"
           :is-long="true"
           :is-rounded="true"
@@ -47,7 +49,7 @@
             <div>{{ item.date }}</div>
           </td>
           <td v-if="!small">
-            <div>{{ item.registeredDate }}</div>
+            <div>{{ item.registeredDate.substring(0, 10) }}</div>
           </td>
           <td v-if="!small">
             <div>{{ item.actionDate }}</div>
@@ -124,6 +126,10 @@ export default {
 
     onResize () {
       this.small = window.innerWidth <= 1000
+    },
+
+    activate () {
+      this.$emit('activate')
     }
   },
   beforeDestroy () {

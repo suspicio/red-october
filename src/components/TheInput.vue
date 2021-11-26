@@ -1,5 +1,5 @@
 <template>
-  <div class="the__input">
+  <div class="the__input" :class="{big__input: big}" >
     <input :placeholder="text" :value="value" :type="type" @input="onInput">
     <slot></slot>
   </div>
@@ -19,6 +19,10 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    big: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -31,10 +35,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.big__input {
+  input {
+    height: 100px !important;
+    &::placeholder {
+      position: absolute;
+      top: 5px;
+    }
+  }
+}
+
 .the__input {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
   input {
     width: 100%;

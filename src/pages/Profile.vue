@@ -3,6 +3,10 @@
     <TheHeader
       :is-bg-red="true"
     ></TheHeader>
+    <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt"
+                              @manual="activateManualCheck"></CheckRegistrationOptions>
+    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck"></ManualCheckEnter>
+    <PersonalData v-if="isActivePersonalData" @activate="activatePersonalData"></PersonalData>
     <div class="g-container w-100">
       <div class="wrapper">
         <div class="left__side">
@@ -61,13 +65,13 @@
               </div>
             </div>
           </TheCard>
-          <TheCard v-if="true">
-            <PrizeBox></PrizeBox>
+          <TheCard v-if="false">
+            <PrizeBox @activate="activatePersonalData"></PrizeBox>
           </TheCard>
         </div>
         <div class="right__side">
           <TheCard>
-            <CustomTable></CustomTable>
+            <CustomTable @activate="activateCheckRegOpt"></CustomTable>
           </TheCard>
         </div>
       </div>
@@ -84,10 +88,16 @@ import CustomTable from '@/views/profile/CustomTable'
 import { mapActions, mapState } from 'vuex'
 import { russianNoPrefix } from '@/utils/formattedPhoneNumbers'
 import PrizeBox from '@/components/PrizeBox'
+import CheckRegistrationOptions from '@/views/CheckRegister/CheckRegistrationOptions'
+import ManualCheckEnter from '@/views/CheckRegister/ManualCheckEnter'
+import PersonalData from '@/views/profile/PersonalData'
 
 export default {
   name: 'Profile',
   components: {
+    PersonalData,
+    CheckRegistrationOptions,
+    ManualCheckEnter,
     PrizeBox,
     CustomTable,
     TheButton,
@@ -99,6 +109,9 @@ export default {
     return {
       editMode: false,
       small: false,
+      isActiveManualCheck: false,
+      isActiveCheckRegOpt: false,
+      isActivePersonalData: true,
       firstName: this.user?.firstName || '',
       lastName: this.user?.lastName || '',
       email: this.user?.email || ''
@@ -153,6 +166,18 @@ export default {
 
     switchEdit () {
       this.editMode = !this.editMode
+    },
+
+    activateCheckRegOpt () {
+      this.isActiveCheckRegOpt = !this.isActiveCheckRegOpt
+    },
+
+    activateManualCheck () {
+      this.isActiveManualCheck = !this.isActiveManualCheck
+    },
+
+    activatePersonalData () {
+      this.isActivePersonalData = !this.isActivePersonalData
     }
   }
 }
