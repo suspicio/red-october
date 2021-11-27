@@ -1,6 +1,7 @@
 <template>
   <div class="the__input" :class="{big__input: big}" >
-    <input :placeholder="text" :value="value" :type="type" @input="onInput">
+    <input v-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :value="value" :type="type" @input="onInput">
+    <input v-if="!isPhone" :placeholder="text" :value="value" :type="type" @input="onInput">
     <slot></slot>
   </div>
 </template>
@@ -21,6 +22,10 @@ export default {
       default: 'text'
     },
     big: {
+      type: Boolean,
+      default: false
+    },
+    isPhone: {
       type: Boolean,
       default: false
     }

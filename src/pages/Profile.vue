@@ -15,7 +15,7 @@
               <div class="profile__info-wrapper">
                 <div class="image__small-wrapper">
                   <div class="g-profile__picture">
-                    <img src="@/assets/big_photo_profile.png">
+                    {{user.firstName.toString().toUpperCase().substr(0, 1)}}{{user.lastName.toString().toUpperCase().substr(0, 1)}}
                   </div>
                   <p v-if="small">{{ user.firstName }}<br/>{{ user.lastName }}</p>
                 </div>
@@ -65,12 +65,12 @@
               </div>
             </div>
           </TheCard>
-          <TheCard v-if="false">
+          <TheCard v-if="isWin">
             <PrizeBox @activate="activatePersonalData"></PrizeBox>
           </TheCard>
         </div>
         <div class="right__side">
-          <TheCard>
+          <TheCard :style="{padding: small ? '-16px' : '0'}">
             <CustomTable @activate="activateCheckRegOpt"></CustomTable>
           </TheCard>
         </div>
@@ -111,7 +111,8 @@ export default {
       small: false,
       isActiveManualCheck: false,
       isActiveCheckRegOpt: false,
-      isActivePersonalData: true,
+      isActivePersonalData: false,
+      isWin: false,
       firstName: this.user?.firstName || '',
       lastName: this.user?.lastName || '',
       email: this.user?.email || ''
@@ -123,7 +124,7 @@ export default {
       // eslint-disable-next-line no-unused-expressions
       this.$router.push('/')?.catch()
     } else {
-      this.setUser()
+      this.initData()
     }
   },
 
@@ -158,7 +159,7 @@ export default {
       })
     },
 
-    setUser () {
+    initData () {
       this.firstName = this.user?.firstName || ''
       this.lastName = this.user?.lastName || ''
       this.email = this.user?.email || ''
@@ -323,6 +324,10 @@ export default {
   margin-bottom: 20px;
 }
 
+.image__small-wrapper {
+  text-transform: capitalize;
+}
+
 @media (max-width: 1300px) {
   .profile__info {
     justify-content: flex-start;
@@ -395,6 +400,7 @@ export default {
       line-height: 130%;
       margin-left: 8px;
       color: #B8140D;
+      text-transform: capitalize;
     }
   }
 

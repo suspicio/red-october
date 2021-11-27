@@ -31,7 +31,8 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         axios.post('/signup', data).then(res => {
           if (res.data.success) {
-            resolve(dispatch('askForSMSCode', { phone: data.phone }))
+            Vue.prototype.$toasted.success('Вы успешно зарегистрированны!')
+            resolve(dispatch('askForSMSCode', data.phone))
           } else {
             console.error(res.data.error)
             Vue.prototype.$toasted.error(res.data.error)
@@ -192,6 +193,7 @@ export default new Vuex.Store({
           .then(res => {
             if (res.data.success) {
               Vue.prototype.$toasted.success('Чек успешно загружен')
+              resolve(res.data)
             } else {
               Vue.prototype.$toasted.error(res.data.error)
             }

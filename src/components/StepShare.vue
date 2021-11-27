@@ -53,6 +53,7 @@ export default {
   }
 
   p {
+    width: 90%;
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -60,7 +61,6 @@ export default {
     line-height: 23px;
     text-align: center;
     color: #333333;
-
   }
 }
 

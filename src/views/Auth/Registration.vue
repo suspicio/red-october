@@ -15,6 +15,7 @@
         ></TheInput>
         <TheInput
           v-model="phone"
+          :is-phone="true"
           :text="'8 (000) 000-00-00'"
         ></TheInput>
         <TheInput
@@ -27,7 +28,6 @@
             :is-rounded="true"
             :text="'ОТПРАВИТЬ'"
             class="TheButton"
-            :event="register"
           ></TheButton>
           <a @click="activateLogIn">Есть личный кабинет?</a>
         </div>
@@ -69,8 +69,11 @@ export default {
       validated.name = !!this.name
       validated.lastName = !!this.lastName
       validated.email = this.email && ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).test(this.email) || false)
-      validated.phone = this.phone?.length === 10 && !isNaN(this.phone)
+      validated.phone = this.phone?.replace('+7', '').replaceAll(' ', '')
+        .replaceAll('-', '').replace('(', '')
+        .replace(')', '').substr(0, 10).length === 10
 
+      console.log(validated)
       return validated
     }
   },
@@ -88,15 +91,17 @@ export default {
 
     onRegister () {
       if (Object.values(this.validation).some(v => !v)) {
-        return
+        this.$toasted.error('Какое-то поле пустое, или в неправильном формате')
+      } else {
+        this.register({
+          firstName: this.name,
+          lastName: this.lastName,
+          phone: this.phone?.replace('+7', '').replaceAll(' ', '')
+            .replaceAll('-', '').replace('(', '')
+            .replace(')', '').substr(0, 10),
+          email: this.email
+        })
       }
-
-      this.register({
-        firstName: this.name,
-        lastName: this.lastName,
-        phone: this.phone,
-        email: this.email
-      })
     }
   }
 }

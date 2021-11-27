@@ -1,22 +1,31 @@
 <template>
   <div class="modal__wrapper">
     <div class="modal__content">
-      <div class="close" @click="disable" />
-      <input type="file" v-show="false" accept="image/jpeg, image/png, image/webp, image/tiff" ref="dropImage" @change="onChange">
+      <div class="close" @click="disable"/>
+      <input v-show="false" ref="dropImage" accept="image/jpeg, image/png, image/webp, image/tiff" type="file"
+             @change="onChange">
       <TheButton
+        :event="onUploadFile"
         :is-long="true"
         :is-rounded="true"
         :text="'ЗАГРУЗИТЬ ИЗ ГАЛЕРЕИ'"
         class="mgb"
-        :event="onUploadFile"
+      ></TheButton>
+      <TheButton
+        v-if="isMobile !== false"
+        :event="qr"
+        :is-long="true"
+        :is-rounded="true"
+        :text="'ОТСКАНИРУЙТЕ QR-КОД ЧЕКА'"
+        class="mgb"
       ></TheButton>
       <TheButton
         :event="manual"
         :is-long="true"
         :is-rounded="true"
-        color="#fff"
         :text="'ВВЕСТИ ВРУЧНУЮ'"
         class="special__button"
+        color="#fff"
       ></TheButton>
       <div class="or__with-lines">
         <div class="line"></div>
@@ -24,8 +33,8 @@
         <div class="line"></div>
       </div>
       <div class="centralized">
-        <img src="@/assets/whatsup.png" alt="Whatsapp">
-        <a class="dashed" href="#">WhatsApp-бот</a>
+        <img alt="Whatsapp" src="@/assets/whatsup.png">
+        <a class="dashed" href="https://api.whatsapp.com/send/?phone=79639299916">WhatsApp-бот</a>
       </div>
       <div class="centralized normal">
         <a class="normal" href="#">Правила акции</a>
@@ -37,12 +46,20 @@
 <script>
 import TheButton from '@/components/TheButton'
 import { mapActions } from 'vuex'
+import isMobileDevice from '@/utils/mobileChecker'
 
 export default {
   name: 'CheckRegistrationOptions',
 
   components: {
     TheButton
+  },
+
+  computed: {
+    isMobile () {
+      console.log(isMobileDevice())
+      return isMobileDevice()
+    }
   },
 
   methods: {
@@ -55,6 +72,11 @@ export default {
     manual () {
       this.$emit('activate')
       this.$emit('manual')
+    },
+
+    qr () {
+      this.$emit('activate')
+      this.$emit('qrcode')
     },
 
     onUploadFile () {

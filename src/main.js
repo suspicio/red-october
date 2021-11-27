@@ -10,6 +10,8 @@ import 'swiper/css/swiper.css'
 import './assets/styles/app.scss'
 import './assets/styles/close-pop-app.scss'
 import './assets/styles/modals.scss'
+import Maska from 'maska'
+import VueQrcodeReader from 'vue-qrcode-reader'
 
 Vue.config.productionTip = false
 axios.defaults.baseURL = process.env.VUE_APP_API_URL || ''
@@ -18,6 +20,8 @@ Vue.use(Toasted, {
   duration: 5000,
   position: 'bottom-center'
 })
+Vue.use(Maska)
+Vue.use(VueQrcodeReader)
 
 SwiperClass.use([Navigation, Autoplay, Mousewheel])
 Vue.use(getAwesomeSwiper(SwiperClass))

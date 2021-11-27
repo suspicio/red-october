@@ -1,13 +1,13 @@
 <template>
   <div class="status__button">
-    <div class="common waiting" v-if="type === 'waiting'">
-      <p>Ожидает розыгрыша</p>
+    <div class="common lose" v-if="type === 'error'">
+      <p>Не повезло</p>
     </div>
     <div class="common win" v-else-if="type === 'win'">
       <p>Победа</p>
     </div>
-    <div class="common lose" v-else>
-      <p>Не повезло</p>
+    <div class="common waiting" v-else>
+      <p>Ожидает розыгрыша</p>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 .status__button {
-  width: fit-content;
+  width: 131px;
   margin-bottom: 15px;
 
   .common {

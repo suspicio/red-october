@@ -7,6 +7,7 @@
       <form @submit.prevent="onSubmit">
         <TheInput
           v-model="phone"
+          :is-phone="true"
           :text="'Телефон (при регистрации)'"
         ></TheInput>
         <div class="form__buttons left__buttons">
@@ -57,13 +58,15 @@ export default {
       this.askForSMSCode(this.phone)
         .then(res => {
           if (res === true) {
-            this.disable()
+            this.$emit('sendToNumber', this.phone)
           }
         })
     },
 
     sendPass () {
-      this.askForSMSCode(this.phone).then(value => {
+      this.askForSMSCode(this.phone?.replace('+7', '').replaceAll(' ', '')
+        .replaceAll('-', '').replace('(', '')
+        .replace(')', '').substr(0, 10) || '').then(value => {
         if (value === 'Данный номер не зарегистрирован в системе. Вам необходимо пройти регистрацию') {
           this.text = 'Такой телефон не зарегистрирован'
           this.isError = true

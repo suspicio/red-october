@@ -13,7 +13,7 @@
         :text="'ДОБАВИТЬ ЧЕК'"
       ></TheButton>
     </div>
-    <div v-else>
+    <div v-else class="table__inner-wrapper">
       <div class="header__table">
         <h1>
           ЗАРЕГИСТРИРОВАННЫЕ ЧЕКИ
@@ -121,6 +121,7 @@ export default {
       this.getUserChecks()
         .then(res => {
           this.list = res
+          console.log(res)
         })
     },
 
@@ -139,6 +140,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.table__inner-wrapper {
+  max-height: 412px;
+  overflow: auto;
+}
+
 .header__table {
   display: flex;
   width: 100%;
@@ -233,6 +239,32 @@ table {
 }
 
 @media (max-width: 768px) {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .table__inner-wrapper {
+    max-height: 315px;
+    overflow: auto;
+
+  }
+
   .header__table {
     flex-direction: column;
 

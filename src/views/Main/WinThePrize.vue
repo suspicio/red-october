@@ -96,7 +96,7 @@ export default {
     padding-top: 70px;
     padding-bottom: 20px;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Zen Kaku Gothic New;
     font-style: normal;
     font-weight: normal;
     font-size: 14.4px;

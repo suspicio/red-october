@@ -3,14 +3,17 @@
     <TheHeader @activate="registrationVisible"></TheHeader>
     <Registration v-if="isRegistrationActive" @activate="registrationVisible"
                   @activateLogIn="activateLogIn"></Registration>
-    <LogIn v-if="isActiveLogIn" @activateForgot="activateForgot" @activateLogIn="activateLogIn" :number="numberPass" :isNumber="isNumberShown"></LogIn>
+    <LogIn v-if="isActiveLogIn" :isNumber="isNumberShown" :number="numberPass" @activateForgot="activateForgot"
+           @activateLogIn="activateLogIn"></LogIn>
     <ForgotPass v-if="isActiveForgot" @activateForgot="activateForgot" @sendToNumber="sendPass"></ForgotPass>
     <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt"
-                              @manual="activateManualCheck"></CheckRegistrationOptions>
-    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck"></ManualCheckEnter>
-    <CheckLoader v-if="isLoading" @activate="activateLoading"></CheckLoader>
+                              @manual="activateManualCheck" @qrcode="activateQRCode"></CheckRegistrationOptions>
+    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck" @checkStatus="checkStatus"></ManualCheckEnter>
+    <CheckLoader v-if="isLoading" @activate="activateLoading" @checkStatus="checkStatus"></CheckLoader>
+    <QRCodeReader v-if="isActiveQR" @activate="activateQRCode"/>
     <CheckStatus
-      v-if="isLoading"
+      v-if="!isLoading && isSended"
+      :activate="activateStatus"
       :button-text="'ЛИЧНЫЙ КАБИНЕТ'"
       :header-text="'Чек зарегистрирован'"
       :is-ok="true"
@@ -24,8 +27,8 @@
     <SpecialProject></SpecialProject>
     <TheParticipants></TheParticipants>
     <ProductionInAction></ProductionInAction>
-    <TheWinners v-if="!!winners" :winners="winners" id="winners"></TheWinners>
-    <FAQ id="faq" />
+    <TheWinners v-if="!!winners" id="winners" :winners="winners"></TheWinners>
+    <FAQ id="faq"/>
     <TheFooter/>
   </div>
 </template>
@@ -49,10 +52,12 @@ import CheckLoader from '@/views/CheckRegister/CheckLoader'
 import CheckStatus from '@/views/CheckRegister/CheckStatus'
 import { mapState } from 'vuex'
 import FAQ from '@/views/Main/FAQ'
+import QRCodeReader from '@/views/CheckRegister/QRCodeReader'
 
 export default {
   name: 'Main',
   components: {
+    QRCodeReader,
     FAQ,
     CheckStatus,
     CheckLoader,
@@ -79,6 +84,8 @@ export default {
       isActiveCheckRegOpt: false,
       isActiveManualCheck: false,
       isLoading: false,
+      isSended: false,
+      isActiveQR: false,
       isNumberShown: false,
       numberPass: ''
     }
@@ -121,6 +128,20 @@ export default {
       this.isActiveManualCheck = !this.isActiveManualCheck
     },
 
+    activateQRCode () {
+      this.isActiveQR = !this.isActiveQR
+    },
+
+    checkStatus (promise) {
+      this.activateManualCheck()
+      this.isLoading = true
+      console.log(promise)
+      promise.then(data => {
+        this.isLoading = false
+        console.log(data)
+      })
+    },
+
     activateLoading () {
       this.isNumberShown = false
       this.isLoading = !this.isLoading
@@ -131,6 +152,14 @@ export default {
       this.isActiveLogIn = !this.isActiveLogIn
       this.isNumberShown = true
       this.numberPass = number
+    },
+
+    sendStatus (data) {
+      console.log(data)
+    },
+
+    activateStatus () {
+      this.isSended = !this.isSended
     }
   }
 }

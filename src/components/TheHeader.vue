@@ -31,8 +31,8 @@
         :text="'ВОЙТИ'"
       >
       </TheButton>
-      <div class="profile__picture-wrapper" v-else>
-        <div class="arrow" @click="toggle" :style="{transform: !toggled ? 'rotate(180deg)' : 'rotate(0deg)'}">
+      <div v-else class="profile__picture-wrapper">
+        <div :style="{transform: !toggled ? 'rotate(180deg)' : 'rotate(0deg)'}" class="arrow" @click="toggle">
           <img src="@/assets/arrow.png">
         </div>
         <div v-if="toggled" class="menu__profile">
@@ -42,7 +42,7 @@
         <div
           class="g-profile__picture"
         >
-          <img src="../assets/man_profile_mock.png">
+          {{user.firstName.toString().toUpperCase().substr(0, 1)}}{{user.lastName.toString().toUpperCase().substr(0, 1)}}
         </div>
       </div>
     </nav>
@@ -119,6 +119,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.g-profile__picture {
+  font-size: 18px !important;
+}
+
 .profile__picture-wrapper {
   position: relative;
 
@@ -218,6 +222,11 @@ export default {
 }
 
 @media (max-width: 768px) {
+  nav {
+    width: 90%;
+    justify-content: space-between;
+  }
+
   .profile__picture-wrapper {
     .arrow {
       position: absolute;

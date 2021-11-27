@@ -93,18 +93,14 @@ export default {
     },
 
     onSubmit () {
-      this.uploadReceiptManual({
+      console.log(`${this.purchaseDate}T${this.purchaseTime}Z`)
+      this.$emit('checkStatus', this.uploadReceiptManual({
         t: `${this.purchaseDate}T${this.purchaseTime}Z`,
         fn: this.fn,
         fp: this.fp,
         i: this.fd,
         s: this.sum
-      })
-        .then(res => {
-          if (res === true) {
-            this.disable()
-          }
-        })
+      }))
     }
   }
 }

@@ -7,6 +7,7 @@
       <form @submit.prevent>
         <TheInput
           v-model="phone"
+          :is-phone="true"
           :text="'Телефон'"
         ></TheInput>
         <TheInput
@@ -59,7 +60,9 @@ export default {
     validation () {
       const validated = {}
 
-      validated.phone = this.phone?.length === 10 && !isNaN(this.phone)
+      validated.phone = this.phone?.replace('+7', '').replaceAll(' ', '')
+        .replaceAll('-', '').replace('(', '')
+        .replace(')', '').substr(0, 10).length === 10
 
       return validated
     }
@@ -88,7 +91,9 @@ export default {
       }
 
       this.signin({
-        phone: this.phone,
+        phone: this.phone?.replace('+7', '').replaceAll(' ', '')
+          .replaceAll('-', '').replace('(', '')
+          .replace(')', '').substr(0, 10),
         password: this.password
       })
         .then(res => {
