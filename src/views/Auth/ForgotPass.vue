@@ -4,7 +4,7 @@
       <div class="close" @click="disable">
       </div>
       <h1>ЗАБЫЛИ КОД?</h1>
-      <form @submit.prevent="onSubmit">
+      <form @submit.prevent="sendPass">
         <TheInput
           v-model="phone"
           :is-phone="true"
@@ -13,7 +13,6 @@
         <div class="form__buttons left__buttons">
           <TheButton
             :bg-color="'#F8E577'"
-            :event="sendPass"
             :is-rounded="true"
             :text="'ОТПРАВИТЬ'"
             class="TheButton"
@@ -21,7 +20,7 @@
         </div>
       </form>
     </div>
-    <div v-if="isError" class="additional__info">{{text}}</div>
+    <div v-if="isError" class="additional__info">{{ text }}</div>
   </div>
 </template>
 
@@ -54,22 +53,17 @@ export default {
       this.$emit('activateForgot')
     },
 
-    onSubmit () {
-      this.askForSMSCode(this.phone)
-        .then(res => {
-          if (res === true) {
-            this.$emit('sendToNumber', this.phone)
-          }
-        })
-    },
-
     sendPass () {
       this.askForSMSCode(this.phone?.replace('+7', '').replaceAll(' ', '')
         .replaceAll('-', '').replace('(', '')
         .replace(')', '').substr(0, 10) || '').then(value => {
-        if (value === 'Данный номер не зарегистрирован в системе. Вам необходимо пройти регистрацию') {
-          this.text = 'Такой телефон не зарегистрирован'
-          this.isError = true
+        if (value.success === false) {
+          if (value.error === 'Данный номер не зарегистрирован в системе. Вам необходимо пройти регистрацию') {
+            this.text = 'Такой телефон не зарегистрирован'
+            this.isError = true
+          }
+        } else {
+          this.$emit('sendToNumber', this.phone)
         }
       })
     }

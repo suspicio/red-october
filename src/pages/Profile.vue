@@ -36,7 +36,7 @@
             <div v-else class="profile__edit">
               <div class="profile__info-wrapper">
                 <div class="g-profile__picture">
-                  <img src="@/assets/big_photo_profile.png">
+                  {{user.firstName.toString().toUpperCase().substr(0, 1)}}{{user.lastName.toString().toUpperCase().substr(0, 1)}}
                 </div>
                 <div class="text__block2">
                   <div class="the__input">
