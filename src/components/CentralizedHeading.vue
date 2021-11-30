@@ -1,6 +1,7 @@
 <template>
   <div class="centrilized__heading" :style="{color: textColor}">
     {{ text }}
+    <slot />
   </div>
 </template>
 

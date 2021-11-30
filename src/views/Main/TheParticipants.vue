@@ -4,7 +4,9 @@
       <centralized-heading
         :text="'Участники конкурса'"
         class="size"
-      ></centralized-heading>
+      >
+        <span class="the__participants-hash">#РетроЧелленджМагнит</span>
+      </centralized-heading>
       <div v-swiper:mySwiper="swiperOption" class="slider">
         <div class="swiper-wrapper">
           <div v-for="(slide, index) in slides" :key="index" class="swiper-slide">
@@ -39,6 +41,13 @@ export default {
   background-color: white;
   position: relative;
   overflow: hidden;
+
+  &-hash {
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    text-decoration: underline;
+  }
 
   .slider {
     display: block;

@@ -22,7 +22,7 @@ export default new Vuex.Store({
     },
 
     setWinners (state, newWinners) {
-      state.winners = require('../content/WinnersList.json') // newWinners
+      state.winners = newWinners
     }
   },
 

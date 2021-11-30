@@ -22,11 +22,11 @@
     <CheckRegistration
       @activateOptions="activateCheckRegOpt"
     ></CheckRegistration>
-    <ParticipateInShare></ParticipateInShare>
-    <WinThePrize></WinThePrize>
-    <SpecialProject v-if="false" id="gallery"></SpecialProject>
-    <TheParticipants v-if="false"></TheParticipants>
-    <ProductionInAction></ProductionInAction>
+    <ParticipateInShare />
+    <WinThePrize />
+    <SpecialProject id="gallery" />
+    <TheParticipants v-if="false" />
+    <ProductionInAction />
     <TheWinners v-if="!!winners" id="winners" :winners="winners"></TheWinners>
     <FAQ id="faq"/>
     <TheFooter/>
