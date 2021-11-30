@@ -14,6 +14,7 @@
           :is-rounded="true"
           :bg-color="'#F8E577'"
           :color="'#091E16'"
+          :event="onEnter"
         />
       </div>
     </div>
@@ -28,6 +29,9 @@ export default {
   methods: {
     disable () {
       this.$emit('activate')
+    },
+    onEnter () {
+      this.$emit('enter')
     }
   }
 }

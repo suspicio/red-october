@@ -3,6 +3,7 @@
     <TheHeader
       :is-bg-red="true"
     ></TheHeader>
+    <win-prize v-if="isWinPrizeVisible" @activate="isWinPrizeVisible = false" @enter="onWinPrizeEnter" />
     <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt"
                               @manual="activateManualCheck"></CheckRegistrationOptions>
     <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck"></ManualCheckEnter>
@@ -91,10 +92,12 @@ import PrizeBox from '@/components/PrizeBox'
 import CheckRegistrationOptions from '@/views/CheckRegister/CheckRegistrationOptions'
 import ManualCheckEnter from '@/views/CheckRegister/ManualCheckEnter'
 import PersonalData from '@/views/profile/PersonalData'
+import WinPrize from '@/components/WinPrize'
 
 export default {
   name: 'Profile',
   components: {
+    WinPrize,
     PersonalData,
     CheckRegistrationOptions,
     ManualCheckEnter,
@@ -107,6 +110,7 @@ export default {
 
   data () {
     return {
+      isWinPrizeVisible: false,
       editMode: false,
       small: false,
       isActiveManualCheck: false,
@@ -168,6 +172,9 @@ export default {
       this.firstName = this.user?.firstName || ''
       this.lastName = this.user?.lastName || ''
       this.email = this.user?.email || ''
+      if (this.user && !this.user.personals) {
+        this.isWinPrizeVisible = true
+      }
     },
 
     switchEdit () {
@@ -184,6 +191,11 @@ export default {
 
     activatePersonalData () {
       this.isActivePersonalData = !this.isActivePersonalData
+    },
+
+    onWinPrizeEnter () {
+      this.isActivePersonalData = true
+      this.isWinPrizeVisible = false
     }
   }
 }
