@@ -3,7 +3,6 @@
     <div class="g-container">
       <centralized-heading
         :text="'Выигрывай призы'"
-        class="size"
       ></centralized-heading>
       <div v-swiper:mySwiper="swiperOption" class="slider">
         <div class="swiper-wrapper">
@@ -109,10 +108,6 @@ export default {
 @media (max-width: 600px) {
   .slider {
     margin-left: 21px !important;
-  }
-
-  .size {
-    font-size: 22px !important;
   }
 
   .swiper-slide {

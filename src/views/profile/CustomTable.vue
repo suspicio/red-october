@@ -46,7 +46,8 @@
             <div>{{ item.checkId }}</div>
           </td>
           <td v-if="!small">
-            <div>{{ item.date.substring(0, 10) }}</div>
+            <div v-if="item.actionDate !== undefined">{{ item.actionDate.substring(0, 10) }}</div>
+            <div v-else></div>
           </td>
           <td v-if="!small">
             <div v-if="item.regsteredDate !== undefined">{{ item.registeredDate.substring(0, 10) }}</div>
@@ -58,7 +59,7 @@
           <td>
             <div>
               <StatusButton
-                :type="item.status"
+                :type="item.isWin ? 'win' : item.status"
               ></StatusButton>
             </div>
           </td>
@@ -111,6 +112,7 @@ export default {
     }),
 
     formattedTableData () {
+      console.log(this.user)
       return this.list
     }
   },

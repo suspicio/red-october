@@ -72,7 +72,7 @@ export default {
 
       validated.name = !!this.name
       validated.lastName = !!this.lastName
-      validated.email = this.email && ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).test(this.email) || false)
+      validated.email = !!this.email && ((/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/).test(this.email) || false)
       validated.phone = this.phone?.replace('+7', '').replaceAll(' ', '')
         .replaceAll('-', '').replace('(', '')
         .replace(')', '').substr(0, 10).length === 10
