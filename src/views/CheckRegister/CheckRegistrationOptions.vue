@@ -57,7 +57,6 @@ export default {
 
   computed: {
     isMobile () {
-      console.log(isMobileDevice())
       return isMobileDevice()
     }
   },

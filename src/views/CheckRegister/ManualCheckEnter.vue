@@ -98,7 +98,6 @@ export default {
     },
 
     onSubmit () {
-      console.log(`${this.purchaseDate}T${this.purchaseTime}Z`)
       this.$emit('checkStatus', this.uploadReceiptManual({
         t: `${this.purchaseDate}T${this.purchaseTime}Z`,
         fn: this.fn,
