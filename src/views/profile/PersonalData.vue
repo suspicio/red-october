@@ -48,6 +48,7 @@
                   v-model="address"
                   @input="(e) => {this.address = e}"
                   :big="true"
+                  is-textarea
                   :text="'Регистрация'"
                 >
                 </TheInput>
@@ -75,8 +76,7 @@
                     ></TheButton>
                   </div>
                   <div class="confidential__policy">
-                    <p>Нажимая «Отправить», вы соглашаетесь </p>
-                    <p>с <a href="#">Политикой обработки персональных данных</a></p>
+                    <p>Нажимая «Отправить», вы соглашаетесь с <a href="#">Политикой обработки персональных данных</a></p>
                   </div>
                 </div>
               </div>
@@ -167,9 +167,13 @@ export default {
 
   .centerize {
     align-items: center !important;
+    max-width: unset !important;
 
     .TheButton {
       margin-right: 8px !important;
+      font-weight: normal !important;
+      font-size: 18px !important;
+      line-height: 100% !important;
     }
   }
 }
@@ -234,11 +238,7 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
-  .input__form {
-    width: 270px;
-  }
-
+@media (max-width: 1100px) {
   .in-line {
     flex-direction: column;
     justify-content: flex-start;
@@ -246,13 +246,57 @@ export default {
     width: 270px;
   }
 
-  .modal__content {
-    flex-direction: column;
+  .personal-data {
+    h1 {
+      text-align: center;
+    }
+
+    .form__buttons {
+      margin-top: 16px !important;
+      flex-direction: column;
+
+      > .TheButton {
+        margin-right: 0 !important;
+        margin-bottom: 16px !important;
+
+        .TheButton {
+          margin-right: 0 !important;
+        }
+      }
+
+      .confidential__policy {
+        text-align: center;
+        max-width: 260px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .input__form {
+    width: 100%;
+  }
+
+  .in-line {
+    width: 100%;
+  }
+
+  .right {
+    &.double {
+      display: block;
+
+      > * {
+        &:first-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   .modal__content {
+    flex-direction: column;
     margin-top: 300px;
     position: relative;
+    max-width: 290px;
   }
 
   .modal__wrapper {
