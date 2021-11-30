@@ -1,6 +1,6 @@
 <template>
   <div class="table__wrapper">
-    <div v-if="!formattedTableData" class="no__checks">
+    <div v-if="!formattedTableData || formattedTableData.length === 0" class="no__checks">
       <img src="@/assets/no_checks.svg">
       <h2>Зарегистрированных чеков нет</h2>
       <p>Добавляйте чеки, получайте призы</p>
@@ -46,10 +46,11 @@
             <div>{{ item.checkId }}</div>
           </td>
           <td v-if="!small">
-            <div>{{ item.date }}</div>
+            <div>{{ item.date.substring(0, 10) }}</div>
           </td>
           <td v-if="!small">
-            <div>{{ item.registeredDate.substring(0, 10) }}</div>
+            <div v-if="item.regsteredDate !== undefined">{{ item.registeredDate.substring(0, 10) }}</div>
+            <div v-else></div>
           </td>
           <td v-if="!small">
             <div>{{ item.actionDate }}</div>
@@ -162,7 +163,7 @@ export default {
   }
 
   .button__add {
-    width: 180px;
+    width: 180px !important;
   }
 }
 

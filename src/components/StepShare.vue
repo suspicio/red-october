@@ -89,4 +89,10 @@ export default {
   align-items: center;
   min-height: 300px;
 }
+
+@media (max-width: 768px) {
+  .extraMg {
+    margin-left: 40px !important;
+  }
+}
 </style>

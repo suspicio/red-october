@@ -4,7 +4,7 @@
     <img v-if="!small" class="right__image" src="../assets/footer_right_side.png">
     <img v-if="small" class="left__image" src="../assets/small_left_footer.png">
     <img v-if="small" class="right__image" src="../assets/small_right_footer.png">
-    <img class="red__october" src="../assets/red_october.png">
+    <img class="red__october" src="../assets/logo.png">
     <div class="text__block">
       <p>Политика конфиденциальности</p>
       <p>Правила акции</p>
@@ -54,7 +54,7 @@ export default {
   .red__october {
     position: absolute;
     top: 45px;
-    left: calc(50% - 71px);
+    left: calc(50% - 56px);
   }
 
   .text__block {

@@ -53,6 +53,7 @@
                       :bg-color="'red'"
                       :color="'white'"
                       :event="updateUserProfile"
+                      :is-big="small"
                       :is-long="true"
                       :is-rounded="true"
                       :text="'СОХРАНИТЬ'"
@@ -132,14 +133,6 @@ export default {
     this.small = window.innerWidth <= 768
   },
 
-  watch: {
-    user () {
-      if (this.user) {
-        this.setUser()
-      }
-    }
-  },
-
   computed: {
     ...mapState({
       user: state => state.user
@@ -157,6 +150,7 @@ export default {
         lastName: this.lastName,
         email: this.email
       })
+      this.switchEdit()
     },
 
     initData () {
@@ -236,6 +230,7 @@ export default {
           line-height: 130%;
           color: #B8140D;
           padding-bottom: 10px;
+          text-transform: capitalize;
         }
 
         &:nth-child(2) {
