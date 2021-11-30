@@ -84,7 +84,18 @@ export default {
 
   .g-container {
     overflow: hidden;
-    width: 100%;
+  }
+
+  table {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .the__winners {
+    .g-container {
+      width: 100%;
+    }
   }
 }
 
