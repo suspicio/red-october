@@ -34,7 +34,7 @@
       </div>
       <div class="centralized">
         <img alt="Whatsapp" src="@/assets/whatsup.png">
-        <a class="dashed" href="https://api.whatsapp.com/send/?phone=79639299916">WhatsApp-бот</a>
+        <a class="dashed" href="https://api.whatsapp.com/send/?phone=79639299984">WhatsApp-бот</a>
       </div>
       <div class="centralized normal">
         <a class="normal" href="#">Правила акции</a>

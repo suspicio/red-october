@@ -7,7 +7,6 @@
         <div></div>
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
-        <router-link to="/profile">Личный кабинет</router-link>
         <a href="#winners">Победители</a>
         <a href="#gallery">Галерея</a>
         <a href="#faq">FAQ</a>
@@ -19,7 +18,6 @@
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
-        <router-link to="/profile">Личный кабинет</router-link>
         <a href="#winners">Победители</a>
         <a href="#gallery">Галерея</a>
         <a href="#faq">FAQ</a>
@@ -35,12 +33,13 @@
         :text="'ВОЙТИ'"
       >
       </TheButton>
-      <div v-else class="profile__picture-wrapper">
-        <div :style="{transform: !toggled ? 'rotate(180deg)' : 'rotate(0deg)'}" class="arrow" @click="toggle">
+      <div v-else class="profile__picture-wrapper" @click="toggle">
+        <div :style="{transform: !toggled ? 'rotate(180deg)' : 'rotate(0deg)'}" class="arrow" >
           <img src="@/assets/arrow.png">
         </div>
         <div v-if="toggled" class="menu__profile">
           <router-link to="/profile">Чеки</router-link>
+          <router-link to="/profile">Личный кабинет</router-link>
           <a class="exit" @click="logout">Выйти</a>
         </div>
         <div
@@ -145,7 +144,7 @@ export default {
     text-align: center;
     z-index: 100;
     width: 150px;
-    height: 85px;
+    height: fit-content + 10px;
     background-color: #D12E27;
     border-radius: 0 0 20px 20px;
     top: 67px;
@@ -232,6 +231,8 @@ export default {
   }
 
   .profile__picture-wrapper {
+    cursor: pointer;
+
     .arrow {
       position: absolute;
       left: -3px;
