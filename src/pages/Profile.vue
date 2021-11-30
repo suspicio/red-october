@@ -76,7 +76,6 @@
           </TheCard>
         </div>
       </div>
-
     </div>
   </div>
 </template>

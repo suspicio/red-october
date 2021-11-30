@@ -1,8 +1,16 @@
 <template>
-  <div :class="{big__input: big}" class="the__input">
-    <input v-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="value"
+  <div :class="{big__input: big, 'no-margin': noMargin}" class="the__input">
+    <textarea-autosize
+      v-if="isTextarea"
+      :value="value"
+      :rows="textareaRows"
+      :max-rows="textareaRows > textareaMaxRows ? textareaRows : textareaMaxRows"
+      :placeholder="text"
+      @input="onInput"
+    />
+    <input v-else-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="value"
            @input="onInput">
-    <input v-if="!isPhone" :placeholder="text" :type="type" :value="value" @input="onInput">
+    <input v-else :placeholder="text" :type="type" :value="value" @input="onInput">
     <slot></slot>
   </div>
 </template>
@@ -29,6 +37,26 @@ export default {
     isPhone: {
       type: Boolean,
       default: false
+    },
+    isTextarea: {
+      type: Boolean,
+      default: false
+    },
+    textareaRows: {
+      type: Number,
+      default: 3
+    },
+    textareaMaxRows: {
+      type: Number,
+      default: 3
+    },
+    maxCharacters: {
+      type: Number,
+      default: null
+    },
+    noMargin: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -38,7 +66,11 @@ export default {
 
   methods: {
     onInput (e) {
-      this.$emit('input', e.target.value)
+      if (this.isTextarea) {
+        this.$emit('input', this.maxCharacters ? e.slice(0, this.maxCharacters) : e)
+      } else {
+        this.$emit('input', e.target.value)
+      }
     }
   }
 }
@@ -62,7 +94,7 @@ export default {
   align-items: center;
   width: 100%;
 
-  input {
+  input, textarea {
     width: 100%;
     height: 50px;
     margin: 8px 0;
@@ -80,6 +112,16 @@ export default {
 
     &::placeholder {
       color: rgba(255, 255, 255, .5);
+    }
+  }
+
+  textarea {
+    padding: 14px 16px;
+  }
+
+  &.no-margin {
+    input {
+      margin: 0 !important;
     }
   }
 }

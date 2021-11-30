@@ -1,10 +1,11 @@
 <template>
-  <div class="modal__wrapper">
+  <div class="modal__wrapper personal-data">
     <div class="modal__content">
       <div class="close" @click="disable"/>
       <div class="modal__part">
         <div class="input__form">
           <h1>ДАННЫЕ ДЛЯ ПОЛУЧЕНИЯ ПРИЗА</h1>
+          <h2>Паспорт</h2>
           <form @submit.prevent="onSubmit">
             <div class="in-line">
               <div class="left">
@@ -14,7 +15,7 @@
                 >
                 </TheInput>
               </div>
-              <div class="right">
+              <div class="right double">
                 <TheInput
                   v-model="passportDate"
                   :text="'Когда выдан'"
@@ -32,8 +33,9 @@
               <div class="left">
                 <TheInput
                   v-model="passportFrom"
-                  :big="true"
+                  big
                   :text="'Кем выдан'"
+                  is-textarea
                 >
                 </TheInput>
               </div>
@@ -46,29 +48,31 @@
                 </TheInput>
               </div>
             </div>
+            <h2>ИНН</h2>
             <div class="in-line">
               <div class="left">
-              <TheInput
-                v-model="inn"
-                :text="'Номер'"
-              >
-              </TheInput>
+                <TheInput
+                  v-model="inn"
+                  :text="'Номер'"
+                  no-margin
+                >
+                </TheInput>
               </div>
               <div class="right">
-              <div class="form__buttons">
-                <div class="TheButton">
-                <TheButton
-                  :bg-color="'#F8E577'"
-                  :is-rounded="true"
-                  :text="'ОТПРАВИТЬ'"
-                  class="TheButton"
-                ></TheButton>
+                <div class="form__buttons centerize">
+                  <div class="TheButton send-button">
+                    <TheButton
+                      :bg-color="'#F8E577'"
+                      :is-rounded="true"
+                      :text="'ОТПРАВИТЬ'"
+                      class="TheButton"
+                    ></TheButton>
+                  </div>
+                  <div class="confidential__policy">
+                    <p>Нажимая «Отправить», вы соглашаетесь </p>
+                    <p>с <a href="#">Политикой обработки персональных данных</a></p>
+                  </div>
                 </div>
-                <div class="confidential__policy">
-                  <p>Нажимая «Отправить», вы соглашаетесь </p>
-                  <p>с <a href="#">Политикой обработки персональных данных</a></p>
-                </div>
-              </div>
               </div>
             </div>
           </form>
@@ -132,6 +136,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.personal-data {
+  h1 {
+    margin-bottom: 0px !important;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 130%;
+    color: #FFFFFF;
+    opacity: 0.5;
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
+
+  .form__buttons {
+    margin: 0 !important;
+  }
+
+  .send-button {
+    //
+  }
+
+  .centerize {
+    align-items: center !important;
+
+    .TheButton {
+      margin-right: 8px !important;
+    }
+  }
+}
+
 .input__form {
   width: 890px;
 }
@@ -156,6 +192,14 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
+
+  &.double {
+    > * {
+      &:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
 }
 
 .modal__content {

@@ -12,6 +12,7 @@ import './assets/styles/close-pop-app.scss'
 import './assets/styles/modals.scss'
 import Maska from 'maska'
 import VueQrcodeReader from 'vue-qrcode-reader'
+import TextareaAutosize from 'vue-textarea-autosize'
 
 Vue.config.productionTip = false
 axios.defaults.baseURL = process.env.VUE_APP_API_URL || ''
@@ -22,6 +23,7 @@ Vue.use(Toasted, {
 })
 Vue.use(Maska)
 Vue.use(VueQrcodeReader)
+Vue.use(TextareaAutosize)
 
 SwiperClass.use([Navigation, Autoplay, Mousewheel])
 Vue.use(getAwesomeSwiper(SwiperClass))

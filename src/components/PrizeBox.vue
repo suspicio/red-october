@@ -1,12 +1,13 @@
 <template>
-  <div class="prize__box">
+  <div class="prize__box" v-if="lastUserWin && user">
     <div class="text__box">
-      <h1>{{ prize }}</h1>
-      <p>{{ date }}</p>
+      <h1>{{ lastUserWin.prize }}</h1>
+      <p>{{ lastUserWin.date }}</p>
     </div>
     <div class="button__box">
       <p>Как забрать приз?</p>
       <TheButton
+        v-if="!user.personals"
         :bg-color="'#B8140D'"
         :color="'#FFFFFF'"
         :event="activate"
@@ -22,22 +23,22 @@
 
 <script>
 import TheButton from '@/components/TheButton'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'PrizeBox',
   components: {
     TheButton
   },
-  props: {
-    date: {
-      type: String,
-      default: '01.02.2021'
-    },
-    prize: {
-      type: String,
-      default: 'Выигран приз: Сертификат на 3 000 рублей'
-    }
+
+  computed: {
+    ...mapGetters(['lastUserWin']),
+
+    ...mapState({
+      user: state => state.user
+    })
   },
+
   methods: {
     activate () {
       this.$emit('activate')

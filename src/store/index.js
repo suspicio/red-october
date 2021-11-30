@@ -22,29 +22,7 @@ export default new Vuex.Store({
     },
 
     setWinners (state, newWinners) {
-      state.winners = [
-        {
-          userId: '61a51babcdcae88ff578571e', // ID участника
-          prizeNote: '1', // Название приза
-          periodNote: 'String', // Период розыгрыша,
-          name: 'notалакбар notаскаров', // Имя участника
-          phone: '9967631679' // Телефон участника
-        },
-        {
-          userId: '61a51babcdcae88ff578571e', // ID участника
-          prizeNote: '2', // Название приза
-          periodNote: 'String', // Период розыгрыша,
-          name: 'notалакбар notаскаров', // Имя участника
-          phone: '9967631679' // Телефон участника
-        },
-        {
-          userId: '61a51babcdcae88ff578571e', // ID участника
-          prizeNote: '3', // Название приза
-          periodNote: 'String', // Период розыгрыша,
-          name: 'notалакбар notаскаров', // Имя участника
-          phone: '9967631679' // Телефон участника
-        }
-      ] // newWinners
+      state.winners = require('../content/WinnersList.json') // newWinners
     }
   },
 
@@ -269,7 +247,15 @@ export default new Vuex.Store({
 
   getters: {
     lastUserWin (state) {
-      return state.winners && state.user ? state.winners?.find(w => w.userId === state.user._id) : null
+      const winners = state.winners ? state.winners?.map(w => w.winners).flat() : null
+
+      if (winners) {
+        return state.user
+          ? winners.find(w => w?.userId === state.user._id)
+          : null
+      }
+
+      return null
     }
   }
 })
