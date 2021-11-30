@@ -195,10 +195,12 @@ export default {
 
     activateCheckRegOpt () {
       this.isActiveCheckRegOpt = !this.isActiveCheckRegOpt
+      this.$root.$emit('getTableData')
     },
 
     activateManualCheck () {
       this.isActiveManualCheck = !this.isActiveManualCheck
+      this.$root.$emit('getTableData')
     },
 
     activatePersonalData () {
