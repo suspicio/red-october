@@ -2,7 +2,7 @@
   <div class="step__shape">
     <div class="numbered__red-circle">{{ step }}</div>
     <div class="image__wrapper">
-      <img :src="require(`../assets/${pathToImg}`)">
+      <img :class="{extraMg: step === 2}" :src="require(`../assets/${pathToImg}`)">
     </div>
     <h1>{{ heading }}</h1>
     <p> {{ text }}</p>
@@ -34,6 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.extraMg {
+  margin-left: 80px;
+}
 
 .step__shape {
   position: relative;

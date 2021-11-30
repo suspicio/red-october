@@ -18,10 +18,10 @@
         <div class="form__buttons">
           <TheButton
             :bg-color="'#F8E577'"
+            :event="onLogin"
             :is-rounded="true"
             :text="'ВОЙТИ'"
             class="TheButton"
-            :event="onLogin"
           ></TheButton>
           <a @click="activateForgot">Запросить код повторно</a>
         </div>
@@ -31,7 +31,7 @@
         </div>
       </form>
     </div>
-    <div v-if="isNumber" class="additional__info">Код был отправлен на {{number}}</div>
+    <div v-if="isNumber" class="additional__info">Код был отправлен на <br v-if="isMobile !== false"/>{{ number }}</div>
   </div>
 </template>
 
@@ -39,6 +39,7 @@
 import TheInput from '@/components/TheInput'
 import TheButton from '@/components/TheButton'
 import { mapActions } from 'vuex'
+import isMobileDevice from '@/utils/mobileChecker'
 
 export default {
   name: 'LogIn',
@@ -70,9 +71,14 @@ export default {
   data () {
     return {
       phone: '',
-      password: ''
+      password: '',
+      isMobile: true
     }
   },
+  created () {
+    this.isMobile = isMobileDevice()
+  },
+
   methods: {
     ...mapActions(['signin']),
 

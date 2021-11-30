@@ -147,7 +147,6 @@ export default {
 
 @media (max-width: 1000px) {
   .size {
-    font-size: 22px !important;
     margin-top: -25px;
   }
 

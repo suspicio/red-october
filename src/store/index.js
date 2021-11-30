@@ -31,7 +31,7 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         axios.post('/signup', data).then(res => {
           if (res.data.success) {
-            Vue.prototype.$toasted.success('Вы успешно зарегистрированны!')
+            Vue.prototype.$toasted.success('Вы успешно зарегистрированы!')
             resolve(dispatch('askForSMSCode', data.phone))
           } else {
             console.error(res.data.error)

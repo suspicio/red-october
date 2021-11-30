@@ -3,22 +3,18 @@
     ref="accordion"
     :class="{ 'g-accordion--active': !collapsed }"
     class="g-accordion"
-    @click="collapse"
   >
     <div
       ref="top"
       class="g-accordion__top"
-      @click="onToggle"
+      @click="collapse"
     >
       <span class="g-accordion__title">{{ title }}</span>
       <div class="g-accordion__toggle-icon"/>
     </div>
     <div ref="content" class="g-accordion__content">
-      <template v-if="!text">
-        <slot/>
-      </template>
-      <template v-else>
-        {{ text }}
+      <template v-for="(elem, index) in text">
+        <div v-html="elem" :key="index"></div>
       </template>
     </div>
   </div>
@@ -34,11 +30,11 @@ export default {
       default: ''
     },
     text: {
-      type: String,
-      default: ''
+      type: Array,
+      default: () => []
     },
-    contentMaxHeight: {
-      type: Number,
+    urls: {
+      type: Array,
       default: null
     }
   },
@@ -65,10 +61,6 @@ export default {
   methods: {
     collapse () {
       this.collapsed = !this.collapsed
-    },
-
-    onToggle () {
-      this.$emit('toggle')
     },
 
     onResize () {

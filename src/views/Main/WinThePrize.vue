@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <a href="#">Правила акций</a>
   </div>
 </template>
 
@@ -34,6 +33,7 @@ export default {
         slidesPerView: 'auto',
         spaceBetween: 27
       },
+
       slides: require('@/content/WinPrizeSiled.json')
     }
   }
@@ -45,6 +45,7 @@ export default {
   background-color: white;
   position: relative;
   overflow: hidden;
+  padding-bottom: 50px;
 
   .slider {
     overflow: visible;

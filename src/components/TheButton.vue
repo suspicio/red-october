@@ -1,5 +1,15 @@
 <template>
-  <button :class="{ round__corners: isRounded, long: isLong, big: isBig, small: !isBig }" :style="{ 'background-color': bgColor, 'color': color }" class="the__button"
+  <button :class="{
+    round__corners: isRounded,
+    long: isLong,
+    big: isBig,
+    small: !isBig,
+    smallText: isMobile,
+    biggerBtn: isReg,
+    bold: isBold,
+    notBold: !isBold
+  }"
+          :style="{ 'background-color': bgColor, 'color': color }" class="the__button"
           @click="event">
     {{ text }}
   </button>
@@ -34,7 +44,19 @@ export default {
       type: Boolean,
       default: false
     },
+    isReg: {
+      type: Boolean,
+      default: false
+    },
+    isMobile: {
+      type: Boolean,
+      default: false
+    },
     isBig: {
+      type: Boolean,
+      default: true
+    },
+    isBold: {
       type: Boolean,
       default: true
     }
@@ -42,19 +64,30 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .the__button {
   background-color: #F8E577;
-  border: 0px;
-  margin: 0px;
-  padding: 0px;
+  border: 0;
+  margin: 0;
+  padding: 0;
   font-family: 'Zen Kaku Gothic New', sans-serif;
   color: black;
   font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   text-align: center;
   cursor: pointer;
+
+  &:hover {
+    background-color: #c7b564 !important;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.notBold {
+  font-weight: normal;
 }
 
 .big {
@@ -72,6 +105,14 @@ export default {
 }
 
 .long {
-  width: 100%;
+  width: 100% !important;
+}
+
+.smallText {
+  font-size: 14px;
+}
+
+.biggerBtn {
+  width: 250px;
 }
 </style>

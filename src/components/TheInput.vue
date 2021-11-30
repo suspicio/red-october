@@ -1,7 +1,8 @@
 <template>
-  <div class="the__input" :class="{big__input: big}" >
-    <input v-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :value="value" :type="type" @input="onInput">
-    <input v-if="!isPhone" :placeholder="text" :value="value" :type="type" @input="onInput">
+  <div :class="{big__input: big}" class="the__input">
+    <input v-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="value"
+           @input="onInput">
+    <input v-if="!isPhone" :placeholder="text" :type="type" :value="value" @input="onInput">
     <slot></slot>
   </div>
 </template>
@@ -31,6 +32,10 @@ export default {
     }
   },
 
+  created () {
+    this.value = ' ' + this.value
+  },
+
   methods: {
     onInput (e) {
       this.$emit('input', e.target.value)
@@ -43,6 +48,7 @@ export default {
 .big__input {
   input {
     height: 100px !important;
+
     &::placeholder {
       position: absolute;
       top: 5px;
@@ -73,7 +79,7 @@ export default {
     outline: none;
 
     &::placeholder {
-      color: rgba(255,255,255,.5);
+      color: rgba(255, 255, 255, .5);
     }
   }
 }

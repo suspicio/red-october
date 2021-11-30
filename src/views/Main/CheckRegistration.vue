@@ -13,10 +13,11 @@
       </p>
       <TheButton
         :event="activate"
-        :is-rounded="small"
+        :is-rounded="false"
         :is-long="small"
         :is-big="!small"
-        :text="'Зарегистрировать чек'"
+        :is-reg="true"
+        :text="'ЗАРЕГИСТРИРОВАТЬ ЧЕК'"
         class="register"
       ></TheButton>
     </div>

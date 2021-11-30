@@ -9,6 +9,7 @@
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
         <router-link to="/profile">Личный кабинет</router-link>
         <a href="#winners">Победители</a>
+        <a href="#gallery">Галерея</a>
         <a href="#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
@@ -20,6 +21,7 @@
       <div :class="{extra__margin: isBgRed}" class="links">
         <router-link to="/profile">Личный кабинет</router-link>
         <a href="#winners">Победители</a>
+        <a href="#gallery">Галерея</a>
         <a href="#faq">FAQ</a>
       </div>
       <TheButton
@@ -27,7 +29,9 @@
         :bg-color="'#F8E577'"
         :event="disable"
         :is-big="!tiny"
-        :is-rounded="true"
+        :is-rounded="false"
+        :is-mobile="small"
+        :is-bold="false"
         :text="'ВОЙТИ'"
       >
       </TheButton>
@@ -105,7 +109,7 @@ export default {
 
     logout () {
       this.logOut()
-      router.push('/')
+      router.push('/').catch(() => {})
     },
 
     toggle () {
@@ -143,7 +147,7 @@ export default {
     width: 150px;
     height: 85px;
     background-color: #D12E27;
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0 0 20px 20px;
     top: 67px;
     left: -40px;
 

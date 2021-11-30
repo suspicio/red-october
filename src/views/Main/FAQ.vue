@@ -5,17 +5,10 @@
       :text-color="'#FFFFFF'"
     ></centralized-heading>
     <div class="faq__wrapper">
-      <Accordion
-        :text="'lallalall lallalall lallalall lallalall lallalall lallalall lallalall lallalall'"
-        :title="'asgsagsagsagasgsagsagsagasgsa gsagsagasgsagsagsagasgsagsagsagasgsagsagsag'"
-      />
-      <Accordion
-        :text="'lallalall'"
-        :title="'asgsagsagsag'"
-      />
-      <Accordion
-        :text="'lallalall'"
-        :title="'asgsagsagsag'"
+      <Accordion v-for="(elem, index) in list" :key="index"
+                 :text="elem.text"
+                 :title="elem.title"
+                 :url="elem.urls"
       />
     </div>
   </div>
@@ -30,6 +23,11 @@ export default {
   components: {
     CentralizedHeading,
     Accordion
+  },
+  data () {
+    return {
+      list: require('../../content/FaqInfo.json')
+    }
   }
 }
 </script>

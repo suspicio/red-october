@@ -122,7 +122,7 @@ export default {
   created () {
     if (!localStorage.getItem('sid')) {
       // eslint-disable-next-line no-unused-expressions
-      this.$router.push('/')?.catch()
+      this.$router.push('/')?.catch(() => {})
     } else {
       this.initData()
     }

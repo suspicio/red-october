@@ -24,8 +24,8 @@
     ></CheckRegistration>
     <ParticipateInShare></ParticipateInShare>
     <WinThePrize></WinThePrize>
-    <SpecialProject></SpecialProject>
-    <TheParticipants></TheParticipants>
+    <SpecialProject v-if="false" id="gallery"></SpecialProject>
+    <TheParticipants v-if="false"></TheParticipants>
     <ProductionInAction></ProductionInAction>
     <TheWinners v-if="!!winners" id="winners" :winners="winners"></TheWinners>
     <FAQ id="faq"/>
