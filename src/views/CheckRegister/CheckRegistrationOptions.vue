@@ -37,7 +37,7 @@
         <a class="dashed" href="https://api.whatsapp.com/send/?phone=79639299984">WhatsApp-бот</a>
       </div>
       <div class="centralized normal">
-        <a class="normal" href="#">Правила акции</a>
+        <a class="normal" href="/rules/Правила_Акции_Красный_Октябрь_30_11.pdf" download="Правила_Акции_Красный_Октябрь_30_11.pdf">Правила акции</a>
       </div>
     </div>
   </div>
