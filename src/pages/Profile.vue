@@ -139,6 +139,13 @@ export default {
     user () {
       if (this.user) {
         this.initData()
+        this.initPrize()
+      }
+    },
+
+    lastUserWin () {
+      if (this.isWin) {
+        this.initPrize()
       }
     }
   },
@@ -169,10 +176,15 @@ export default {
     },
 
     initData () {
-      this.firstName = this.user?.firstName || ''
-      this.lastName = this.user?.lastName || ''
-      this.email = this.user?.email || ''
-      if (this.user && !this.user.personals) {
+      if (this.user) {
+        this.firstName = this.user?.firstName || ''
+        this.lastName = this.user?.lastName || ''
+        this.email = this.user?.email || ''
+      }
+    },
+
+    initPrize () {
+      if (this.user && !this.user.personals && this.isWin) {
         this.isWinPrizeVisible = true
       }
     },
