@@ -7,11 +7,13 @@
       <form @submit.prevent>
         <TheInput
           v-model="phone"
+          @input="(e) => {this.phone = e}"
           :is-phone="true"
           :text="'Телефон'"
         ></TheInput>
         <TheInput
           v-model="password"
+          @input="(e) => {this.password = e}"
           :text="'Код из SMS (при регистрации)'"
           type="password"
         ></TheInput>

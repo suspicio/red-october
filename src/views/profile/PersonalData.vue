@@ -10,6 +10,7 @@
               <div class="left">
                 <TheInput
                   v-model="passportNum"
+                  @input="(e) => {this.passportNum = e}"
                   :text="'Серия и номер'"
                 >
                 </TheInput>
@@ -17,12 +18,14 @@
               <div class="right">
                 <TheInput
                   v-model="passportDate"
+                  @input="(e) => {this.passportDate = e}"
                   :text="'Когда выдан'"
                   type="date"
                 >
                 </TheInput>
                 <TheInput
                   v-model="passportCode"
+                  @input="(e) => {this.passportCode = e}"
                   :text="'Код подразделения'"
                 >
                 </TheInput>
@@ -32,6 +35,7 @@
               <div class="left">
                 <TheInput
                   v-model="passportFrom"
+                  @input="(e) => {this.passportFrom = e}"
                   :big="true"
                   :text="'Кем выдан'"
                 >
@@ -40,6 +44,7 @@
               <div class="right">
                 <TheInput
                   v-model="address"
+                  @input="(e) => {this.address = e}"
                   :big="true"
                   :text="'Регистрация'"
                 >
@@ -50,6 +55,7 @@
               <div class="left">
               <TheInput
                 v-model="inn"
+                @input="(e) => {this.inn = e}"
                 :text="'Номер'"
               >
               </TheInput>

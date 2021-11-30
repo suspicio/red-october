@@ -1,8 +1,8 @@
 <template>
   <div :class="{big__input: big}" class="the__input">
-    <input v-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="value"
+    <input v-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="copyValue"
            @input="onInput">
-    <input v-if="!isPhone" :placeholder="text" :type="type" :value="value" @input="onInput">
+    <input v-if="!isPhone" :placeholder="text" :type="type" :value="copyValue" @input="onInput">
     <slot></slot>
   </div>
 </template>
@@ -32,8 +32,16 @@ export default {
     }
   },
 
+  data () {
+    return {
+      copyValue: ''
+    }
+  },
+
   created () {
-    this.value = ' ' + this.value
+    if (this.isPhone) {
+      this.copyValue = ' ' + this.value
+    }
   },
 
   methods: {

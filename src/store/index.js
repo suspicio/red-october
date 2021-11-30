@@ -176,7 +176,6 @@ export default new Vuex.Store({
             resolve(res.data.success)
           })
           .catch(e => {
-            console.log(JSON.stringify(e))
             console.error(e)
             resolve(false)
           })
