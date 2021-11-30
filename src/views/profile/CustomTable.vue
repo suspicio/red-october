@@ -122,7 +122,6 @@ export default {
       this.getUserChecks()
         .then(res => {
           this.list = res
-          console.log(res)
         })
     },
 
