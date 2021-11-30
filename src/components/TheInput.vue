@@ -2,15 +2,15 @@
   <div :class="{big__input: big, 'no-margin': noMargin}" class="the__input">
     <textarea-autosize
       v-if="isTextarea"
-      :value="value"
+      :value="copyValue"
       :rows="textareaRows"
       :max-rows="textareaRows > textareaMaxRows ? textareaRows : textareaMaxRows"
       :placeholder="text"
       @input="onInput"
     />
-    <input v-else-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="value"
+    <input v-else-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="copyValue"
            @input="onInput">
-    <input v-else :placeholder="text" :type="type" :value="value" @input="onInput">
+    <input v-else :placeholder="text" :type="type" :value="copyValue" @input="onInput">
     <slot></slot>
   </div>
 </template>
@@ -60,8 +60,16 @@ export default {
     }
   },
 
+  data () {
+    return {
+      copyValue: ''
+    }
+  },
+
   created () {
-    this.value = ' ' + this.value
+    if (this.isPhone) {
+      this.copyValue = ' ' + this.value
+    }
   },
 
   methods: {

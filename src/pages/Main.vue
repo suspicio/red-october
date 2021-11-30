@@ -135,10 +135,8 @@ export default {
     checkStatus (promise) {
       this.activateManualCheck()
       this.isLoading = true
-      console.log(promise)
       promise.then(data => {
         this.isLoading = false
-        console.log(data)
       })
     },
 

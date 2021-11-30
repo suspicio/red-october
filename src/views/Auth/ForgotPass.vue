@@ -7,6 +7,7 @@
       <form @submit.prevent="sendPass">
         <TheInput
           v-model="phone"
+          @input="(e) => {this.phone = e}"
           :is-phone="true"
           :text="'Телефон (при регистрации)'"
         ></TheInput>
