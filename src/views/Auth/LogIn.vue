@@ -120,7 +120,7 @@ export default {
   position: absolute;
   width: fit-content;
   left: calc(50vw - 303px);
-  bottom: 45px;
+  top: 45px;
   font-family: Zen Kaku Gothic New;
   font-style: normal;
   font-weight: bold;
@@ -129,6 +129,7 @@ export default {
   text-align: center;
   text-transform: uppercase;
   color: #F8E577;
+  z-index: 80;
 }
 
 @media (max-width: 768px) {

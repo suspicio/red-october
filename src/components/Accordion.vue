@@ -67,16 +67,8 @@ export default {
       if (this.collapsed) {
         this.$refs.accordion.style.height = `${this.$refs.top.offsetHeight}px`
       } else {
-        if (this.contentMaxHeight) {
-          this.$refs.content.style.maxHeight = `${this.contentMaxHeight}px`
-        }
         this.$refs.accordion.style.height =
-          `${(
-            (
-              this.contentMaxHeight && this.contentMaxHeight < this.$refs.content.scrollHeight
-                ? this.contentMaxHeight
-                : false
-            ) || this.$refs.content.scrollHeight) + this.$refs.top.offsetHeight}px`
+          `${(this.$refs.content.scrollHeight) + this.$refs.top.offsetHeight}px`
       }
     }
   },

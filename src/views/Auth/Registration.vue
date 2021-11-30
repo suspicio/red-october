@@ -77,7 +77,6 @@ export default {
         .replaceAll('-', '').replace('(', '')
         .replace(')', '').substr(0, 10).length === 10
 
-      console.log(validated)
       return validated
     }
   },

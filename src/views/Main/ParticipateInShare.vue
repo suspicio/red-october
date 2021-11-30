@@ -33,7 +33,7 @@
       ></StepShare>
     </div>
     <div class="actions-rules">
-      <a href="#">Правила акций</a>
+      <a href="#">Правила акции</a>
     </div>
   </div>
 </template>
@@ -62,7 +62,6 @@ export default {
     width: 147px;
     height: 36px;
     margin: 70px auto 20px;
-    background-color: #D02E26;
     justify-content: center;
     align-items: center;
     border-radius: 111px;
@@ -76,8 +75,8 @@ export default {
       display: flex;
       align-items: center;
       text-align: center;
-      text-decoration: none;
-      color: #FFFFFF;
+      text-decoration: underline dashed 1px;
+      color: #D02E26;
     }
   }
 }
