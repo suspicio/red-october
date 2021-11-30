@@ -16,10 +16,11 @@ export default {
           this.$router.push('/')?.catch(() => {})
         }
       })
+    await this.getWinner()
   },
 
   methods: {
-    ...mapActions(['isAuth'])
+    ...mapActions(['isAuth', 'getWinner'])
   }
 }
 </script>

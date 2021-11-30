@@ -85,7 +85,7 @@ import TheHeader from '@/components/TheHeader'
 import TheCard from '@/components/TheCard'
 import TheButton from '@/components/TheButton'
 import CustomTable from '@/views/profile/CustomTable'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import { russianNoPrefix } from '@/utils/formattedPhoneNumbers'
 import PrizeBox from '@/components/PrizeBox'
 import CheckRegistrationOptions from '@/views/CheckRegister/CheckRegistrationOptions'
@@ -112,7 +112,6 @@ export default {
       isActiveManualCheck: false,
       isActiveCheckRegOpt: false,
       isActivePersonalData: false,
-      isWin: false,
       firstName: this.user?.firstName || '',
       lastName: this.user?.lastName || '',
       email: this.user?.email || ''
@@ -135,7 +134,7 @@ export default {
   watch: {
     user () {
       if (this.user) {
-        this.setUser()
+        this.initData()
       }
     }
   },
@@ -143,7 +142,12 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user
-    })
+    }),
+    ...mapGetters(['lastUserWin']),
+
+    isWin () {
+      return !!this.lastUserWin
+    }
   },
 
   methods: {
