@@ -75,6 +75,17 @@ export default {
     flex-direction: row;
     width: 100%;
   }
+
+  .slidable-content {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .g-container {
+    overflow: hidden;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
