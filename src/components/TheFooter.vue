@@ -7,7 +7,7 @@
     <img class="red__october" src="../assets/logo.png">
     <div class="text__block">
       <p>Политика конфиденциальности</p>
-      <p>Правила акции</p>
+      <a href="/rules/Правила_Акции_Красный_Октябрь_30_11.pdf" download="Правила_Акции_Красный_Октябрь_30_11.pdf">Правила акции</a>
       <p>©</p>
     </div>
   </div>
@@ -74,6 +74,18 @@ export default {
 
     p {
       margin-bottom: 18px;
+    }
+    a {
+      margin-bottom: 18px;
+      text-decoration: none;
+      flex-direction: column;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14.4px;
+      line-height: 21px;
+      text-align: center;
+      color: white;
     }
 
     &:nth-child(3) {
