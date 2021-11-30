@@ -89,10 +89,6 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .size {
-    font-size: 22px;
-  }
-
   .the__winners {
     flex-direction: column;
   }
