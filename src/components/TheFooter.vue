@@ -34,6 +34,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.red__october {
+  width: 142px;
+}
+
 .the__footer {
   position: relative;
   min-height: 309px;
@@ -54,7 +58,8 @@ export default {
   .red__october {
     position: absolute;
     top: 45px;
-    left: calc(50% - 56px);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .text__block {
@@ -91,6 +96,12 @@ export default {
     &:nth-child(3) {
       font-family: Montserrat;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .red__october {
+    width: 120px;
   }
 }
 </style>

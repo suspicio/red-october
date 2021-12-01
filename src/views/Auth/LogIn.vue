@@ -23,6 +23,7 @@
             :event="onLogin"
             :is-rounded="true"
             :text="'ВОЙТИ'"
+            :is-bold="true"
             class="TheButton"
           ></TheButton>
           <a @click="activateForgot">Запросить код повторно</a>

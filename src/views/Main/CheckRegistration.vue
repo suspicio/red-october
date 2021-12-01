@@ -168,6 +168,8 @@ export default {
 
   .right__image {
     display: block;
+    max-width: 320px;
+    width: 100%;
   }
 
   .inspire {

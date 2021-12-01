@@ -59,6 +59,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.g-container {
+  padding: 0 100px;
+}
+
 .red__button {
   position: absolute;
   width: 45px;
@@ -72,11 +76,11 @@ export default {
   top: 185px;
 
   &.left {
-    left: -25px;
+    left: -55px;
   }
 
   &.right {
-    right: -20px;
+    right: -30px;
   }
 }
 
@@ -102,15 +106,19 @@ export default {
 }
 
 @media (max-width: 600px) {
+  .g-container {
+    padding: 0 20px !important;
+  }
+
   .red__button {
     top: 100px;
 
     &.left {
-      left: -20px;
+      left: -50px;
     }
 
     &.right {
-      right: -20px;
+      right: -50px;
     }
   }
 }

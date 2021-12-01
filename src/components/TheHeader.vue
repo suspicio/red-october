@@ -12,8 +12,8 @@
         <a href="/#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
-        <img v-if="!tiny" src="../assets/logo.png">
-        <img v-else src="../assets/small_red_october.png">
+        <img v-if="!tiny" src="../assets/red_october.svg">
+        <img v-else src="../assets/red_october.svg">
       </router-link>
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
@@ -29,7 +29,7 @@
         :is-big="!tiny"
         :is-rounded="false"
         :is-mobile="small"
-        :is-bold="false"
+        :is-bold="true"
         :text="'ВОЙТИ'"
       >
       </TheButton>
@@ -310,6 +310,9 @@ export default {
 
   .red_october {
     align-self: center !important;
+    img {
+      width: 64px !important;
+    }
   }
 }
 
