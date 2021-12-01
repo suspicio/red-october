@@ -90,6 +90,10 @@ export default {
     }
   },
 
+  created () {
+    this.$root.$on('getTableData', this.getTableData)
+  },
+
   mounted () {
     window.addEventListener('resize', this.onResize, true)
     this.small = window.innerWidth <= 1000

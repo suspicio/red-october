@@ -61,7 +61,7 @@ export default {
     display: flex;
     width: 147px;
     height: 36px;
-    margin: 70px auto 20px;
+    margin: 0 auto 20px;
     justify-content: center;
     align-items: center;
     border-radius: 111px;

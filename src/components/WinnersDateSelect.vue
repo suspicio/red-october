@@ -43,13 +43,13 @@ export default {
 }
 
 .winners__date-select {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 207px;
   height: 79px;
-  border-radius: 100px;
   background-color: #F8E577;
   margin: 0 5px;
 
