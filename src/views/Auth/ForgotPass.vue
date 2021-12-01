@@ -86,11 +86,11 @@ export default {
   position: absolute;
   width: fit-content;
   left: 50%;
+  bottom: calc(100% + 10px);
   transform: translateX(-50%);
-  bottom: 45px;
-  font-family: Zen Kaku Gothic New;
+  font-family: Zen Kaku Gothic New, sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 30px;
   line-height: 130%;
   text-align: center;
@@ -102,10 +102,8 @@ export default {
   .additional__info {
     font-size: 22px !important;
     line-height: 110% !important;
-    width: 238px;
+    width: 220px;
     letter-spacing: 0.02em;
-    left: calc(50vw - 128px) !important;
-    bottom: 18px;
   }
 }
 </style>

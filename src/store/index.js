@@ -149,7 +149,7 @@ export default new Vuex.Store({
         axios.post('/send-password', { phone })
           .then(res => {
             if (!res.data.success) {
-              resolve(res.data.error)
+              resolve(res.data)
             }
             resolve(res.data.success)
           })
