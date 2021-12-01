@@ -27,7 +27,7 @@
     <SpecialProject id="gallery" v-if="false"/>
     <TheParticipants v-if="false" />
     <ProductionInAction />
-    <TheWinners v-if="!!winners" id="winners" :winners="winners" />
+    <TheWinners v-if="!!winners && winners.length" id="winners" :winners="winners" />
     <FAQ id="faq"/>
     <TheFooter/>
   </div>

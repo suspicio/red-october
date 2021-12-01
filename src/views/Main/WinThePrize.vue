@@ -80,6 +80,15 @@ export default {
   }
 }
 
+.win__prize {
+  .swiper-slide {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
 .swiper-button-next {
   &:after {
     display: none;
@@ -130,7 +139,6 @@ export default {
         li {
           list-style-type: none;
           display: flex;
-          align-items: center;
           position: relative;
           margin-top: 9px;
           line-height: 140%;
@@ -141,6 +149,7 @@ export default {
           color: #333333;
 
           &:before {
+            margin-top: 7px;
             margin-right: 9px;
             min-width: 9px;
             width: 9px;

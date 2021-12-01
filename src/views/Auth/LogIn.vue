@@ -29,10 +29,10 @@
         </div>
         <div class="confidential__policy">
           <p>Нажимая «Войти», вы соглашаетесь </p>
-          <p>с <a href="#">Политикой обработки персональных данных</a></p>
+          <p>с <a href="https://magnit.krasniy-oktyabr.ru/api/policy.pdf" target="_blank" download>Политикой обработки персональных данных</a></p>
         </div>
       </form>
-      <div v-if="isNumber" class="additional__info">Код был отправлен на <br v-if="isMobile !== false"/>{{ number }}</div>
+      <div v-if="isNumber" class="additional__info">Код был отправлен на <br/><span>{{ number }}</span></div>
     </div>
   </div>
 </template>
@@ -139,8 +139,6 @@ export default {
     line-height: 110% !important;
     width: 238px;
     letter-spacing: 0.02em;
-    left: calc(50vw - 119px) !important;
-    bottom: 18px;
   }
 }
 </style>

@@ -12,7 +12,6 @@
         class="mgb"
       ></TheButton>
       <TheButton
-        v-if="isMobile !== false"
         :event="qr"
         :is-long="true"
         :is-rounded="true"
@@ -37,7 +36,7 @@
         <a class="dashed" href="https://api.whatsapp.com/send/?phone=79639299984">WhatsApp-бот</a>
       </div>
       <div class="centralized normal">
-        <a class="normal" href="/rules/Правила_Акции_Красный_Октябрь_30_11.pdf" download="Правила_Акции_Красный_Октябрь_30_11.pdf">Правила акции</a>
+        <a class="normal" href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акции</a>
       </div>
     </div>
   </div>
@@ -173,6 +172,14 @@ export default {
       color: #FFFFFF;
       text-decoration: none;
       padding-top: 12px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .modal__content {
+    .the__button {
+      font-size: 14px;
     }
   }
 }

@@ -33,7 +33,7 @@
       ></StepShare>
     </div>
     <div class="actions-rules">
-      <a href="/rules/Правила_Акции_Красный_Октябрь_30_11.pdf" download="Правила_Акции_Красный_Октябрь.pdf">Правила акций</a>
+      <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акций</a>
     </div>
   </div>
 </template>

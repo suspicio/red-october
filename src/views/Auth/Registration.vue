@@ -37,7 +37,7 @@
         </div>
         <div class="confidential__policy">
           <p>Нажимая «Отправить», вы соглашаетесь </p>
-          <p>с <a href="#">Политикой обработки персональных данных</a></p>
+          <p>с <a href="https://magnit.krasniy-oktyabr.ru/api/policy.pdf" target="_blank" download>Политикой обработки персональных данных</a></p>
         </div>
       </form>
     </div>

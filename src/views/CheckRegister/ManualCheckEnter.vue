@@ -9,7 +9,6 @@
             <div class="in-line">
               <TheInput
                 v-model="purchaseDate"
-                @input="(e) => {this.purchaseDate = e}"
                 :text="'Дата покупки'"
                 type="date"
               >
@@ -17,7 +16,6 @@
               </TheInput>
               <TheInput
                 v-model="purchaseTime"
-                @input="(e) => {this.purchaseTime = e}"
                 :text="'Время покупки'"
                 type="time"
               >
@@ -26,21 +24,18 @@
             </div>
             <TheInput
               v-model="fp"
-              @input="(e) => {this.fp = e}"
               :text="'ФП'"
             >
               <div class="number__input">3</div>
             </TheInput>
             <TheInput
               v-model="fn"
-              @input="(e) => {this.fn = e}"
               :text="'ФН'"
             >
               <div class="number__input">4</div>
             </TheInput>
             <TheInput
               v-model="fd"
-              @input="(e) => {this.fd = e}"
               :text="'ФД'"
             >
               <div class="number__input">5</div>

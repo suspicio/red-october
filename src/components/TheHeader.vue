@@ -7,9 +7,9 @@
         <div></div>
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
-        <a href="#winners">Победители</a>
-        <a href="#gallery">Галерея</a>
-        <a href="#faq">FAQ</a>
+        <a href="/#winners">Победители</a>
+        <a href="/#gallery">Галерея</a>
+        <a href="/#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
         <img v-if="!tiny" src="../assets/logo.png">
@@ -18,9 +18,9 @@
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
-        <a href="#winners">Победители</a>
-        <a href="#gallery">Галерея</a>
-        <a href="#faq">FAQ</a>
+        <a href="/#winners">Победители</a>
+        <a href="/#gallery">Галерея</a>
+        <a href="/#faq">FAQ</a>
       </div>
       <TheButton
         v-if="!user"
@@ -240,7 +240,6 @@ export default {
 
     .menu__profile {
       width: 100px;
-      height: 85px;
       background-color: #D12E27;
       border-radius: 0px 0px 20px 20px;
       top: 47px;

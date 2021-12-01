@@ -6,8 +6,8 @@
     <img v-if="small" class="right__image" src="../assets/small_right_footer.png">
     <img class="red__october" src="../assets/logo.png">
     <div class="text__block">
-      <p>Политика конфиденциальности</p>
-      <a href="/rules/Правила_Акции_Красный_Октябрь_30_11.pdf" download="Правила_Акции_Красный_Октябрь_30_11.pdf">Правила акции</a>
+      <a href="https://magnit.krasniy-oktyabr.ru/api/policy.pdf" target="_blank" download>Политика конфиденциальности</a>
+      <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акции</a>
       <p>©</p>
     </div>
   </div>

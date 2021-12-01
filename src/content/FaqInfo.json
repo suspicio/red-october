@@ -2,7 +2,7 @@
   {
     "title": "Где я могу найти полную информацию об Акции?",
     "text": [
-      "<p>Всю информацию об Акции вы можете получить на сайте  <a href='https://www.ruchoco.ru/promo/'>magnit.krasniy-oktyabr.ru</a>  и в         <a class=\"normal\" href=\"/rules/Правила_Акции_Красный_Октябрь_30_11.pdf\" download=\"Правила_Акции_Красный_Октябрь_30_11.pdf\">Правила акции</a>\n</p>"
+      "<p>Всю информацию об Акции вы можете получить на сайте  <a href='https://www.ruchoco.ru/promo/'>magnit.krasniy-oktyabr.ru</a>  и в         <a class=\"normal\" href=\"https://magnit.krasniy-oktyabr.ru/api/rules.pdf\" target='_blank' download=\"rules.pdf\",>Правила акции</a>\n</p>"
     ]
   },
   {
@@ -71,7 +71,8 @@
       "Блогеры на свое усмотрение определяет лучшую конкурсную фотографию в Конкурсе «#РетроЧелленджМагнит»  из Инстаграм.",
       "Виктория Чуманова- <a href='https://www.instagram.com/chumavecherinka/'>https://www.instagram.com/chumavecherinka/</a>",
       "Ксения Дукалис- <a href='https://www.instagram.com/kdukalis'/>https://www.instagram.com/kdukalis/</a>",
-      "Таня Старикова- <a href='https://www.instagram.com/starikova.t.v/'>https://www.instagram.com/starikova.t.v/</a>"
+      "Таня Старикова- <a href='https://www.instagram.com/starikova.t.v/'>https://www.instagram.com/starikova.t.v/</a>",
+      "Антоха МС- <a href='https://www.instagram.com/antohamc/'>https://www.instagram.com/antohamc/</a>"
     ]
   },
   {

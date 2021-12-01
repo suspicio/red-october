@@ -76,8 +76,10 @@ export default {
     onInput (e) {
       if (this.isTextarea) {
         this.$emit('input', this.maxCharacters ? e.slice(0, this.maxCharacters) : e)
+        this.copyValue = this.maxCharacters ? e.slice(0, this.maxCharacters) : e
       } else {
         this.$emit('input', e.target.value)
+        this.copyValue = e.target.value
       }
     }
   }
