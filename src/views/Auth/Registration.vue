@@ -96,13 +96,13 @@ export default {
       if (Object.values(this.validation).some(v => !v)) {
         let error = 'Какое-то поле пустое, или в неправильном формате'
         if (this.validation.name === false) {
-          error = 'Поле имя не заполнено'
+          error = 'Поле "Имя" не заполнено'
         } else if (this.validation.lastName === false) {
-          error = 'Поле фамилия не заполнено'
+          error = 'Поле "Фамилия" не заполнено'
         } else if (this.validation.email === false) {
-          error = 'Поле почта не заполнено или заполнено в неправильном формате'
+          error = 'Поле "Email" не заполнено или заполнено в неправильном формате'
         } else if (this.validation.phone === false) {
-          error = 'Поле тел. номер не заполнено или заполнено неправильно'
+          error = 'Поле "Тел. номер" не заполнено или заполнено в неправильном формате'
         }
         this.$toasted.error(error)
       } else {
