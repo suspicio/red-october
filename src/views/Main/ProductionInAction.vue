@@ -62,8 +62,8 @@ export default {
           }
         },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.production__action .swiper-button-next',
+          prevEl: '.production__action .swiper-button-prev'
         }
       },
       slides: require('@/content/ProductionInAction.json')
