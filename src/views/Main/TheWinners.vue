@@ -104,4 +104,10 @@ export default {
     flex-direction: column;
   }
 }
+
+@media (max-width: 600px) {
+  .winners__date-select {
+    border-radius: 0;
+  }
+}
 </style>

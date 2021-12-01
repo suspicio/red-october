@@ -158,9 +158,9 @@ export default {
   margin-bottom: 30px;
 
   h1 {
-    font-family: Zen Kaku Gothic New;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 400;
     font-size: 30px;
     line-height: 130%;
     text-transform: uppercase;

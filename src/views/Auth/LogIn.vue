@@ -32,8 +32,8 @@
           <p>с <a href="#">Политикой обработки персональных данных</a></p>
         </div>
       </form>
+      <div v-if="isNumber" class="additional__info">Код был отправлен на <br v-if="isMobile !== false"/>{{ number }}</div>
     </div>
-    <div v-if="isNumber" class="additional__info">Код был отправлен на <br v-if="isMobile !== false"/>{{ number }}</div>
   </div>
 </template>
 
@@ -119,9 +119,10 @@ export default {
 .additional__info {
   position: absolute;
   width: fit-content;
-  left: calc(50vw - 303px);
-  top: 45px;
-  font-family: Zen Kaku Gothic New;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: calc(100% + 20px);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;

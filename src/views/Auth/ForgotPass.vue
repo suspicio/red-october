@@ -1,5 +1,5 @@
 <template>
-  <div class="modal__wrapper">
+  <div class="modal__wrapper forgot-pass">
     <div class="modal__content">
       <div class="close" @click="disable">
       </div>
@@ -11,7 +11,7 @@
           :is-phone="true"
           :text="'Телефон (при регистрации)'"
         ></TheInput>
-        <div class="form__buttons left__buttons">
+        <div class="form__buttons">
           <TheButton
             :bg-color="'#F8E577'"
             :is-rounded="true"
@@ -20,8 +20,8 @@
           ></TheButton>
         </div>
       </form>
+      <div v-if="isError" class="additional__info">{{ text }}</div>
     </div>
-    <div v-if="isError" class="additional__info">{{ text }}</div>
   </div>
 </template>
 
@@ -78,10 +78,17 @@ export default {
   align-items: start !important;
 }
 
+.forgot-pass {
+  .TheButton {
+    margin: 0 auto !important;
+  }
+}
+
 .additional__info {
   position: absolute;
   width: fit-content;
-  left: calc(50vw - 293px);
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 45px;
   font-family: Zen Kaku Gothic New;
   font-style: normal;
