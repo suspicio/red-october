@@ -65,8 +65,8 @@ export default {
     -moz-filter: blur(0px);
     -ms-filter: blur(0px);
     filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
   }
 
   .text__block {
