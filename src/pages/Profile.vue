@@ -41,10 +41,10 @@
                   {{user.firstName.toString().toUpperCase().substr(0, 1)}}{{user.lastName.toString().toUpperCase().substr(0, 1)}}
                 </div>
                 <div class="text__block2">
-                  <div class="the__input">
+                  <div class="the__input capitalize">
                     <input v-model="firstName" placeholder="Имя">
                   </div>
-                  <div class="the__input">
+                  <div class="the__input capitalize">
                     <input v-model="lastName" placeholder="Фамилия">
                   </div>
                   <div class="the__input">
@@ -229,6 +229,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.capitalize {
+  input {
+    text-transform: capitalize;
+  }
+}
+
 .profile__page {
   display: flex;
   height: 100%;

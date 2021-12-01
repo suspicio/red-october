@@ -5,7 +5,7 @@
       <img :class="{extraMg: step === 2}" :src="require(`../assets/${pathToImg}`)">
     </div>
     <h1>{{ heading }}</h1>
-    <p> {{ text }}</p>
+    <p v-html="text" />
   </div>
 </template>
 
