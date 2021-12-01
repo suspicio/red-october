@@ -1,15 +1,15 @@
 <template>
   <div class="main">
-    <TheHeader @activate="registrationVisible"></TheHeader>
+    <TheHeader @activate="registrationVisible"/>
     <Registration v-if="isRegistrationActive" @activate="registrationVisible"
-                  @activateLogIn="activateLogIn"></Registration>
+                  @activateLogIn="activateLogIn"/>
     <LogIn v-if="isActiveLogIn" :isNumber="isNumberShown" :number="numberPass" @activateForgot="activateForgot"
-           @activateLogIn="activateLogIn"></LogIn>
-    <ForgotPass v-if="isActiveForgot" @activateForgot="activateForgot" @sendToNumber="sendPass"></ForgotPass>
+           @activateLogIn="activateLogIn"/>
+    <ForgotPass v-if="isActiveForgot" @activateForgot="activateForgot" @sendToNumber="sendPass"/>
     <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt"
-                              @manual="activateManualCheck" @qrcode="activateQRCode"></CheckRegistrationOptions>
-    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck" @checkStatus="checkStatus"></ManualCheckEnter>
-    <CheckLoader v-if="isLoading" @activate="activateLoading" @checkStatus="checkStatus"></CheckLoader>
+                              @manual="activateManualCheck" @qrcode="activateQRCode"/>
+    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck" @checkStatus="checkStatus"/>
+    <CheckLoader v-if="isLoading" @activate="activateLoading" @checkStatus="checkStatus"/>
     <QRCodeReader v-if="isActiveQR" @activate="activateQRCode"/>
     <CheckStatus
       v-if="!isLoading && isSended"
@@ -18,16 +18,16 @@
       :header-text="'Чек зарегистрирован'"
       :is-ok="true"
       :under-text="'Пожалуйста, сохраните чек до конца акции'"
-    ></CheckStatus>
+    />
     <CheckRegistration
       @activateOptions="activateCheckRegOpt"
-    ></CheckRegistration>
+    />
     <ParticipateInShare />
     <WinThePrize />
     <SpecialProject id="gallery" v-if="false"/>
     <TheParticipants v-if="false" />
     <ProductionInAction />
-    <TheWinners v-if="!!winners" id="winners" :winners="winners"></TheWinners>
+    <TheWinners v-if="!!winners" id="winners" :winners="winners" />
     <FAQ id="faq"/>
     <TheFooter/>
   </div>
