@@ -7,9 +7,9 @@
       <form @submit.prevent="sendPass">
         <TheInput
           v-model="phone"
-          @input="(e) => {this.phone = e}"
           :is-phone="true"
           :text="'Телефон (при регистрации)'"
+          @input="(e) => {this.phone = e}"
         ></TheInput>
         <div class="form__buttons">
           <TheButton
@@ -59,10 +59,8 @@ export default {
         .replaceAll('-', '').replace('(', '')
         .replace(')', '').substr(0, 10) || '').then(value => {
         if (value.success === false) {
-          if (value.error === 'Данный номер не зарегистрирован в системе. Вам необходимо пройти регистрацию') {
-            this.text = 'Такой телефон не зарегистрирован'
-            this.isError = true
-          }
+          this.text = value.error
+          this.isError = true
         } else {
           this.$emit('sendToNumber', this.phone)
         }
