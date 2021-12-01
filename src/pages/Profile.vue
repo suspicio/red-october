@@ -4,10 +4,11 @@
       :is-bg-red="true"
     ></TheHeader>
     <win-prize v-if="isWinPrizeVisible" @activate="isWinPrizeVisible = false" @enter="onWinPrizeEnter" />
-    <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt"
+    <CheckRegistrationOptions v-if="isActiveCheckRegOpt" @activate="activateCheckRegOpt" @qrcode="isActiveQR = true"
                               @manual="activateManualCheck"></CheckRegistrationOptions>
-    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck"></ManualCheckEnter>
-    <PersonalData v-if="isActivePersonalData" @activate="activatePersonalData"></PersonalData>
+    <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck"  @checkStatus="checkStatus" />
+    <PersonalData v-if="isActivePersonalData" @activate="activatePersonalData" />
+    <QRCodeReader v-if="isActiveQR" @activate="isActiveQR = false"/>
     <div class="g-container w-100">
       <div class="wrapper">
         <div class="left__side">
@@ -73,7 +74,7 @@
         </div>
         <div class="right__side">
           <TheCard :style="{padding: small ? '-16px' : '0'}">
-            <CustomTable @activate="activateCheckRegOpt"></CustomTable>
+            <CustomTable @activate="activateCheckRegOpt" />
           </TheCard>
         </div>
       </div>
@@ -93,6 +94,7 @@ import CheckRegistrationOptions from '@/views/CheckRegister/CheckRegistrationOpt
 import ManualCheckEnter from '@/views/CheckRegister/ManualCheckEnter'
 import PersonalData from '@/views/profile/PersonalData'
 import WinPrize from '@/components/WinPrize'
+import QRCodeReader from '@/views/CheckRegister/QRCodeReader'
 
 export default {
   name: 'Profile',
@@ -105,11 +107,13 @@ export default {
     CustomTable,
     TheButton,
     TheCard,
-    TheHeader
+    TheHeader,
+    QRCodeReader
   },
 
   data () {
     return {
+      isActiveQR: false,
       isWinPrizeVisible: false,
       editMode: false,
       small: false,
@@ -181,6 +185,15 @@ export default {
         this.lastName = this.user?.lastName || ''
         this.email = this.user?.email || ''
       }
+    },
+
+    checkStatus (promise) {
+      this.isNumberShown = false
+      this.isActiveManualCheck = false
+      this.isLoading = true
+      promise.then(data => {
+        this.isLoading = false
+      })
     },
 
     initPrize () {
@@ -294,6 +307,7 @@ export default {
 
 .wrapper {
   display: flex;
+  width: 100%;
 }
 
 .the__input {
@@ -354,6 +368,8 @@ export default {
 
 .right__side {
   margin-bottom: 20px;
+  width: 100%;
+  min-width: 0;
 }
 
 .image__small-wrapper {

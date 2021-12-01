@@ -8,7 +8,7 @@
     <div class="text__block">
       <a href="https://magnit.krasniy-oktyabr.ru/api/policy.pdf" target="_blank" download>Политика конфиденциальности</a>
       <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акции</a>
-      <p>©</p>
+      <p>© ООО «Объединенные кондитеры»</p>
     </div>
   </div>
 </template>

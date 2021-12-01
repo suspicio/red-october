@@ -22,18 +22,18 @@
         :step="3"
         heading="Участвуй"
         path-to-img='share3.png'
-        text="в розыгрыше ежедневных и еженедельных призов"
+        text="в розыгрыше ретро поездки в Москву и других ценных призов"
       ></StepShare>
 
       <StepShare
         :step="4"
         heading="Присоединяйся"
         path-to-img='share4.png'
-        text="к спецпроекту в соц.сети, повторяй новогоднее фото своих родителей. Победители, которых выберут известные блогеры, получат сертификат на покупку стильной советской мебели"
+        text="к конкурсу #РетроЧелленджМагнит в Instagram и повторяй новогоднее фото своих родителей. Победители, которых выберут известные блогеры, получат сертификат на покупку стильной советской мебели"
       ></StepShare>
     </div>
     <div class="actions-rules">
-      <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акций</a>
+      <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акции</a>
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@
     <div class="g-container">
       <centralized-heading
         class="size"
-        :text="'Продукция, участвующая в акции'"
+        :text="'Продукция, участвующая в&nbsp;акции'"
       ></centralized-heading>
       <div class="slider__wrapper">
         <div v-swiper:mySwiper="swiperOption" class="slider">

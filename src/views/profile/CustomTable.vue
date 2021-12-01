@@ -116,7 +116,6 @@ export default {
     }),
 
     formattedTableData () {
-      console.log(this.user)
       return this.list
     }
   },
@@ -173,26 +172,31 @@ export default {
 }
 
 .table__wrapper {
-  max-width: 888px;
   max-height: 500px;
+  min-width: 0;
+  width: 100%;
 
   .no__checks {
-    width: fit-content;
     overflow: visible;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 64px 227px;
+    margin: 64px auto;
+    text-align: center;
 
     h2 {
-      width: max-content;
       margin: 24px 0 9px 0;
+      text-transform: uppercase;
+      font-size: 30px;
+      line-height: 130%;
     }
 
     p {
       margin-bottom: 48px;
+      font-size: 18px;
+      line-height: 130%;
     }
   }
 }
@@ -288,8 +292,24 @@ table {
 
 @media (max-width: 530px) {
   .table__wrapper {
-    max-width: 230px;
     max-height: 379px;
+
+    .no__checks {
+      h2, p {
+        font-size: 14px;
+        line-height: 130%;
+      }
+
+      p {
+        margin-bottom: 24px;
+      }
+
+      .the__button {
+        font-size: 14px;
+        line-height: 100%;
+        font-weight: 400;
+      }
+    }
   }
 
   th {

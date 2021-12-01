@@ -8,7 +8,7 @@
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
         <a href="/#winners">Победители</a>
-        <a href="/#gallery">Галерея</a>
+<!--        <a href="/#gallery">Галерея</a>-->
         <a href="/#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
@@ -19,7 +19,7 @@
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
         <a href="/#winners">Победители</a>
-        <a href="/#gallery">Галерея</a>
+<!--        <a href="/#gallery">Галерея</a>-->
         <a href="/#faq">FAQ</a>
       </div>
       <TheButton
@@ -39,7 +39,7 @@
         </div>
         <div v-if="toggled" class="menu__profile">
           <router-link to="/profile">Чеки</router-link>
-          <router-link to="/profile">Личный кабинет</router-link>
+<!--          <router-link to="/profile">Личный кабинет</router-link>-->
           <a class="exit" @click="logout">Выйти</a>
         </div>
         <div
@@ -124,6 +124,12 @@ export default {
 <style lang="scss" scoped>
 .g-profile__picture {
   font-size: 18px !important;
+}
+
+.red_october {
+  img {
+    width: 112px;
+  }
 }
 
 .profile__picture-wrapper {

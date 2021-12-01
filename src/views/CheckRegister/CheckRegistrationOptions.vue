@@ -12,6 +12,7 @@
         class="mgb"
       ></TheButton>
       <TheButton
+        v-if="isMobile !== false"
         :event="qr"
         :is-long="true"
         :is-rounded="true"

@@ -103,10 +103,10 @@ export default {
 
 @media (max-width: 600px) {
   .red__button {
-    top: 85px;
+    top: 100px;
 
     &.left {
-      left: -45px;
+      left: -20px;
     }
 
     &.right {
@@ -182,31 +182,21 @@ export default {
 }
 
 @media (max-width: 600px) {
-  .slider {
-    margin-left: 21px !important;
-  }
-
   .swiper-slide {
-    max-width: 190px !important;
-    margin-top: -100px;
-
-    img {
-      transform: scale(0.5) translateX(-50%);
-    }
+    max-width: 188px !important;
 
     ul {
-      margin-top: -70px;
       li {
         font-size: 12px !important;
-      }
 
-      &:before {
-        margin-top: 3.5px !important;
-        margin-right: 3px !important;
-        min-width: 3px !important;
-        width: 3px !important;
-        min-height: 3px !important;
-        height: 3px !important;
+        &:before {
+          margin-top: 7.5px !important;
+          margin-right: 3px !important;
+          min-width: 3px !important;
+          width: 3px !important;
+          min-height: 3px !important;
+          height: 3px !important;
+        }
       }
     }
   }

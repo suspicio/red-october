@@ -1,6 +1,6 @@
 <template>
   <div class="centrilized__heading" :style="{color: textColor}">
-    {{ text }}
+    <span v-html="text"></span>
     <slot />
   </div>
 </template>

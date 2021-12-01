@@ -133,7 +133,8 @@ export default {
     },
 
     checkStatus (promise) {
-      this.activateManualCheck()
+      this.isNumberShown = false
+      this.isActiveManualCheck = false
       this.isLoading = true
       promise.then(data => {
         this.isLoading = false

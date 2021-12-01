@@ -102,7 +102,7 @@ export default {
         } else if (this.validation.email === false) {
           error = 'Поле почта не заполнено или заполнено в неправильном формате'
         } else if (this.validation.phone === false) {
-          error = 'Поле тел. номер не заполнено или заполнено не правильно.'
+          error = 'Поле тел. номер не заполнено или заполнено неправильно'
         }
         this.$toasted.error(error)
       } else {
