@@ -70,6 +70,14 @@ export default {
   justify-content: center;
   align-items: center;
   top: 185px;
+
+  &.left {
+    left: -25px;
+  }
+
+  &.right {
+    right: -20px;
+  }
 }
 
 .swiper-button-next {
@@ -89,11 +97,11 @@ export default {
     top: 85px;
 
     &.left {
-      left: 0;
+      left: -45px;
     }
 
     &.right {
-      right: 0;
+      right: -20px;
     }
   }
 }
