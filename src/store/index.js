@@ -214,6 +214,7 @@ export default new Vuex.Store({
             if (res.data.success) {
               Vue.prototype.$toasted.success('Данные успешно загружены')
             } else {
+              console.error(res.data.error)
               Vue.prototype.$toasted.error(res.data.error)
             }
             resolve(res.data.success)

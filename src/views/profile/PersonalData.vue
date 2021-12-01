@@ -13,6 +13,7 @@
                   v-model="passportNum"
                   @input="(e) => {this.passportNum = e}"
                   :text="'Серия и номер'"
+                  v-maska="'XXXX XXXXXX'"
                 >
                 </TheInput>
               </div>
@@ -28,6 +29,7 @@
                   v-model="passportCode"
                   @input="(e) => {this.passportCode = e}"
                   :text="'Код подразделения'"
+                  v-maska="'XXX-XXX'"
                 >
                 </TheInput>
               </div>
@@ -62,6 +64,7 @@
                 @input="(e) => {this.inn = e}"
                 :text="'Номер'"
                 no-margin
+                v-maska="'XXXXXXXXXXXX'"
               >
               </TheInput>
               </div>
@@ -115,6 +118,21 @@ export default {
     }
   },
 
+  computed: {
+    validation () {
+      const validated = {}
+
+      validated.isPassportNum = this.passportNum.length === 11
+      validated.isPassportDate = !!this.passportDate
+      validated.isPassportCode = this.passportCode.length === 7
+      validated.isPassportFrom = !!this.passportFrom
+      validated.isAddress = !!this.address
+      validated.isInn = this.inn.length === 12
+
+      return validated
+    }
+  },
+
   methods: {
     ...mapActions(['uploadUserInfo']),
 
@@ -123,10 +141,27 @@ export default {
     },
 
     onSubmit () {
+      if (Object.values(this.validation).some(v => !v)) {
+        if (!this.validation.isPassportNum) {
+          this.$toasted.error('Серия и номер набраны некорректно')
+        } else if (!this.validation.isPassportDate) {
+          this.$toasted.error('Дата не выбрана')
+        } else if (!this.validation.isPassportCode) {
+          this.$toasted.error('Код подразделения набран некорректно')
+        } else if (!this.validation.isPassportFrom) {
+          this.$toasted.error('Поле "кем выдан" не заполнено')
+        } else if (!this.validation.isAddress) {
+          this.$toasted.error('Поле "адрес" не заполнено')
+        } else if (!this.validation.inn) {
+          this.$toasted.error('Поле "ИНН" дожно иметь 12 цифр')
+        }
+        return
+      }
+
       this.uploadUserInfo({
-        passportNum: this.passportNum,
+        passportNum: this.passportNum.substr(0, 4) + this.passportNum.substr(5, 6),
         passportDate: this.passportDate,
-        passportCode: this.passportCode,
+        passportCode: this.passportCode.substr(0, 3) + this.passportCode.substr(4, 3),
         passportFrom: this.passportFrom,
         address: this.address,
         inn: this.inn
