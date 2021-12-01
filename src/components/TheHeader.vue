@@ -141,7 +141,6 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    text-align: center;
     z-index: 100;
     width: 150px;
     height: fit-content + 10px;

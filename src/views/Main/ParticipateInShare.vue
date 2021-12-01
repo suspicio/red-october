@@ -67,10 +67,8 @@ export default {
     border-radius: 111px;
 
     a {
-      font-family: Zen Kaku Gothic New;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16.4px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 16px;
       line-height: 100%;
       display: flex;
       align-items: center;

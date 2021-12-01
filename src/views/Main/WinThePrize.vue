@@ -45,11 +45,12 @@ export default {
   position: relative;
   overflow: hidden;
   padding-bottom: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   .slider {
     overflow: visible;
     margin-top: 54px;
-    margin-left: 150px;
 
     .swiper-slide {
       max-width: 360px;
@@ -63,6 +64,7 @@ export default {
         li {
           list-style-type: none;
           display: flex;
+          align-items: center;
           position: relative;
           margin-top: 9px;
           line-height: 140%;
@@ -73,7 +75,6 @@ export default {
           color: #333333;
 
           &:before {
-            margin-top: 7px;
             margin-right: 9px;
             min-width: 9px;
             width: 9px;
