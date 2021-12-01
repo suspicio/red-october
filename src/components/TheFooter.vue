@@ -4,7 +4,7 @@
     <img v-if="!small" class="right__image" src="../assets/footer_right_side.png">
     <img v-if="small" class="left__image" src="../assets/small_left_footer.png">
     <img v-if="small" class="right__image" src="../assets/small_right_footer.png">
-    <img class="red__october" src="../assets/logo.png">
+    <img class="red__october" src="/images/logo.png">
     <div class="text__block">
       <a href="https://magnit.krasniy-oktyabr.ru/api/policy.pdf" target="_blank" download>Политика конфиденциальности</a>
       <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акции</a>

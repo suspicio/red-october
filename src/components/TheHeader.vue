@@ -12,8 +12,8 @@
         <a href="/#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
-        <img v-if="!tiny" src="../assets/red_october.svg">
-        <img v-else src="../assets/red_october.svg">
+        <img v-if="!tiny" src="/images/logo.png">
+        <img v-else src="/images/logo.png">
       </router-link>
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
@@ -131,8 +131,8 @@ export default {
   -webkit-filter: blur(0px);
   -moz-filter: blur(0px);
   -ms-filter: blur(0px);
-  -webkit-transform: translate3d(-50%, 0, 0);
-  transform: translate3d(-50%, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   image-rendering: smooth;
   -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
   img {

@@ -4,13 +4,15 @@
       <centralized-heading
         :text="'Выигрывай призы'"
       ></centralized-heading>
-      <div v-swiper:mySwiper="swiperOption" class="slider">
-        <div class="swiper-wrapper">
-          <div v-for="(slide, index) in slides" :key="index" class="swiper-slide">
-            <img :src="slide.img">
-            <ul>
-              <li v-for="(item, index) in slide.desc" :key="index">{{ item }}</li>
-            </ul>
+      <div class="slider-wrapper">
+        <div v-swiper:mySwiper="swiperOption" class="slider">
+          <div class="swiper-wrapper">
+            <div v-for="(slide, index) in slides" :key="index" class="swiper-slide">
+              <img :src="slide.img">
+              <ul>
+                <li v-for="(item, index) in slide.desc" :key="index">{{ item }}</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="red__button left swiper-button-prev">
@@ -20,7 +22,6 @@
               fill="white"/>
           </svg>
         </div>
-
         <div class="red__button right swiper-button-next">
           <svg fill="none" height="13" viewBox="0 0 8 13" width="8" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -44,11 +45,22 @@ export default {
   data () {
     return {
       swiperOption: {
-        slidesPerView: 'auto',
+        slidesPerView: 1,
         spaceBetween: 27,
         navigation: {
           nextEl: '.win__prize .swiper-button-next',
           prevEl: '.win__prize .swiper-button-prev'
+        },
+        breakpoints: {
+          601: {
+            slidesPerView: 2
+          },
+          801: {
+            slidesPerView: 3
+          },
+          1201: {
+            slidesPerView: 4
+          }
         }
       },
 
@@ -73,15 +85,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 185px;
+  top: 50%;
+  transform: translateY(-50%);
 
   &.left {
     left: -55px;
   }
 
   &.right {
-    right: -30px;
+    right: -55px;
   }
+}
+
+.slider-wrapper {
+  position: relative;
 }
 
 .win__prize {
@@ -105,24 +122,6 @@ export default {
   }
 }
 
-@media (max-width: 600px) {
-  .g-container {
-    padding: 0 20px !important;
-  }
-
-  .red__button {
-    top: 100px;
-
-    &.left {
-      left: -50px;
-    }
-
-    &.right {
-      right: -50px;
-    }
-  }
-}
-
 .win__prize {
   background-color: white;
   position: relative;
@@ -136,7 +135,6 @@ export default {
     margin-top: 54px;
 
     .swiper-slide {
-      max-width: 360px;
       width: 100%;
 
       ul {
@@ -189,10 +187,28 @@ export default {
   }
 }
 
-@media (max-width: 600px) {
-  .swiper-slide {
-    max-width: 188px !important;
+@media (max-width: 1200px) {
+  .g-container {
+    padding: 0 30px !important;
+  }
+}
 
+@media (max-width: 600px) {
+  .red__button {
+    &.left {
+      left: -50px;
+    }
+
+    &.right {
+      right: -50px;
+    }
+  }
+
+  .win__prize .slider {
+    overflow: hidden;
+  }
+
+  .swiper-slide {
     ul {
       li {
         font-size: 12px !important;
