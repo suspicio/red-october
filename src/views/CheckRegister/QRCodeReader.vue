@@ -40,8 +40,9 @@ export default {
 
     onDecode (result) {
       const elems = result.toString().split('&')
+      console.log(elems)
       const t = elems[0]
-      this.tm = t.substr(2, 4) + '-' + t.substr(6, 2) + '-' + t.substr(8, 5) + ':' + t.substr(13, 2) + 'Z'
+      this.tm = t.substr(2, 4) + '-' + t.substr(6, 2) + '-' + t.substr(8, 5) + ':' + t.substr(13, 2)
       this.sum = elems[1].substr(2)
       this.fn = elems[2].substr(3)
       this.i = elems[3].substr(2)

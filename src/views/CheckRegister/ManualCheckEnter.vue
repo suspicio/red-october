@@ -40,6 +40,12 @@
             >
               <div class="number__input">5</div>
             </TheInput>
+            <TheInput
+              v-model="sum"
+              :text="'Сумма чека'"
+              class="the-input-sum"
+            >
+            </TheInput>
             <div class="form__buttons left__buttons">
               <TheButton
                 :bg-color="'#F8E577'"
@@ -108,6 +114,10 @@ export default {
 <style lang="scss" scoped>
 .input__form {
   width: 410px;
+}
+
+.the-input-sum {
+  padding-right: 24px;
 }
 
 .in-line {
