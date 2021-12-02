@@ -46,11 +46,11 @@
             <div>{{ item.checkId }}</div>
           </td>
           <td v-if="!small">
-            <div v-if="item.actionDate !== undefined">{{ item.actionDate.substring(0, 10) }}</div>
+            <div v-if="typeof item.date === 'string'">{{ item.date.substring(0, 10) }}</div>
             <div v-else></div>
           </td>
           <td v-if="!small">
-            <div v-if="item.regsteredDate !== undefined">{{ item.registeredDate.substring(0, 10) }}</div>
+            <div v-if="item.registeredDate !== undefined">{{ item.registeredDate.substring(0, 10) }}</div>
             <div v-else></div>
           </td>
           <td v-if="!small">
