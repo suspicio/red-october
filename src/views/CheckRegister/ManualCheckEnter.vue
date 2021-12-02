@@ -100,7 +100,7 @@ export default {
 
     onSubmit () {
       this.$emit('checkStatus', this.uploadReceiptManual({
-        t: `${this.purchaseDate}T${this.purchaseTime}Z`,
+        t: `${this.purchaseDate}T${this.purchaseTime}`,
         fn: this.fn,
         fp: this.fp,
         i: this.fd,
