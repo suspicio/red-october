@@ -39,6 +39,7 @@ export default {
 }
 
 .step__shape {
+  margin-right: 25px;
   position: relative;
   max-width: 250px;
   display: flex;

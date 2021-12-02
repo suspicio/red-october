@@ -88,14 +88,14 @@ export default {
 
 .red__line {
   position: absolute;
-  width: 700px;
+  width: 780px;
   z-index: 0;
   height: 1px;
   background-color: #D02E26;
   margin-top: 99px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .centralized {
     flex-direction: column;
     align-items: center;

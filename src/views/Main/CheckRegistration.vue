@@ -13,6 +13,9 @@
       </p>
       <TheButton
         :event="activate"
+        :color="'#D12E27'"
+        :is-mobile="true"
+        :is-bold="true"
         :is-rounded="false"
         :is-long="small"
         :is-big="!small"

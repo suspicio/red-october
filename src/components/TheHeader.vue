@@ -7,8 +7,11 @@
         <div></div>
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
-        <a href="/#winners">Победители</a>
+<!--        <a href="/#winners">Победители</a>-->
 <!--        <a href="/#gallery">Галерея</a>-->
+        <a href="/#actions">Акция</a>
+        <a href="/#prizes">Призы</a>
+        <a href="/#products">Продукция</a>
         <a href="/#faq">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
@@ -18,18 +21,24 @@
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
-        <a href="/#winners">Победители</a>
+<!--        <a href="/#winners">Победители</a>-->
 <!--        <a href="/#gallery">Галерея</a>-->
+        <a href="/#actions">Акция</a>
+        <a href="/#prizes">Призы</a>
+        <a href="/#products">Продукция</a>
         <a href="/#faq">FAQ</a>
       </div>
       <TheButton
         v-if="!user"
+        style="width: 120px"
         :bg-color="'#F8E577'"
+        :color="'#D12E27'"
         :event="disable"
         :is-big="!tiny"
         :is-rounded="false"
-        :is-mobile="small"
+        :is-mobile="true"
         :is-bold="true"
+        :is-long="false"
         :text="'ВОЙТИ'"
       >
       </TheButton>
