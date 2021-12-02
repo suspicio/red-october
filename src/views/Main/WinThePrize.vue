@@ -71,6 +71,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.swiper-slide {
+  img {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+  }
+}
+
 .g-container {
   padding: 0 100px;
 }
