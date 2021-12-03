@@ -10,6 +10,10 @@
     />
     <input v-else-if="isPhone" v-maska="'+7 (###) ###-##-##'" :placeholder="text" :type="type" :value="copyValue"
            @input="onInput">
+    <input v-else-if="isNumber" v-maska="'####################'" :placeholder="text" :type="type" :value="copyValue"
+           @input="onInput">
+    <input v-else-if="isSum" v-maska="{ mask: 'Z*FZZ', tokens: { 'Z': { pattern: /^\d+$/ }, 'F': { pattern: /^\.$/ }}}" :placeholder="text" :type="type" :value="copyValue"
+           @input="onInput">
     <input v-else :placeholder="text" :type="type" :value="copyValue" @input="onInput">
     <slot></slot>
   </div>
@@ -55,6 +59,14 @@ export default {
       default: null
     },
     noMargin: {
+      type: Boolean,
+      default: false
+    },
+    isNumber: {
+      type: Boolean,
+      default: false
+    },
+    isSum: {
       type: Boolean,
       default: false
     }

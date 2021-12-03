@@ -33,7 +33,7 @@
       <table>
         <thead>
         <tr>
-          <th>Номер чека</th>
+          <th>ID чека</th>
           <th v-if="!small">Дата покупки</th>
           <th v-if="!small">Зарегистрирован</th>
           <th v-if="!small">Розыгрыш</th>
@@ -46,11 +46,11 @@
             <div>{{ item.checkId }}</div>
           </td>
           <td v-if="!small">
-            <div v-if="typeof item.date === 'string'">{{ item.date.substring(0, 10) }}</div>
+            <div v-if="typeof item.date === 'string'">{{ item.date.substr(8, 2)[0] === '0' ? item.date.substr(9, 1) : item.date.substr(8, 2) }} декабря</div>
             <div v-else></div>
           </td>
           <td v-if="!small">
-            <div v-if="item.registeredDate !== undefined">{{ item.registeredDate.substring(0, 10) }}</div>
+            <div v-if="item.registeredDate !== undefined">{{ item.registeredDate.substr(8, 2)[0] === '0' ? item.registeredDate.substr(9, 1) : item.registeredDate.substr(8, 2) }} декабря</div>
             <div v-else></div>
           </td>
           <td v-if="!small">

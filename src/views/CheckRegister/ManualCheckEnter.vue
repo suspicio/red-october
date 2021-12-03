@@ -11,6 +11,7 @@
                 v-model="purchaseDate"
                 :text="'Дата покупки'"
                 type="date"
+                @input="(e) => {this.purchaseDate = e}"
               >
                 <div class="number__input number__input-f">1</div>
               </TheInput>
@@ -18,32 +19,41 @@
                 v-model="purchaseTime"
                 :text="'Время покупки'"
                 type="time"
+                @input="(e) => {this.purchaseTime = e}"
               >
                 <div class="number__input">2</div>
               </TheInput>
             </div>
             <TheInput
               v-model="fp"
+              :is-number="true"
               :text="'ФП'"
+              @input="(e) => {this.fp = e}"
             >
               <div class="number__input">3</div>
             </TheInput>
             <TheInput
               v-model="fn"
+              :is-number="true"
               :text="'ФН'"
+              @input="(e) => {this.fn = e}"
             >
               <div class="number__input">4</div>
             </TheInput>
             <TheInput
               v-model="fd"
+              :is-number="true"
               :text="'ФД'"
+              @input="(e) => {this.fd = e}"
             >
               <div class="number__input">5</div>
             </TheInput>
             <TheInput
               v-model="sum"
-              :text="'Сумма чека'"
+              :text="'Сумма чека с копейками'"
+              :isSum="true"
               class="the-input-sum"
+              @input="(e) => {this.sum = e}"
             >
             </TheInput>
             <div class="form__buttons left__buttons">
@@ -71,6 +81,7 @@
 import TheInput from '@/components/TheInput'
 import TheButton from '@/components/TheButton'
 import { mapActions } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'ManualCheckEnter',
@@ -87,7 +98,27 @@ export default {
       fp: '',
       fn: '',
       fd: '',
-      sum: '0'
+      sum: ''
+    }
+  },
+
+  computed: {
+    validation () {
+      const validated = {}
+
+      validated.isPurchaseDate = !!this.purchaseDate
+      validated.isPurchaseTime = !!this.purchaseTime
+      if (validated.isPurchaseDate && validated.isPurchaseTime) {
+        validated.isTimeOkay = moment().isAfter(`${this.purchaseDate}T${this.purchaseTime}`)
+      } else {
+        validated.isTimeOkay = false
+      }
+      validated.isFp = !!this.fp
+      validated.isFn = !!this.fn
+      validated.isFd = !!this.fd
+      validated.isSum = !!this.sum
+
+      return validated
     }
   },
 
@@ -99,6 +130,25 @@ export default {
     },
 
     onSubmit () {
+      if (Object.values(this.validation).some(v => !v)) {
+        if (!this.validation.isPurchaseDate) {
+          this.$toasted.error('Поле "Дата" не заполнено')
+        } else if (!this.validation.isPurchaseTime) {
+          this.$toasted.error('Поле "Время" не заполнено')
+        } else if (!this.validation.isTimeOkay) {
+          this.$toasted.error('Вы указали некорректное время')
+        } else if (!this.validation.isFp) {
+          this.$toasted.error('Поле "ФП" не заполнено')
+        } else if (!this.validation.isFn) {
+          this.$toasted.error('Поле "ФН" не заполнено')
+        } else if (!this.validation.isFd) {
+          this.$toasted.error('Поле "ФД" не заполнено')
+        } else if (!this.validation.isSum) {
+          this.$toasted.error('Поле "Сумма" не заполнено')
+        }
+        return
+      }
+
       this.$emit('checkStatus', this.uploadReceiptManual({
         t: `${this.purchaseDate}T${this.purchaseTime}`,
         fn: this.fn,
