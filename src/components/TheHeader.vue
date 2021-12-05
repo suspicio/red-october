@@ -7,7 +7,7 @@
         <div></div>
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
-<!--        <a href="/#winners">Победители</a>-->
+        <a href="/#winners">Победители</a>
 <!--        <a href="/#gallery">Галерея</a>-->
         <a href="/#actions">Акция</a>
         <a href="/#prizes">Призы</a>
@@ -21,7 +21,7 @@
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
-<!--        <a href="/#winners">Победители</a>-->
+        <a href="/#winners">Победители</a>
 <!--        <a href="/#gallery">Галерея</a>-->
         <a href="/#actions">Акция</a>
         <a href="/#prizes">Призы</a>

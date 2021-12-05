@@ -26,14 +26,22 @@
       ></StepShare>
 
       <StepShare
+        v-if="!isMobile"
         :step="4"
         heading="Присоединяйся"
         path-to-img='share4.png'
         text="к конкурсу #РетроЧелленджМагнит в&nbsp;Instagram и повторяй новогоднее фото своих родителей. Победители, которых выберут известные блогеры, получат сертификат на покупку стильной советской мебели"
       ></StepShare>
+      <StepShare
+        v-else
+        :step="4"
+        heading="Присоединяйся"
+        path-to-img='share4.svg'
+        text="к конкурсу #РетроЧелленджМагнит в&nbsp;Instagram и повторяй новогоднее фото своих родителей. Победители, которых выберут известные блогеры, получат сертификат на покупку стильной советской мебели"
+      ></StepShare>
     </div>
     <div class="actions-rules">
-      <a href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank" download="rules.pdf">Правила акции</a>
+      <a download="rules.pdf" href="https://magnit.krasniy-oktyabr.ru/api/rules.pdf" target="_blank">Правила акции</a>
     </div>
   </div>
 </template>
@@ -41,12 +49,19 @@
 <script>
 import CentralizedHeading from '@/components/CentralizedHeading'
 import StepShare from '@/components/StepShare'
+import isMobileDevice from '@/utils/mobileChecker'
 
 export default {
   name: 'ParticipateInShare',
   components: {
     StepShare,
     CentralizedHeading
+  },
+  computed: {
+    isMobile () {
+      console.log(isMobileDevice())
+      return typeof isMobileDevice() === 'string'
+    }
   }
 }
 </script>
@@ -88,14 +103,14 @@ export default {
 
 .red__line {
   position: absolute;
-  width: 780px;
+  width: 880px;
   z-index: 0;
   height: 1px;
   background-color: #D02E26;
   margin-top: 99px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .centralized {
     flex-direction: column;
     align-items: center;

@@ -25,7 +25,8 @@ export default {
         slidesPerView: 'auto',
         freeMode: true,
         resistanceRatio: 0,
-        ...this.additionalSwiperOptions
+        ...this.additionalSwiperOptions,
+        centerInsufficientSlides: true
       }
     }
   },

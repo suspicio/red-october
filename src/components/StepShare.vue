@@ -39,7 +39,7 @@ export default {
 }
 
 .step__shape {
-  margin-right: 25px;
+  margin-right: 55px;
   position: relative;
   max-width: 250px;
   display: flex;
@@ -94,6 +94,16 @@ export default {
 @media (max-width: 768px) {
   .extraMg {
     margin-left: 40px !important;
+  }
+
+  .step__shape {
+    margin-right: 0 !important;
+  }
+
+  .image__wrapper {
+    img {
+      width: 100%;
+    }
   }
 }
 </style>
