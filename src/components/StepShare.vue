@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .extraMg {
-  margin-left: 80px;
+  margin-left: 60px;
 }
 
 .step__shape {
@@ -89,11 +89,15 @@ export default {
   display: flex;
   align-items: center;
   min-height: 300px;
+
+  img {
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .extraMg {
-    margin-left: 40px !important;
+    margin-left: 60px !important;
   }
 
   .step__shape {

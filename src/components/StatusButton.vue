@@ -1,7 +1,7 @@
 <template>
   <div class="status__button">
     <div class="common lose" v-if="type === 'error'">
-      <p>Не повезло</p>
+      <p>Чек отклонен</p>
     </div>
     <div class="common win" v-else-if="type === 'win'">
       <p>Победа</p>
