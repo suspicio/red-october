@@ -374,7 +374,7 @@ export default {
 
 .right__side {
   margin-bottom: 20px;
-  width: 100%;
+  width: 55%;
   min-width: 0;
 }
 
@@ -396,6 +396,10 @@ export default {
   .left__side {
     margin-bottom: 25px;
     margin-right: 0;
+  }
+
+  .right__side {
+    width: 100% !important;
   }
 }
 

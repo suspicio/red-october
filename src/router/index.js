@@ -13,6 +13,11 @@ const routes = [
     component: Main
   },
   {
+    path: '/?email-confirmation=:id',
+    name: 'Activate',
+    component: Main
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: Profile

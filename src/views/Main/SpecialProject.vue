@@ -6,7 +6,7 @@
     <img class="right__image__small" src="../../assets/small_specproject_right.png">
     <centralized-heading
       class="size"
-      :text="'Спецпроект'"
+      :text="'Конкурс'"
       :text-color="'white'"
     ></centralized-heading>
     <div class="content__box">

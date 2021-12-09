@@ -1,6 +1,6 @@
 <template>
-  <div class="the__winners">
-    <div class="g-container">
+  <div class="the__winners" id="winners">
+    <div class="g-container" v-if="winners">
       <CentralizedHeading
         class="size"
         :text="'Победители'"

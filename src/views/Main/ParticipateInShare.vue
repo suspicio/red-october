@@ -36,7 +36,7 @@
         v-else
         :step="4"
         heading="Присоединяйся"
-        path-to-img='share4.svg'
+        path-to-img='share4.png'
         text="к конкурсу #РетроЧелленджМагнит в&nbsp;Instagram и повторяй новогоднее фото своих родителей. Победители, которых выберут известные блогеры, получат сертификат на покупку стильной советской мебели"
       ></StepShare>
     </div>
@@ -59,7 +59,6 @@ export default {
   },
   computed: {
     isMobile () {
-      console.log(isMobileDevice())
       return typeof isMobileDevice() === 'string'
     }
   }

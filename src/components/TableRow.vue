@@ -22,6 +22,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+tbody {
+  display: block;
+  height: 320px;
+  width: fit-content;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 tr {
   display: flex;
   justify-content: center;
@@ -77,6 +105,10 @@ tr {
   }
 }
 @media (max-width: 768px) {
+  tbody {
+    height: 300px;
+  }
+
   tr {
     display: flex;
     flex-direction: column;

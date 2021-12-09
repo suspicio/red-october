@@ -11,6 +11,7 @@
         :is-long="false"
         :is-rounded="true"
         :text="'ДОБАВИТЬ ЧЕК'"
+        style="margin-right: 25px"
       ></TheButton>
     </div>
     <div v-else class="table__inner-wrapper">
@@ -36,7 +37,6 @@
           <th>ID чека</th>
           <th v-if="!small">Дата покупки</th>
           <th v-if="!small">Зарегистрирован</th>
-          <th v-if="!small">Розыгрыш</th>
           <th>Статус</th>
         </tr>
         </thead>
@@ -46,15 +46,17 @@
             <div>{{ item.checkId }}</div>
           </td>
           <td v-if="!small">
-            <div v-if="typeof item.date === 'string'">{{ item.date.substr(8, 2)[0] === '0' ? item.date.substr(9, 1) : item.date.substr(8, 2) }} декабря</div>
+            <div v-if="typeof item.date === 'string'">
+              {{ item.date.substr(8, 2)[0] === '0' ? item.date.substr(9, 1) : item.date.substr(8, 2) }} декабря
+            </div>
             <div v-else></div>
           </td>
           <td v-if="!small">
-            <div v-if="item.registeredDate !== undefined">{{ item.registeredDate.substr(8, 2)[0] === '0' ? item.registeredDate.substr(9, 1) : item.registeredDate.substr(8, 2) }} декабря</div>
+            <div v-if="item.registeredDate !== undefined">{{
+                item.registeredDate.substr(8, 2)[0] === '0' ? item.registeredDate.substr(9, 1) : item.registeredDate.substr(8, 2)
+              }} декабря
+            </div>
             <div v-else></div>
-          </td>
-          <td v-if="!small">
-            <div>{{ item.actionDate }}</div>
           </td>
           <td>
             <div>
@@ -148,6 +150,9 @@ export default {
 .table__inner-wrapper {
   max-height: 412px;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header__table {
@@ -277,6 +282,8 @@ table {
 
   .header__table {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     h1 {
       font-size: 14px;

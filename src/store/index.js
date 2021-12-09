@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    winners: null
+    winners: null,
+    photo: null
   },
 
   mutations: {
@@ -23,6 +24,10 @@ export default new Vuex.Store({
 
     setWinners (state, newWinners) {
       state.winners = newWinners
+    },
+
+    setPhoto (state, newPhoto) {
+      state.photo = newPhoto
     }
   },
 
@@ -240,6 +245,20 @@ export default new Vuex.Store({
           .catch(e => {
             console.error(e)
             resolve(null)
+          })
+      })
+    },
+
+    async getPhoto ({ commit }) {
+      return new Promise((resolve) => {
+        axios.post('/get-instagram')
+          .then(res => {
+            if (res.data.success) {
+              commit('setPhoto', res.data.items)
+              resolve()
+            } else {
+              console.error(res.data.error)
+            }
           })
       })
     }

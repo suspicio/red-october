@@ -11,6 +11,7 @@
     <ManualCheckEnter v-if="isActiveManualCheck" @activate="activateManualCheck" @checkStatus="checkStatus"/>
     <CheckLoader v-if="isLoading" @activate="activateLoading" @checkStatus="checkStatus"/>
     <QRCodeReader v-if="isActiveQR" @activate="activateQRCode"/>
+    <EmailConfirmation v-if="isMail" @activate="activateMail"/>
     <CheckStatus
       v-if="!isLoading && isSended"
       :activate="activateStatus"
@@ -23,11 +24,11 @@
       @activateOptions="activateCheckRegOpt"
     />
     <ParticipateInShare id="actions"/>
-    <WinThePrize id="prizes" />
-    <SpecialProject id="gallery" v-if="false"/>
-    <TheParticipants v-if="false" />
-    <ProductionInAction id="products" />
-    <TheWinners v-if="!!winners && winners.length" id="winners" :winners="winners" />
+    <WinThePrize id="prizes"/>
+    <SpecialProject v-if="false" id="gallery"/>
+    <TheParticipants v-if="false" :photo="photo"/>
+    <ProductionInAction id="products"/>
+    <TheWinners :winners="winners"/>
     <FAQ id="faq"/>
     <TheFooter/>
   </div>
@@ -50,13 +51,17 @@ import CheckRegistrationOptions from '@/views/CheckRegister/CheckRegistrationOpt
 import ManualCheckEnter from '@/views/CheckRegister/ManualCheckEnter'
 import CheckLoader from '@/views/CheckRegister/CheckLoader'
 import CheckStatus from '@/views/CheckRegister/CheckStatus'
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import FAQ from '@/views/Main/FAQ'
 import QRCodeReader from '@/views/CheckRegister/QRCodeReader'
+import EmailConfirmation from '@/views/Auth/EmailConfirmation'
+import axios from 'axios'
+import Vue from 'vue'
 
 export default {
   name: 'Main',
   components: {
+    EmailConfirmation,
     QRCodeReader,
     FAQ,
     CheckStatus,
@@ -87,6 +92,7 @@ export default {
       isSended: false,
       isActiveQR: false,
       isNumberShown: false,
+      isMail: false,
       numberPass: ''
     }
   },
@@ -94,11 +100,32 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user,
-      winners: state => state.winners
+      winners: state => state.winners,
+      photo: state => state.photo
     })
   },
 
+  created () {
+    if (this.$root.$route.query['email-confirmation'] !== undefined) {
+      axios.post('/email-confirmation', this.$root.$route.query['email-confirmation'])
+        .then(res => {
+          if (res.data.success) {
+            this.isMail = true
+          } else {
+            Vue.prototype.$toasted.error(res.data.error)
+          }
+        })
+        .catch(e => {
+          console.error(e)
+        })
+    }
+
+    this.getPhoto()
+  },
+
   methods: {
+    ...mapActions(['getPhoto']),
+
     registrationVisible () {
       this.isNumberShown = false
       this.isRegistrationActive = !this.isRegistrationActive
@@ -153,12 +180,12 @@ export default {
       this.numberPass = number
     },
 
-    sendStatus (data) {
-      console.log(data)
-    },
-
     activateStatus () {
       this.isSended = !this.isSended
+    },
+
+    activateMail () {
+      this.isMail = !this.isMail
     }
   }
 }

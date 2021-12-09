@@ -7,7 +7,7 @@
       <p>Победа</p>
     </div>
     <div class="common waiting" v-else>
-      <p>Ожидает розыгрыша</p>
+      <p>Чек принят</p>
     </div>
   </div>
 </template>
