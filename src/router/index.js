@@ -18,6 +18,11 @@ const routes = [
     component: Main
   },
   {
+    path: '/?utm_source=:source&utm_medium=cpc&utm_campaign=:campaign_id&utm_content=:position_type.:position&utm_term=:keyword',
+    name: 'Metrika',
+    component: Main
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: Profile
