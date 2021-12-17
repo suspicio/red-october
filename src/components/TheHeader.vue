@@ -7,12 +7,12 @@
         <div></div>
       </div>
       <div :style="{display: visible ? 'flex' : 'none'}" class="small__menu">
-        <a href="/#winners">Победители</a>
+        <a href="/#winners" @click.prevent="onGoToAnchor('winners')">Победители</a>
 <!--        <a href="/#gallery">Галерея</a>-->
-        <a href="/#actions">Акция</a>
-        <a href="/#prizes">Призы</a>
-        <a href="/#products">Продукция</a>
-        <a href="/#faq">FAQ</a>
+        <a href="/#actions" @click.prevent="onGoToAnchor('actions')">Акция</a>
+        <a href="/#prizes" @click.prevent="onGoToAnchor('prizes')">Призы</a>
+        <a href="/#products" @click.prevent="onGoToAnchor('products')">Продукция</a>
+        <a href="/#faq" @click.prevent="onGoToAnchor('faq')">FAQ</a>
       </div>
       <router-link class="red_october" to="/">
         <img v-if="!tiny" src="/images/logo.png">
@@ -21,12 +21,12 @@
       <img v-if="!tiny" class="ms magnit" src="../assets/magnit.svg">
       <img v-else class="magnit ms" src="../assets/small_magnit.svg">
       <div :class="{extra__margin: isBgRed}" class="links">
-        <a href="/#winners">Победители</a>
+        <a href="/#winners" @click.prevent="onGoToAnchor('winners')">Победители</a>
 <!--        <a href="/#gallery">Галерея</a>-->
-        <a href="/#actions">Акция</a>
-        <a href="/#prizes">Призы</a>
-        <a href="/#products">Продукция</a>
-        <a href="/#faq">FAQ</a>
+        <a href="/#actions" @click.prevent="onGoToAnchor('actions')">Акция</a>
+        <a href="/#prizes" @click.prevent="onGoToAnchor('prizes')">Призы</a>
+        <a href="/#products" @click.prevent="onGoToAnchor('products')">Продукция</a>
+        <a href="/#faq" @click.prevent="onGoToAnchor('faq')">FAQ</a>
       </div>
       <TheButton
         v-if="!user"
@@ -104,6 +104,29 @@ export default {
 
     disable () {
       this.$emit('activate')
+    },
+
+    async onGoToAnchor (id) {
+      const notIndexPage = this.$route.name !== 'Main'
+      await this.$router.push('/')?.catch(() => {})
+      console.log(document.querySelector(`#${id}`).offsetTop)
+      this.$nextTick(() => {
+        if (notIndexPage) {
+          setTimeout(() => {
+            window.scrollTo({
+              left: 0,
+              top: document.querySelector(`#${id}`).offsetTop,
+              behavior: 'smooth'
+            })
+          }, 1000)
+        } else {
+          window.scrollTo({
+            left: 0,
+            top: document.querySelector(`#${id}`).offsetTop,
+            behavior: 'smooth'
+          })
+        }
+      })
     },
 
     onResize () {

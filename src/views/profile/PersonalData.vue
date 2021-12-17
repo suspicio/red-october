@@ -79,7 +79,7 @@
                     ></TheButton>
                   </div>
                   <div class="confidential__policy">
-                    <p>Нажимая «Отправить», вы соглашаетесь с <a href="#">Политикой обработки персональных данных</a></p>
+                    <p>Нажимая «Отправить», вы соглашаетесь с <a href="https://magnit.krasniy-oktyabr.ru/api/policy.pdf" target="_blank" download>Политикой обработки персональных данных</a></p>
                   </div>
                 </div>
               </div>

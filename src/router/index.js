@@ -18,11 +18,6 @@ const routes = [
     component: Main
   },
   {
-    path: '/?utm_source=:source&utm_medium=cpc&utm_campaign=:campaign_id&utm_content=:position_type.:position&utm_term=:keyword',
-    name: 'Metrika',
-    component: Main
-  },
-  {
     path: '/profile',
     name: 'profile',
     component: Profile
@@ -38,6 +33,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+function hasQueryParams (route) {
+  return !!Object.keys(route.query).length
+}
+
+router.beforeEach((to, from, next) => {
+  if (!hasQueryParams(to) && hasQueryParams(from)) {
+    next({ name: to.name, query: from.query })
+  } else {
+    next()
+  }
 })
 
 export default router
