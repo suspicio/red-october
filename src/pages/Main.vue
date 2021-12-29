@@ -25,8 +25,8 @@
     />
     <ParticipateInShare id="actions"/>
     <WinThePrize id="prizes"/>
-    <SpecialProject v-if="false" id="gallery"/>
-    <TheParticipants v-if="false" :photo="photo"/>
+    <SpecialProject v-if="true" id="gallery"/>
+    <TheParticipants v-if="true" :photo="photo"/>
     <ProductionInAction id="products"/>
     <TheWinners :winners="winners"/>
     <FAQ id="faq"/>

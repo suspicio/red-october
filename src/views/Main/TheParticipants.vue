@@ -6,12 +6,7 @@
           <div class="swiper-wrapper">
             <div v-for="(slide, index) in slides" :key="index" class="swiper-slide">
               <div class="swiper-slide-block">
-                <div class="slide__box"><img :src="slide[0].url"></div>
-                <div v-if="slide.length >= 2" class="slide__box"><img :src="slide[1].url"></div>
-              </div>
-              <div class="swiper-slide-block">
-                <div v-if="slide.length >= 3" class="slide__box"><img :src="slide[2].url"></div>
-                <div v-if="slide.length === 4" class="slide__box"><img :src="slide[3].url"></div>
+                <div class="slide__box"><img :src="slide.url"></div>
               </div>
             </div>
           </div>
@@ -50,12 +45,16 @@ export default {
       swiperOption: {
         slidesPerView: 1,
         breakpoints: {
-          768: {
-            slidesPerView: 1,
+          500: {
+            slidesPerView: 2,
+            spaceBetween: 0
+          },
+          900: {
+            slidesPerView: 3,
             spaceBetween: 0
           },
           1300: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 0
           }
         },
@@ -69,16 +68,7 @@ export default {
   },
   watch: {
     photo: function () {
-      this.slides = []
-      for (const i in Object.values(this.photo)) {
-        if (this.slides.length === 0) {
-          this.slides.push([this.photo[i]])
-        } else if (this.slides[this.slides.length - 1].length !== 4) {
-          this.slides[this.slides.length - 1].push(this.photo[i])
-        } else {
-          this.slides.push([this.photo[i]])
-        }
-      }
+      this.slides = this.photo
     }
   }
 }
@@ -107,18 +97,16 @@ export default {
 
   &-swiper-wrapper {
     position: relative;
-    width: 1100px;
+    width: 1070px;
   }
 
   .slider {
     display: block;
-    width: 1100px;
+    width: 1070px;
 
     .swiper-wrapper {
 
       .swiper-slide {
-        max-width: 550px;
-        width: 550px !important;
         height: 100%;
 
         .swiper-slide-block {
@@ -133,16 +121,16 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 256px;
+            max-width: 350px;
             width: 100%;
             height: 100%;
-            max-height: 256px;
+            max-height: 350px;
             background-color: #F8E577;
             margin: 5px 18px 5px 0;
 
             img {
               width: 100%;
-              max-height: 256px;
+              max-height: 350px;
             }
           }
         }
@@ -153,7 +141,7 @@ export default {
 
 @media (max-width: 1300px) {
   .g-container {
-    width: 550px;
+    width: 720px;
   }
 
   .the__participants {
@@ -161,25 +149,64 @@ export default {
 
     &-swiper-wrapper {
       position: relative;
-      width: 550px;
+      width: 720px;
     }
 
     .slider {
-      width: 550px;
+      width: 720px;
 
       .swiper-wrapper {
-        width: 550px ;
+        width: 720px;
 
         .swiper-slide {
-          max-width: 550px;
-          width: 550px;
+          max-width: 720px;
+          width: 720px;
         }
       }
     }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .g-container {
+    width: 350px;
+  }
+
+  .the__participants {
+    padding: 80px;
+
+    &-swiper-wrapper {
+      position: relative;
+      width: 350px;
+    }
+
+    .slider {
+      width: 350px;
+
+      .swiper-wrapper {
+        width: 350px;
+
+        .swiper-slide {
+          max-width: 350px;
+          width: 350px;
+        }
+      }
+    }
+  }
+
+  .size {
+    font-size: 22px;
+  }
+
+  .left {
+    display: none;
+  }
+  .right {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
   .g-container {
     width: 290px;
   }
@@ -200,7 +227,6 @@ export default {
 
         .swiper-slide {
           max-width: 290px;
-          width: 290px !important;
 
           .swiper-slide-block {
 
@@ -218,17 +244,6 @@ export default {
         }
       }
     }
-  }
-
-  .size {
-    font-size: 22px;
-  }
-
-  .left {
-    display: none;
-  }
-  .right {
-    display: none;
   }
 }
 </style>
