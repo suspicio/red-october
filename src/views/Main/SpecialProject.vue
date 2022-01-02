@@ -10,15 +10,6 @@
       :text-color="'white'"
     ></centralized-heading>
     <div class="content__box">
-      <div class="the__button">
-      <the-button v-if="small"
-                  :bg-color="'white'"
-                  :is-rounded="true"
-                  :text="'Галерея работ'"
-                  :is-long="true"
-                  :is-big="false"
-      ></the-button>
-      </div>
       <div>
         <img v-if="!small" src="../../assets/spec_photo.png">
         <img v-else src="../../assets/small_spec_photo.png">
@@ -26,12 +17,6 @@
       <div class="text__content">
         <h1>Повторяй фотографии своих родителей в новогодней стилистике</h1>
         <p>Выкладывай у себя в Instagram,указывай #РетроЧелленджМагнит в описании к посту и получи шанс выиграть артефакты советских времен</p>
-        <the-button
-          v-if="!small"
-          :bg-color="'white'"
-          :is-rounded="true"
-          :text="'Галерея работ'"
-        ></the-button>
       </div>
     </div>
   </div>
@@ -39,12 +24,10 @@
 
 <script>
 import CentralizedHeading from '@/components/CentralizedHeading'
-import TheButton from '@/components/TheButton'
 
 export default {
   name: 'SpecialProject',
   components: {
-    TheButton,
     CentralizedHeading
   },
   mounted () {
@@ -70,7 +53,6 @@ export default {
 <style lang="scss" scoped>
 .special__project {
   height: fit-content;
-  background-color: white;
   position: relative;
   overflow: hidden;
   background-color: #D02E26;
@@ -142,9 +124,13 @@ export default {
   .left__image {
     display: none;
   }
+
+  .right__image {
+    display: none;
+  }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .size {
     margin-top: -25px;
   }

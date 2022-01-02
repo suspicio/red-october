@@ -78,7 +78,7 @@ export default {
 @import "src/assets/styles/slider";
 
 .g-container {
-  width: 1100px;
+  width: 1002px;
 }
 
 .the__participants {
@@ -97,12 +97,12 @@ export default {
 
   &-swiper-wrapper {
     position: relative;
-    width: 1070px;
+    width: 1002px;
   }
 
   .slider {
     display: block;
-    width: 1070px;
+    width: 1002px;
 
     .swiper-wrapper {
 
@@ -169,7 +169,7 @@ export default {
 
 @media (max-width: 900px) {
   .g-container {
-    width: 350px;
+    width: 700px;
   }
 
   .the__participants {
@@ -177,18 +177,18 @@ export default {
 
     &-swiper-wrapper {
       position: relative;
-      width: 350px;
+      width: 700px;
     }
 
     .slider {
-      width: 350px;
+      width: 700px;
 
       .swiper-wrapper {
-        width: 350px;
+        width: 700px;
 
         .swiper-slide {
-          max-width: 350px;
-          width: 350px;
+          max-width: 700px;
+          width: 700px;
         }
       }
     }
@@ -231,13 +231,13 @@ export default {
           .swiper-slide-block {
 
             .slide__box {
-              max-width: 140px !important;
-              max-height: 140px !important;
+              max-width: 290px !important;
+              max-height: 290px !important;
               margin: 5px 10px 5px 0 !important;
 
               img {
                 width: 100% !important;
-                max-height: 140px !important;
+                max-height: 290px !important;
               }
             }
           }
